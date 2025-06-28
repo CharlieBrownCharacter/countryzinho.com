@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { countries } from '@/services/resources/country/constants.ts'
+import { trieRoot } from '@/services/resources/country/constants.ts'
 import { useCountryStore } from '@/stores/countryStore.ts'
+import { findGuess } from '@/services/resources/country/helpers.ts'
 
 const guess = ref('')
 
 const countryStore = useCountryStore()
 
 function onKeyUp() {
-  const loweredCaseGuess = guess.value.toLocaleLowerCase()
-  const foundCountry = countries.find((c) => c.lowerCase === loweredCaseGuess)
+  const matchedCode = findGuess(trieRoot, guess.value)
 
-  if (!foundCountry) return
+  if (!matchedCode) return
 
-  countryStore.onGuessCountry(foundCountry)
+  if (!matchedCode.isoAlpha2Code) throw new Error('matchedCode should have country code')
+
+  countryStore.onGuessCountry(matchedCode.isoAlpha2Code)
   guess.value = ''
 }
 </script>
