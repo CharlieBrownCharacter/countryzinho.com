@@ -8,6 +8,8 @@ type GuessedCountry = Record<Country['isoAlpha2Code'], boolean>
 export const useCountryStore = defineStore('countries', () => {
   const guessedCountries = ref<GuessedCountry>({})
 
+  const isGuessCountriesModalOpen = ref(false)
+
   for (const country of countries) {
     guessedCountries.value[country.isoAlpha2Code] = false
   }
@@ -16,5 +18,5 @@ export const useCountryStore = defineStore('countries', () => {
     guessedCountries.value[countryCode] = true
   }
 
-  return { guessedCountries, onGuessCountry }
+  return { guessedCountries, onGuessCountry, isGuessCountriesModalOpen }
 })

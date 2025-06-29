@@ -18,7 +18,7 @@ const MIN_ZOOM = 100
 const MAX_ZOOM = 600
 
 const classes = computed(() => {
-  const base = ['fill-none', '[stroke-linejoin:round]', 'stroke-black', '[stroke-width:0.2]']
+  const base = ['fill-none', '[stroke-linejoin:round]', 'stroke-gray-500', '[stroke-width:0.2]']
 
   if (isPanning.value) {
     base.push('cursor-move')
@@ -102,7 +102,7 @@ function onWheel(e: Event) {
     @mouseleave="onMouseUp"
     @wheel="onWheel"
   >
-    <g id="world_border">
+    <g>
       <CountryPath
         d="M329 193L328 193 328 193 329 193ZM329 191L328 191 328 191 329 191Z"
         iso="AG"

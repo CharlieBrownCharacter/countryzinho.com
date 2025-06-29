@@ -372,4 +372,5 @@ export const countries: Country[] = [
   { name: 'Zimbabwe', isoAlpha2Code: 'ZW', allowedGuesses: ['zimbabwe'] },
 ]
 
+console.log(countries.length)
 export const trieRoot = buildCountryTrie(countries)
