@@ -16,7 +16,10 @@ function onKeyUp() {
 
   if (!matchedCode.isoAlpha2Code) throw new Error('matchedCode should have country code')
 
-  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code]) return
+  if (!(matchedCode.isoAlpha2Code in countryStore.guessedCountries))
+    throw new Error(`${matchedCode.isoAlpha2Code} is not in countryStore.guessedCountries`)
+
+  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) return
 
   countryStore.onGuessCountry(matchedCode.isoAlpha2Code)
   guess.value = ''
@@ -28,6 +31,7 @@ function onKeyUp() {
     v-model="guess"
     class="absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow"
     placeholder="Guess country"
+    autofocus
     @keyup="onKeyUp"
   />
 </template>

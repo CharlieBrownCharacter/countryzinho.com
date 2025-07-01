@@ -37,6 +37,12 @@ export const countries: Country[] = [
     allowedGuesses: ['antigua and barbuda'],
   },
   {
+    name: 'Aruba',
+    isoAlpha2Code: 'AW',
+    allowedGuesses: ['aruba'],
+    continents: ['northAmerica'],
+  },
+  {
     name: 'Argentina',
     isoAlpha2Code: 'AR',
     continents: ['southAmerica'],
@@ -120,6 +126,12 @@ export const countries: Country[] = [
     isoAlpha2Code: 'IO',
     continents: ['asia'],
     allowedGuesses: ['british indian ocean territory'],
+  },
+  {
+    name: 'British Virgin Islands',
+    isoAlpha2Code: 'VG',
+    allowedGuesses: ['british virgin islands', 'virgin islands'],
+    continents: ['northAmerica'],
   },
   {
     name: 'Brunei Darussalam',
@@ -788,7 +800,13 @@ export const countries: Country[] = [
     name: 'United States',
     isoAlpha2Code: 'US',
     continents: ['northAmerica'],
-    allowedGuesses: ['united states', 'usa', 'us'],
+    allowedGuesses: ['united states', 'usa'],
+  },
+  {
+    name: 'United States Virgin Islands',
+    isoAlpha2Code: 'VI',
+    allowedGuesses: ['united states virgin islands', 'us virgin islands', 'virgin islands'],
+    continents: ['northAmerica'],
   },
   {
     name: 'Uruguay',

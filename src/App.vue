@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CountrySVG from '@/components/CountrySVG.vue'
 import GuessInput from '@/components/GuessInput.vue'
-import GuessedCountriesModal from '@/components/GuessedCountriesModal.vue'
+import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer.vue'
 import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 
@@ -20,7 +20,7 @@ const store = useCountryStore()
     >
       Open Guess Modal
     </Button>
-    <GuessedCountriesModal />
+    <GuessedCountriesDrawer />
     <CountrySVG />
   </main>
 </template>

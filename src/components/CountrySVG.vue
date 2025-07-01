@@ -244,7 +244,7 @@ const isPanning = ref(false)
 let startX = 0
 let startY = 0
 
-const MIN_ZOOM = 200
+const MIN_ZOOM = 50
 const MAX_ZOOM = 2000
 
 const classes = computed(() => {
@@ -257,22 +257,33 @@ const classes = computed(() => {
   return base
 })
 
-function onMouseDown(e: MouseEvent) {
-  isPanning.value = true
-  startX = e.clientX
-  startY = e.clientY
+function getEventCoords(e: MouseEvent | TouchEvent) {
+  if ('touches' in e && e.touches.length > 0) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY }
+  } else if ('clientX' in e && 'clientY' in e) {
+    return { x: e.clientX, y: e.clientY }
+  }
+  return { x: 0, y: 0 }
 }
 
-function onMouseMove(e: MouseEvent) {
+function onPointerDown(e: MouseEvent | TouchEvent) {
+  isPanning.value = true
+  const { x, y } = getEventCoords(e)
+  startX = x
+  startY = y
+}
+
+function onPointerMove(e: MouseEvent | TouchEvent) {
   if (!isPanning.value) return
 
-  const svg = e.currentTarget
-  const { clientWidth, clientHeight } = svg as SVGElement
-
+  const svg = e.currentTarget as SVGElement
+  const { clientWidth, clientHeight } = svg
   if (clientWidth === 0 || clientHeight === 0) return
 
-  const dx = e.clientX - startX
-  const dy = e.clientY - startY
+  const { x, y } = getEventCoords(e)
+
+  const dx = x - startX
+  const dy = y - startY
 
   const scaleX = viewBoxWidth.value / clientWidth
   const scaleY = viewBoxHeight.value / clientHeight
@@ -280,17 +291,15 @@ function onMouseMove(e: MouseEvent) {
   viewBoxX.value -= dx * scaleX
   viewBoxY.value -= dy * scaleY
 
-  startX = e.clientX
-  startY = e.clientY
+  startX = x
+  startY = y
 }
 
-function onMouseUp() {
+function onPointerUp() {
   isPanning.value = false
 }
 
 function onWheel(e: Event) {
-  e.preventDefault()
-
   const svg = e.currentTarget as SVGElement
   const { clientWidth, clientHeight } = svg
 
@@ -327,10 +336,13 @@ function onWheel(e: Event) {
     :viewBox="`${viewBoxX} ${viewBoxY} ${viewBoxWidth} ${viewBoxHeight}`"
     :width="width"
     :class="classes"
-    @mousedown="onMouseDown"
-    @mousemove="onMouseMove"
-    @mouseup="onMouseUp"
-    @mouseleave="onMouseUp"
+    @mousedown.prevent="onPointerDown"
+    @mousemove.prevent="onPointerMove"
+    @mouseup.prevent="onPointerUp"
+    @mouseleave.prevent="onPointerUp"
+    @touchstart.prevent="onPointerDown"
+    @touchmove.prevent="onPointerMove"
+    @touchend.prevent="onPointerUp"
     @wheel="onWheel"
   >
     <CountrySD />
