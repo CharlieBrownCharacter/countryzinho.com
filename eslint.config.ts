@@ -19,10 +19,20 @@ export default defineConfigWithVueTs(
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  
+
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
   skipFormatting,
+  {
+    rules: {
+      'padding-line-between-statements': [
+        'error',
+        { blankLine: 'always', prev: 'import', next: '*' },
+        { blankLine: 'any', prev: 'import', next: 'import' },
+      ],
+      'vue/padding-line-between-blocks': ['error', 'always'],
+    },
+  },
 )

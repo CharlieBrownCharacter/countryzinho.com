@@ -1,0 +1,18 @@
+<script setup lang="ts">
+import { useCountryGuessed } from '@/composables/useCountryGuessed.ts'
+import { computed } from 'vue'
+
+const { guessed } = useCountryGuessed('SM')
+const classes = computed(() => ({ 'fill-gray-200 stroke-black': guessed.value }))
+</script>
+
+<template>
+  <g id="sm" :class="classes">
+    <title id="title240">San Marino</title>
+    <path
+      id="sm-"
+      class="landxx sm"
+      d="m 1393.24,320.462 0.47,-0.69 0.68,0.536 -0.56,0.595 z"
+    ></path>
+  </g>
+</template>
