@@ -3,7 +3,10 @@ import { useCountryGuessed } from '@/composables/useCountryGuessed.ts'
 import { computed } from 'vue'
 
 const { guessed } = useCountryGuessed('VA')
-const classes = computed(() => ({ 'fill-gray-200 stroke-black': guessed.value }))
+
+const classes = computed(() =>
+  guessed.value ? 'fill-slate-200 stroke-black' : 'dark:fill-zinc-900 fill-white',
+)
 </script>
 
 <template>

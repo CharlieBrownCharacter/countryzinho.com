@@ -244,8 +244,8 @@ const isPanning = ref(false)
 let startX = 0
 let startY = 0
 
-const MIN_ZOOM = 100
-const MAX_ZOOM = 600
+const MIN_ZOOM = 200
+const MAX_ZOOM = 2000
 
 const classes = computed(() => {
   const base = ['fill-none', '[stroke-linejoin:round]', 'stroke-gray-500', '[stroke-width:0.2]']
