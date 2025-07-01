@@ -106,7 +106,7 @@ export const countries: Country[] = [
     name: 'Bosnia and Herzegovina',
     isoAlpha2Code: 'BA',
     continents: ['europe'],
-    allowedGuesses: ['bosnia and herzegovina'],
+    allowedGuesses: ['bosnia and herzegovina', 'bosnia'],
   },
   { name: 'Botswana', isoAlpha2Code: 'BW', continents: ['africa'], allowedGuesses: ['botswana'] },
   {
