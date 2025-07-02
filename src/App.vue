@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CountrySVG from '@/components/CountrySVG.vue'
 import GuessInput from '@/components/GuessInput.vue'
-import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer.vue'
+import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer/GuessedCountriesDrawer.vue'
 import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 

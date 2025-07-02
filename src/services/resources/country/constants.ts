@@ -1,6 +1,10 @@
 import type { Country } from '@/services/resources/country/types.ts'
 import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
 
+export type GuessedCountry = { guessed: boolean; country: Country }
+
+export type GuessedCountriesMap = Record<Country['isoAlpha2Code'], GuessedCountry>
+
 export const countries: Country[] = [
   {
     name: 'Afghanistan',
@@ -833,4 +837,42 @@ export const countries: Country[] = [
   { name: 'Zimbabwe', isoAlpha2Code: 'ZW', continents: ['africa'], allowedGuesses: ['zimbabwe'] },
 ]
 
+export const europeanCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('europe'),
+)
+
+export const southAmericaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('southAmerica'),
+)
+
+export const northAmericaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('northAmerica'),
+)
+
+export const africaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('africa'),
+)
+
+export const antarcticaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('antarctica'),
+)
+
+export const asiaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('asia'),
+)
+
+export const oceaniaCountries: Country[] = countries.filter((country) =>
+  country.continents.includes('oceania'),
+)
+
 export const trieRoot = buildCountryTrie(countries)
+
+export function createGuessedCountriesMap(countries: Country[]): GuessedCountriesMap {
+  const _countries: GuessedCountriesMap = {}
+
+  for (const country of countries) {
+    _countries[country.isoAlpha2Code] = { guessed: false, country }
+  }
+
+  return _countries
+}
