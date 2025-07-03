@@ -232,12 +232,17 @@ import CountryIM from '@/components/countries/CountryIM.vue'
 import CountryGU from '@/components/countries/CountryGU.vue'
 import CountrySG from '@/components/countries/CountrySG.vue'
 import CountryTK from '@/components/countries/CountryTK.vue'
+import { useCountryStore } from '@/stores/countryStore.ts'
+import type { Country } from '@/services/resources/country/types.ts'
+
+const countryStore = useCountryStore()
 
 const { width, height } = useWindowSize({
   initialWidth: 1200,
   initialHeight: 800,
 })
 
+const latestCountryFocused = ref<Country | null>(null)
 const viewBoxWidth = ref(width.value)
 const viewBoxHeight = ref(height.value)
 const viewBoxX = ref(0)
@@ -340,24 +345,74 @@ function onWheel(e: Event) {
   viewBoxHeight.value = newHeight
 }
 
-function focusOnCountry(countryCode = 'es') {
+function focusOnCountry(countryCode = 'es', easingDuration = 1000) {
   if (!svgRef.value) return
 
-  const country: HTMLElement | null = svgRef.value.querySelector(`#${countryCode}`)
+  const country: SVGGraphicsElement | null = svgRef.value.querySelector(`#${countryCode}`)
 
   if (!country) throw new Error(`country with code ${countryCode} not found`)
 
-  const bbox = country.getBoundingClientRect()
-
+  const bbox = country.getBBox()
   const padding = 50
 
-  viewBoxX.value = bbox.x - padding
-  viewBoxY.value = bbox.y - padding
-  viewBoxWidth.value = bbox.width + padding * 2
-  viewBoxHeight.value = bbox.height + padding * 2
+  animateViewBoxTo(
+    bbox.x - padding,
+    bbox.y - padding,
+    bbox.width + padding * 2,
+    bbox.height + padding * 2,
+    easingDuration,
+  )
 }
 
-onMounted(focusOnCountry)
+// @see https://easings.net/#easeInOutCubic
+function easeInOutCubic(t: number): number {
+  return t * t * (3 - 2 * t)
+}
+
+function animateViewBoxTo(x: number, y: number, width: number, height: number, duration = 1000) {
+  const startX = viewBoxX.value
+  const startY = viewBoxY.value
+  const startWidth = viewBoxWidth.value
+  const startHeight = viewBoxHeight.value
+
+  const dx = x - startX
+  const dy = y - startY
+  const dWidth = width - startWidth
+  const dHeight = height - startHeight
+
+  const startTime = performance.now()
+
+  function step(now: number) {
+    const rawT = Math.min((now - startTime) / duration, 1)
+    const t = easeInOutCubic(rawT)
+
+    viewBoxX.value = startX + dx * t
+    viewBoxY.value = startY + dy * t
+    viewBoxWidth.value = startWidth + dWidth * t
+    viewBoxHeight.value = startHeight + dHeight * t
+
+    if (rawT < 1) requestAnimationFrame(step)
+  }
+
+  requestAnimationFrame(step)
+}
+
+onMounted(() => focusOnCountry('es', 0))
+
+countryStore.$subscribe((mutation, state) => {
+  if (mutation.type !== 'direct') return
+
+  if (!state.latestCountryGuessed) return
+
+  if (
+    latestCountryFocused.value &&
+    latestCountryFocused.value.isoAlpha2Code === state.latestCountryGuessed.isoAlpha2Code
+  )
+    return
+
+  latestCountryFocused.value = state.latestCountryGuessed
+  focusOnCountry(state.latestCountryGuessed.isoAlpha2Code.toLowerCase())
+})
 </script>
 
 <template>
