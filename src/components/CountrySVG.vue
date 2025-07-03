@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import CountrySD from '@/components/countries/CountrySD.vue'
 import CountrySS from '@/components/countries/CountrySS.vue'
@@ -233,19 +233,24 @@ import CountryGU from '@/components/countries/CountryGU.vue'
 import CountrySG from '@/components/countries/CountrySG.vue'
 import CountryTK from '@/components/countries/CountryTK.vue'
 
-const { width, height } = useWindowSize()
+const { width, height } = useWindowSize({
+  initialWidth: 1200,
+  initialHeight: 800,
+})
 
+const viewBoxWidth = ref(width.value)
+const viewBoxHeight = ref(height.value)
 const viewBoxX = ref(0)
 const viewBoxY = ref(0)
-const viewBoxWidth = ref(800)
-const viewBoxHeight = ref(600)
 const isPanning = ref(false)
+
+const svgRef = useTemplateRef<SVGElement>('svgRef')
 
 let startX = 0
 let startY = 0
 
 const MIN_ZOOM = 50
-const MAX_ZOOM = 2000
+const MAX_ZOOM = 1500
 
 const classes = computed(() => {
   const base = ['fill-none', '[stroke-linejoin:round]', 'stroke-gray-500', '[stroke-width:0.2]']
@@ -300,41 +305,77 @@ function onPointerUp() {
 }
 
 function onWheel(e: Event) {
-  const svg = e.currentTarget as SVGElement
-  const { clientWidth, clientHeight } = svg
+  const { clientWidth, clientHeight } = e.currentTarget as SVGElement
 
   if (clientWidth === 0 || clientHeight === 0) return
 
   const { offsetX, offsetY, deltaY } = e as WheelEvent
+
   const zoomFactor = deltaY > 0 ? 1.1 : 0.9
 
-  const zoomPointX = (offsetX / clientWidth) * viewBoxWidth.value + viewBoxX.value
-  const zoomPointY = (offsetY / clientHeight) * viewBoxHeight.value + viewBoxY.value
+  // Translates the mouse coordinates (offsetX/Y) into SVG coordinate space using proportions
+  // of the viewBox. These become the reference point we want to zoom into.
+  const mouseX = (offsetX / clientWidth) * viewBoxWidth.value + viewBoxX.value
+  const mouseY = (offsetY / clientHeight) * viewBoxHeight.value + viewBoxY.value
 
-  let newWidth = viewBoxWidth.value * zoomFactor
-  let newHeight = viewBoxHeight.value * zoomFactor
+  // Calculates the new zoomed width/height. We clamp the
+  // values to make sure we don't zoom in/out too far.
+  const newWidth = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewBoxWidth.value * zoomFactor))
+  const newHeight = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, viewBoxHeight.value * zoomFactor))
 
-  newWidth = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newWidth))
-  newHeight = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newHeight))
+  // Then we find the vector from the top-left of the
+  // viewBox to the mouse point, in SVG coordinates.
+  const dx = mouseX - viewBoxX.value
+  const dy = mouseY - viewBoxY.value
 
+  // Calculates how much the viewBox is scaling along each x/y-axis
   const scaleX = newWidth / viewBoxWidth.value
   const scaleY = newHeight / viewBoxHeight.value
 
-  viewBoxX.value = zoomPointX - (zoomPointX - viewBoxX.value) * scaleX
-  viewBoxY.value = zoomPointY - (zoomPointY - viewBoxY.value) * scaleY
-
+  // Then we shift the viewBox origin so that after scaling, the point under the
+  // mouse remains fixed. It reverses the movement introduced by the scale.
+  viewBoxX.value = mouseX - dx * scaleX
+  viewBoxY.value = mouseY - dy * scaleY
   viewBoxWidth.value = newWidth
   viewBoxHeight.value = newHeight
 }
+
+function focusOnCountry(countryCode = 'es') {
+  if (!svgRef.value) return
+
+  const country: HTMLElement | null = svgRef.value.querySelector(`#${countryCode}`)
+
+  if (!country) throw new Error(`country with code ${countryCode} not found`)
+
+  const bbox = country.getBoundingClientRect()
+
+  const padding = 50
+
+  viewBoxX.value = bbox.x - padding
+  viewBoxY.value = bbox.y - padding
+  viewBoxWidth.value = bbox.width + padding * 2
+  viewBoxHeight.value = bbox.height + padding * 2
+}
+
+onMounted(focusOnCountry)
 </script>
 
 <template>
-  <!--  Attributions: https://ahuseyn.github.io/SVG-World-Map-with-labels/ -->
+  <!--  End product with labels by ahuseyn (https://github.com/ahuseyn/) - MIT license-->
+  <!--  Source of the map: https://commons.wikimedia.org/wiki/File:BlankMap-World.svg (public domain)-->
+  <!--  Guide for the class names:-->
+  <!--  .eu - for members of European Union-->
+  <!--  .eaeu - for members of Eurasian Economic Union-->
+  <!--  .limitxx - for territories with limited or no recognition. All of them are overlays over their host countries, and so not showing them doesn't leave any gaps on the map-->
+  <!--  .landxx - for all of the land. All land, as opposed to water, should belong to this class; in order to modify the coastline for land pieces with no borders on them a special class coastxx is used-->
+  <!--  .coastxx - for coastlines of islands and continents with no borders on them. All of them should also belong to the class landxx-->
+  <!--  .antxx - for territories without permanent population (the largest of which is Antarctica)-->
   <svg
+    ref="svgRef"
     xmlns="http://www.w3.org/2000/svg"
-    :height="height"
     :viewBox="`${viewBoxX} ${viewBoxY} ${viewBoxWidth} ${viewBoxHeight}`"
     :width="width"
+    :height="height"
     :class="classes"
     @mousedown.prevent="onPointerDown"
     @mousemove.prevent="onPointerMove"
