@@ -4,6 +4,7 @@ import GuessInput from '@/components/GuessInput.vue'
 import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer/GuessedCountriesDrawer.vue'
 import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
+import TimerSection from '@/components/TimerSection.vue'
 
 const store = useCountryStore()
 </script>
@@ -22,5 +23,6 @@ const store = useCountryStore()
     </Button>
     <GuessedCountriesDrawer />
     <CountrySVG />
+    <TimerSection />
   </main>
 </template>
