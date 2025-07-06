@@ -2,7 +2,6 @@
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
 import { computed, ref } from 'vue'
-import { differenceInSeconds } from 'date-fns/differenceInSeconds'
 
 const store = useCountryStore()
 
@@ -19,7 +18,6 @@ const { resume, isActive, pause } = useIntervalFn(
     const totalSeconds = Math.max(0, Math.ceil((store.endsAt.getTime() - now.getTime()) / 1000))
 
     if (totalSeconds === 0) {
-      console.log('paused')
       pause()
     }
 

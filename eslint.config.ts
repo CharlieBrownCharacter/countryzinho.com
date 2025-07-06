@@ -33,6 +33,7 @@ export default defineConfigWithVueTs(
         { blankLine: 'any', prev: 'import', next: 'import' },
       ],
       'vue/padding-line-between-blocks': ['error', 'always'],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
 )
