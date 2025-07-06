@@ -42,14 +42,17 @@ const { resume: resumeTimer, pause } = useIntervalFn(
 )
 
 function onStartClick() {
-  const countdownSeconds = 5
+  const countdownSeconds = 2
 
   classes.value = 'transition-all duration-700 motion-reduce:transition-none'
   counter.value = countdownSeconds
-  setTimeout(() => {
-    resumeTimer()
-    store.startGame(timeSelected.value + countdownSeconds)
-  }, 500)
+
+  // We need to add a small delay so that the timer only starts
+  // at the end of the animation of the shrinking dialog.
+  setTimeout(resumeTimer, 500)
+
+  // Once the countdown finished, then we can start the timer
+  setTimeout(() => store.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
 }
 </script>
 

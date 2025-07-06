@@ -27,11 +27,21 @@ function onKeyUp() {
 </script>
 
 <template>
-  <InputText
-    v-model="guess"
-    class="absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow"
-    placeholder="Guess country"
-    autofocus
-    @keyup="onKeyUp"
-  />
+  <transition
+    enter-active-class="transition transform duration-500 ease-out"
+    enter-from-class="-translate-y-10 opacity-0"
+    enter-to-class="translate-y-0 opacity-100"
+    leave-active-class="transition transform duration-300 ease-in"
+    leave-from-class="translate-y-0 opacity-100"
+    leave-to-class="-translate-y-10 opacity-0"
+  >
+    <InputText
+      v-if="countryStore.isShowingControls"
+      v-model="guess"
+      class="absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow"
+      placeholder="Guess country"
+      autofocus
+      @keyup="onKeyUp"
+    />
+  </transition>
 </template>

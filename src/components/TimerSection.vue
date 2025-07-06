@@ -54,10 +54,20 @@ store.$subscribe((mutation, state) => {
 </script>
 
 <template>
-  <div
-    :class="classes"
-    class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 px-4 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
+  <transition
+    enter-active-class="transition transform duration-500 ease-out"
+    enter-from-class="translate-y-10 opacity-0"
+    enter-to-class="-translate-y-0 opacity-100"
+    leave-active-class="transition transform duration-300 ease-in"
+    leave-from-class="-translate-y-0 opacity-100"
+    leave-to-class="translate-y-10 opacity-0"
   >
-    {{ endTimeFormatted }}
-  </div>
+    <div
+      v-if="store.isShowingControls"
+      :class="classes"
+      class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 px-4 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
+    >
+      {{ endTimeFormatted }}
+    </div>
+  </transition>
 </template>

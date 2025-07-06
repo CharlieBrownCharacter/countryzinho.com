@@ -19,6 +19,8 @@ export const useCountryStore = defineStore('countries', () => {
 
   const isStartGameModalOpen = ref(true)
 
+  const isShowingControls = ref(false)
+
   function onGuessCountry(countryCode: string) {
     guessedCountries.value[countryCode].guessed = true
     latestCountryGuessed.value = guessedCountries.value[countryCode].country
@@ -26,6 +28,7 @@ export const useCountryStore = defineStore('countries', () => {
 
   function startGame(seconds: number = 5) {
     endsAt.value = addSeconds(new Date(), seconds)
+    isShowingControls.value = true
   }
 
   return {
@@ -34,6 +37,7 @@ export const useCountryStore = defineStore('countries', () => {
     latestCountryGuessed,
     endsAt,
     isStartGameModalOpen,
+    isShowingControls,
     startGame,
     onGuessCountry,
   }
