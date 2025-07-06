@@ -9,7 +9,7 @@ const endTimeFormatted = ref('')
 
 const hasWarningLeft = ref(false)
 
-const { resume, isActive, pause } = useIntervalFn(
+const { resume, pause } = useIntervalFn(
   () => {
     const now = new Date()
 
@@ -44,10 +44,13 @@ const classes = computed(() => {
   return klass
 })
 
-function onStartGameClick() {
-  store.startGame()
-  resume()
-}
+store.$subscribe((mutation, state) => {
+  if (mutation.type !== 'direct') return
+
+  if (state.endsAt) {
+    resume()
+  }
+})
 </script>
 
 <template>
@@ -56,7 +59,5 @@ function onStartGameClick() {
     class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 px-4 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
   >
     {{ endTimeFormatted }}
-
-    <button v-show="!isActive" @click="onStartGameClick">Start</button>
   </div>
 </template>

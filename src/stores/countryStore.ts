@@ -17,13 +17,15 @@ export const useCountryStore = defineStore('countries', () => {
 
   const endsAt = ref<null | Date>(null)
 
+  const isStartGameModalOpen = ref(true)
+
   function onGuessCountry(countryCode: string) {
     guessedCountries.value[countryCode].guessed = true
     latestCountryGuessed.value = guessedCountries.value[countryCode].country
   }
 
-  function startGame() {
-    endsAt.value = addSeconds(new Date(), 5)
+  function startGame(seconds: number = 5) {
+    endsAt.value = addSeconds(new Date(), seconds)
   }
 
   return {
@@ -31,6 +33,7 @@ export const useCountryStore = defineStore('countries', () => {
     isGuessCountriesModalOpen,
     latestCountryGuessed,
     endsAt,
+    isStartGameModalOpen,
     startGame,
     onGuessCountry,
   }
