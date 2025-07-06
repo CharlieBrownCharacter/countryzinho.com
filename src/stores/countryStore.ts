@@ -6,7 +6,6 @@ import {
   type GuessedCountriesMap,
 } from '@/services/resources/country/constants.ts'
 import type { Country } from '@/services/resources/country/types.ts'
-import { addMinutes } from 'date-fns/addMinutes'
 import { addSeconds } from 'date-fns/addSeconds'
 
 export const useCountryStore = defineStore('countries', () => {
