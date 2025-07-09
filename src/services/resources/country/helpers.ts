@@ -1,3 +1,5 @@
+import type { Country } from '@/services/resources/country/types.ts'
+
 type TrieNode = {
   children: Map<string, TrieNode>
   isEnd: boolean
@@ -39,4 +41,12 @@ export function findGuess(root: TrieNode, input: string): TrieNode | null {
     node = node.children.get(char)!
   }
   return node.isEnd ? (node ?? null) : null
+}
+
+export function getCountrySrcFlag(countryCode: Country['isoAlpha2Code']): string {
+  return `https://flagcdn.com/h20/${countryCode.toLowerCase()}.png`
+}
+
+export function getCountrySrcsetFlag(countryCode: Country['isoAlpha2Code']): string {
+  return `https://flagcdn.com/h40/${countryCode.toLowerCase()}.png 2x, https://flagcdn.com/h60/${countryCode.toLowerCase()}.png 3x`
 }

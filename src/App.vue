@@ -6,13 +6,29 @@ import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import TimerSection from '@/components/TimerSection.vue'
 import StartGameModal from '@/components/StartGameModal.vue'
+import ResultsDialog from '@/components/ResultsDialog.vue'
+import { onMounted } from 'vue'
+import { countries } from '@/services/resources/country/constants.ts'
+import { getCountrySrcFlag, getCountrySrcsetFlag } from '@/services/resources/country/helpers.ts'
 
 const store = useCountryStore()
+
+function preloadCountryFlags() {
+  countries.forEach((country) => {
+    const image = new Image()
+
+    image.src = getCountrySrcFlag(country.isoAlpha2Code)
+    image.srcset = getCountrySrcsetFlag(country.isoAlpha2Code)
+  })
+}
+
+onMounted(preloadCountryFlags)
 </script>
 
 <template>
   <main class="relative w-full p-0 m-0 box-content">
     <GuessInput />
+    <ResultsDialog />
     <transition
       enter-active-class="transition transform duration-500 ease-out"
       enter-from-class="-translate-y-10 opacity-0"
@@ -32,7 +48,6 @@ const store = useCountryStore()
         Open Guess Modal
       </Button>
     </transition>
-
     <GuessedCountriesDrawer />
     <CountrySVG />
     <TimerSection />

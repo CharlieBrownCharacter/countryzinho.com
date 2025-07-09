@@ -5,6 +5,7 @@ import { useCountryStore } from '@/stores/countryStore.ts'
 import { northAmericaCountries } from '@/services/resources/country/constants.ts'
 import { computed } from 'vue'
 import type { Country } from '@/services/resources/country/types.ts'
+import CountryFlag from '@/components/CountryFlag.vue'
 
 type GuessedCountriesComputed = { guessed: Country[]; missing: Country[] }
 
@@ -42,13 +43,8 @@ const missingCount = computed(
     <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
       <li v-for="country in guessedCountries.guessed" :key="country.isoAlpha2Code">
         <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
-          <img
-            :src="`https://flagcdn.com/h20/${country.isoAlpha2Code.toLowerCase()}.png`"
-            :srcset="`https://flagcdn.com/h40/${country.isoAlpha2Code.toLowerCase()}.png 2x, https://flagcdn.com/h60/${country.isoAlpha2Code.toLowerCase()}.png 3x`"
-            :alt="`Flag ${country.name}`"
-            width="16"
-            height="12"
-          />
+          <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
           {{ country.name }}
         </Tag>
       </li>
@@ -71,15 +67,8 @@ const missingCount = computed(
       <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
         <li v-for="country in guessedCountries.missing" :key="country.isoAlpha2Code">
           <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
-            <img
-              class="h-[13px] w-[20px] object-cover overflow-hidden"
-              :src="`https://flagcdn.com/h20/${country.isoAlpha2Code.toLowerCase()}.png`"
-              :srcset="`https://flagcdn.com/h40/${country.isoAlpha2Code.toLowerCase()}.png 2x, https://flagcdn.com/h60/${country.isoAlpha2Code.toLowerCase()}.png 3x`"
-              :alt="`Flag ${country.name}`"
-              width="20"
-              height="13"
-              loading="lazy"
-            />
+            <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
             {{ country.name }}
           </Tag>
         </li>

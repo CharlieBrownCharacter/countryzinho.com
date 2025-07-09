@@ -19,6 +19,7 @@ const { resume, pause } = useIntervalFn(
 
     if (totalSeconds === 0) {
       pause()
+      store.onGameEnd()
     }
 
     if (totalSeconds < 15) {
