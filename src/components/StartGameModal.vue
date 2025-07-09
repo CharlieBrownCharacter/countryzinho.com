@@ -17,7 +17,6 @@ const isStarting = computed(() => counter.value >= 1)
 const classes = ref('')
 
 const timerOptions = ref([
-  { value: 30, text: '30 Seconds' },
   { value: 120, text: '2 Minutes' },
   { value: 300, text: '5 Minutes' },
   { value: 6000, text: '10 Minutes' },
@@ -43,7 +42,7 @@ const { resume: resumeTimer, pause } = useIntervalFn(
 )
 
 function onStartClick() {
-  const countdownSeconds = 2
+  const countdownSeconds = 1
 
   classes.value = 'transition-all duration-700 motion-reduce:transition-none'
   counter.value = countdownSeconds
@@ -53,7 +52,7 @@ function onStartClick() {
   setTimeout(resumeTimer, 500)
 
   // Once the countdown finished, then we can start the timer
-  setTimeout(() => store.startGame(2), countdownSeconds * 1000 + 500)
+  setTimeout(() => store.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
 }
 </script>
 

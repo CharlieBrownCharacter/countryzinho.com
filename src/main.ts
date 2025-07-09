@@ -5,20 +5,23 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
+import Tooltip from 'primevue/tooltip'
 
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(PrimeVue, {
-  theme: {
-    preset: Aura,
-    options: {
-      cssLayer: {
-        name: 'primevue',
-        order: 'theme, base, primevue',
+app
+  .use(createPinia())
+  .use(PrimeVue, {
+    theme: {
+      preset: Aura,
+      options: {
+        cssLayer: {
+          name: 'primevue',
+          order: 'theme, base, primevue',
+        },
       },
     },
-  },
-})
+  })
+  .directive('tooltip', Tooltip)
 
 app.mount('#app')

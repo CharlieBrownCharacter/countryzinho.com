@@ -2,6 +2,8 @@
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
 import { computed, ref } from 'vue'
+import { Icon } from '@iconify/vue'
+import Button from 'primevue/button'
 
 const store = useCountryStore()
 
@@ -66,9 +68,21 @@ store.$subscribe((mutation, state) => {
     <div
       v-if="store.isShowingControls"
       :class="classes"
-      class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 px-4 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
+      class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 pl-4 pr-2 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
     >
-      {{ endTimeFormatted }}
+      <div class="flex items-center justify-between gap-2">
+        <span :key="endTimeFormatted">{{ endTimeFormatted }}</span>
+
+        <Button
+          v-tooltip="'Guessed countries'"
+          severity="secondary"
+          variant="text"
+          size="small"
+          @click="store.isGuessCountriesModalOpen = !store.isGuessCountriesModalOpen"
+        >
+          <Icon icon="pixel:check-list" />
+        </Button>
+      </div>
     </div>
   </transition>
 </template>
