@@ -77,7 +77,7 @@ store.$subscribe((mutation, state) => {
       class="absolute bottom-5 left-1/2 -translate-x-1/2 w-40 pl-4 pr-2 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
     >
       <div class="flex items-center justify-between gap-2">
-        <span key="timer">{{ endTimeFormatted }}</span>
+        <span>{{ endTimeFormatted }}</span>
 
         <div>
           <Button

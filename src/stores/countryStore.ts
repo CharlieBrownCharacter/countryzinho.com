@@ -39,6 +39,7 @@ export const useCountryStore = defineStore('countries', () => {
     endsAt.value = null
     isResultsDialogOpen.value = true
     isShowingControls.value = false
+    isGuessCountriesModalOpen.value = false
   }
 
   function onRestartGame() {

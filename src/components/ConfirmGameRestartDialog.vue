@@ -14,7 +14,7 @@ const store = useCountryStore()
     :draggable="false"
     :closable="false"
     :close-on-escape="false"
-    :style="{ maxWidth: '100%', width: '25rem' }"
+    :style="{ maxWidth: '95%', width: '25rem' }"
     pt:root:class="border-none"
   >
     <template #container>
