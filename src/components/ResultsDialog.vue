@@ -4,6 +4,7 @@ import { useCountryStore } from '@/stores/countryStore.ts'
 import { computed, ref } from 'vue'
 import type { Continent, Country } from '@/services/resources/country/types.ts'
 import Tabs from 'primevue/tabs'
+import Button from 'primevue/button'
 import TabList from 'primevue/tablist'
 import Tab from 'primevue/tab'
 import TabPanels from 'primevue/tabpanels'
@@ -62,6 +63,7 @@ const countriesGuessed = computed(() => {
     :closable="false"
     :close-on-escape="false"
     :style="{ maxWidth: '80vw', width: '35rem', height: '80vh' }"
+    pt:footer:class="mt-auto pt-2"
   >
     <section>
       <h2 class="sr-only">Score</h2>
@@ -413,5 +415,9 @@ const countriesGuessed = computed(() => {
         </TabPanels>
       </Tabs>
     </section>
+
+    <template #footer>
+      <Button class="w-full" severity="secondary" @click="store.onRestartGame"> Go again </Button>
+    </template>
   </Dialog>
 </template>

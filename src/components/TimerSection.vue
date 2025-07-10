@@ -47,11 +47,17 @@ const classes = computed(() => {
   return klass
 })
 
+function onGameRestartClick() {
+  store.isGameRestartConfirmationOpen = true
+}
+
 store.$subscribe((mutation, state) => {
   if (mutation.type !== 'direct') return
 
   if (state.endsAt) {
     resume()
+  } else {
+    pause()
   }
 })
 </script>
@@ -66,22 +72,34 @@ store.$subscribe((mutation, state) => {
     leave-to-class="translate-y-10 opacity-0"
   >
     <div
-      v-if="store.isShowingControls"
+      v-show="store.isShowingControls"
       :class="classes"
-      class="absolute bottom-5 left-1/2 -translate-x-1/2 w-32 pl-4 pr-2 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
+      class="absolute bottom-5 left-1/2 -translate-x-1/2 w-40 pl-4 pr-2 py-2 shadow-lg text-center bg-(--p-inputtext-background) rounded-lg"
     >
       <div class="flex items-center justify-between gap-2">
-        <span :key="endTimeFormatted">{{ endTimeFormatted }}</span>
+        <span key="timer">{{ endTimeFormatted }}</span>
 
-        <Button
-          v-tooltip="'Guessed countries'"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="store.isGuessCountriesModalOpen = !store.isGuessCountriesModalOpen"
-        >
-          <Icon icon="pixel:check-list" />
-        </Button>
+        <div>
+          <Button
+            title="Guessed countries"
+            severity="secondary"
+            variant="text"
+            size="small"
+            @click="store.isGuessCountriesModalOpen = !store.isGuessCountriesModalOpen"
+          >
+            <Icon icon="pixel:check-list" />
+          </Button>
+
+          <Button
+            title="Restart game"
+            severity="secondary"
+            variant="text"
+            size="small"
+            @click="onGameRestartClick"
+          >
+            <Icon icon="pixel:refresh" />
+          </Button>
+        </div>
       </div>
     </div>
   </transition>
