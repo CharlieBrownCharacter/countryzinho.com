@@ -259,10 +259,11 @@ const MAX_ZOOM = 1500
 
 const classes = computed(() => {
   const base = [
+    // '[stroke-dasharray:1]',
     '[stroke-linejoin:round]',
     'stroke-stone-400',
     '[stroke-width:0.15]',
-    'bg-stone-900',
+    'bg-stone-800',
   ]
 
   if (isPanning.value) {

@@ -8,6 +8,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
 
 <template>
   <g id="bd" class="landxx coastxx bd" :class="classes">
+    <title id="title34">Bangladesh</title>
     <path
       id="path3240"
       d="m 1977.58,496.42 c -0.21,-0.02 -0.43,-0.05 -0.64,-0.07 0.38,0.294 0.81,0.486 1.29,0.576 -0.22,-0.168 -0.43,-0.336 -0.65,-0.504"

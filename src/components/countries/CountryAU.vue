@@ -8,6 +8,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
 
 <template>
   <g id="au" class="landxx coastxx au" :class="classes">
+    <title id="title158">Australia</title>
     <path
       id="path3366"
       d="m 2402.74,858.58 c 0.95,-0.581 0.16,-1.505 -0.1,-2.23 -0.83,0.637 -0.44,1.545 0.1,2.23"
@@ -93,18 +94,22 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       d="m 2332,1162 c -0.96,0.47 -1.28,2.76 -0.64,2.42 0.62,-0.33 0.43,-1.84 0.64,-2.42"
     ></path>
     <g id="cx">
+      <title id="title159">Christmas Island</title>
       <!--  id="cx-" class="landxx coastxx au cx" r="0.75" cy="789" cx="2102" -->
       <!--  id="cx_" class="subxx au cx" r="4" cy="789" cx="2102" -->
     </g>
     <g id="cc">
+      <title id="title160">Cocos (Keeling) Islands</title>
       <!--  id="cc-" class="landxx coastxx au cc" r="0.25" cy="801" cx="2039" -->
       <!--  id="cc_" class="subxx au cc" r="4" cy="801" cx="2039" -->
     </g>
     <g id="hm">
+      <title id="title161">Heard Island and McDonald Islands</title>
       <!--  id="hm-" class="landxx coastxx au hm" r="0.75" cy="1149" cx="1792" -->
       <!--  id="hm_" class="subxx au hm" r="4" cy="1149" cx="1792" -->
     </g>
     <g id="nf">
+      <title id="title162">Norfolk Island</title>
       <path
         id="nf-"
         class="landxx coastxx au nf"

@@ -11,6 +11,7 @@ const classes = computed(() =>
 
 <template>
   <g id="sm" :class="classes">
+    <title id="title240">San Marino</title>
     <path
       id="sm-"
       class="landxx sm"
