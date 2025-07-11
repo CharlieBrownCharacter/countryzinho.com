@@ -258,7 +258,13 @@ const MIN_ZOOM = 50
 const MAX_ZOOM = 1500
 
 const classes = computed(() => {
-  const base = ['fill-none', '[stroke-linejoin:round]', 'stroke-gray-500', '[stroke-width:0.2]']
+  const base = [
+    // '[stroke-dasharray:1]',
+    '[stroke-linejoin:round]',
+    'stroke-stone-400',
+    '[stroke-width:0.15]',
+    'bg-stone-800',
+  ]
 
   if (isPanning.value) {
     base.push('cursor-move')

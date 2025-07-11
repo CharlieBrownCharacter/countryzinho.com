@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const { guessed } = useCountryGuessed(props.iso)
 
-const classes = computed(() => ({ 'fill-gray-200 stroke-black': guessed.value }))
+const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }))
 </script>
 
 <template>

@@ -15,6 +15,7 @@ app
     theme: {
       preset: Aura,
       options: {
+        darkModeSelector: '.c-dark-mode',
         cssLayer: {
           name: 'primevue',
           order: 'theme, base, primevue',
