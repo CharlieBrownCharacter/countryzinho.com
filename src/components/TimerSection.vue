@@ -36,7 +36,7 @@ const { resume, pause } = useIntervalFn(
 )
 
 const classes = computed(() => {
-  const klass = ['border border-transparent']
+  const klass = ['border border-stone-600']
 
   if (store.isCounterFinishing) {
     klass.push('!border-red-500')
