@@ -9,8 +9,6 @@ const store = useCountryStore()
 
 const endTimeFormatted = ref('')
 
-const hasWarningLeft = ref(false)
-
 const { resume, pause } = useIntervalFn(
   () => {
     const now = new Date()
@@ -25,7 +23,7 @@ const { resume, pause } = useIntervalFn(
     }
 
     if (totalSeconds < 15) {
-      hasWarningLeft.value = true
+      store.isCounterFinishing = true
     }
 
     const minutes = Math.floor(totalSeconds / 60)
@@ -40,7 +38,7 @@ const { resume, pause } = useIntervalFn(
 const classes = computed(() => {
   const klass = ['border border-transparent']
 
-  if (hasWarningLeft.value) {
+  if (store.isCounterFinishing) {
     klass.push('!border-red-500')
   }
 

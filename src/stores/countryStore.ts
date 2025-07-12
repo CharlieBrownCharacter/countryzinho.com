@@ -25,6 +25,8 @@ export const useCountryStore = defineStore('countries', () => {
 
   const isGameRestartConfirmationOpen = ref(false)
 
+  const isCounterFinishing = ref(false)
+
   function onGuessCountry(countryCode: string) {
     guessedCountries.value[countryCode].guessed = true
     latestCountryGuessed.value = guessedCountries.value[countryCode].country
@@ -32,11 +34,13 @@ export const useCountryStore = defineStore('countries', () => {
 
   function startGame(seconds: number = 5) {
     endsAt.value = addSeconds(new Date(), seconds)
+    isCounterFinishing.value = false
     isShowingControls.value = true
   }
 
   function onGameEnd() {
     endsAt.value = null
+    isCounterFinishing.value = false
     isResultsDialogOpen.value = true
     isShowingControls.value = false
     isGuessCountriesModalOpen.value = false
@@ -44,6 +48,7 @@ export const useCountryStore = defineStore('countries', () => {
 
   function onRestartGame() {
     endsAt.value = null
+    isCounterFinishing.value = false
     isGameRestartConfirmationOpen.value = false
     isResultsDialogOpen.value = false
     isShowingControls.value = false
@@ -59,6 +64,7 @@ export const useCountryStore = defineStore('countries', () => {
     isStartGameModalOpen,
     isShowingControls,
     isResultsDialogOpen,
+    isCounterFinishing,
     startGame,
     onGuessCountry,
     onGameEnd,

@@ -17,7 +17,7 @@ const isStarting = computed(() => counter.value >= 1)
 const classes = ref('')
 
 const timerOptions = ref([
-  { value: 5, text: '5 Sec' },
+  { value: 5, text: '5 Seconds' },
   { value: 120, text: '2 Minutes' },
   { value: 300, text: '5 Minutes' },
   { value: 6000, text: '10 Minutes' },
@@ -43,7 +43,7 @@ const { resume: resumeTimer, pause } = useIntervalFn(
 )
 
 function onStartClick() {
-  const countdownSeconds = 1
+  const countdownSeconds = 5
 
   classes.value = 'transition-all duration-700 motion-reduce:transition-none'
   counter.value = countdownSeconds
