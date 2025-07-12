@@ -11,7 +11,7 @@ const classes = computed(() =>
 
 <template>
   <g id="va" :class="classes">
-    <title id="title247">Vatican City</title>
+    <metadata id="title247">Vatican City</metadata>
     <path
       id="va-"
       class="landxx va"

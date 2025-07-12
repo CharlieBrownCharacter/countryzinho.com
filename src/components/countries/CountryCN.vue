@@ -8,7 +8,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
 
 <template>
   <g id="cn" class="landxx coastxx cn" :class="classes">
-    <title id="title163">China</title>
+    <metadata id="title163">China</metadata>
     <g id="cnx" class="landxx coastxx cn cnx">
       <path
         id="path2708"
@@ -93,7 +93,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       ></path>
     </g>
     <g id="hk">
-      <title id="title164">Hong Kong</title>
+      <metadata id="title164">Hong Kong</metadata>
       <g id="hk-" class="landxx coastxx cn hk">
         <path
           id="path2764"
@@ -111,7 +111,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       </g>
     </g>
     <g id="mo">
-      <title id="title165">Macao</title>
+      <metadata id="title165">Macao</metadata>
       <path
         id="mo-"
         class="landxx cn mo"
@@ -119,7 +119,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       ></path>
     </g>
     <g id="tw" class="landxx coastxx cn tw">
-      <title id="title166">Taiwan</title>
+      <metadata id="title166">Taiwan</metadata>
       <path
         id="path2738"
         d="m 2183.73,486.335 c -0.26,0.216 -0.54,0.384 -0.86,0.504 0.45,0.267 0.93,0.339 1.44,0.217 -0.17,-0.26 -0.36,-0.5 -0.58,-0.721"

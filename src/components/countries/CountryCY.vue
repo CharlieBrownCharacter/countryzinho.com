@@ -8,14 +8,14 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
 
 <template>
   <g id="cy" :class="classes">
-    <title id="title189">Cyprus</title>
+    <metadata id="title189">Cyprus</metadata>
     <path
       id="cy-"
       class="landxx coastxx eu cy"
       d="m 1537.59,395.766 c -0.1,-0.264 -0.2,-0.528 -0.29,-0.792 0.98,0.968 2.43,-0.875 3.55,-0.799 1.73,0.117 0.43,-1.62 2.04,-1.582 1.72,0.04 3.25,0.349 4.98,-0.116 1.94,-0.522 3.67,-2.54 5.71,-2.544 -1.29,0.81 -2.44,2.705 -3.88,3.154 -1.56,0.49 0,1.988 0.63,2.678 -0.67,0.08 -2.19,-0.05 -2.7,0.411 -0.57,0.514 -0.77,1.243 -1.55,1.513 -0.68,0.235 -3.37,0.524 -2.95,1.748 -2.26,-1.14 -4.48,-0.802 -5.54,-3.671"
     ></path>
     <g id="xc">
-      <title>Northern Cyprus</title>
+      <metadata>Northern Cyprus</metadata>
       <path
         id="xc-"
         class="limitxx cy xc"

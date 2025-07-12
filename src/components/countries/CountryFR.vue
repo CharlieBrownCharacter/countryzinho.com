@@ -8,7 +8,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
 
 <template>
   <g id="fr" :class="classes">
-    <title id="title167">France</title>
+    <metadata id="title167">France</metadata>
     <g id="frx" class="landxx coastxx eu fr frx">
       <path
         id="France_mainland"
@@ -41,10 +41,10 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       class="landxx eu fr gf"
       d="m 883.326,678.438 c 1.288,-0.06 2.316,-2.268 2.755,-3.237 0.818,-1.809 0.01,-3.822 1.246,-5.47 1.463,-1.953 0.119,-3.393 -1.127,-4.948 -1.292,-1.613 -1.24,-4.493 -1.364,-6.461 -0.144,-2.293 0.19,-3.596 1.863,-5.193 0.623,-0.595 1.399,-1.252 1.599,-2.131 0.259,-1.139 0.553,-2.562 2.168,-1.952 1.048,0.396 1.767,1.244 2.881,1.549 1.203,0.331 2.664,0.312 3.682,1.126 1.194,0.957 2.781,4.602 4.656,4.469 -0.315,0.462 -0.531,0.966 -0.649,1.513 0.532,-2.396 4.637,1.715 2.3,3.312 1.132,-0.417 0.474,-1.475 1.038,-2.229 0.856,-1.146 1.521,1.525 1.587,2.094 0.312,2.698 -1.758,5.554 -3.161,7.702 -1.612,2.468 -2.733,4.557 -3.784,7.338 -0.39,1.032 -0.893,1.905 -1.76,2.607 -0.36,0.292 -1.005,0.964 -1.479,1.089 -0.781,0.207 -1.396,-0.418 -2.231,-0.02 0.344,-0.981 -0.271,-0.985 -1.008,-0.757 -1.03,0.319 -1.91,-0.1 -2.889,-0.431 -0.494,-0.167 -2.415,1.225 -2.722,1.59 -0.57,0.677 -3.224,-1.159 -3.601,-1.556"
     >
-      <title id="title168">French Guiana</title>
+      <metadata id="title168">French Guiana</metadata>
     </path>
     <g id="gp">
-      <title id="title169">Guadeloupe</title>
+      <metadata id="title169">Guadeloupe</metadata>
       <g id="gp-" class="landxx coastxx eu fr gp">
         <path
           id="path2582"
@@ -61,7 +61,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       </g>
     </g>
     <g id="mq">
-      <title id="title170">Martinique</title>
+      <metadata id="title170">Martinique</metadata>
       <path
         id="mq-"
         class="landxx coastxx eu fr mq"
@@ -69,7 +69,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       ></path>
     </g>
     <g id="re">
-      <title id="title171">Reunion</title>
+      <metadata id="title171">Reunion</metadata>
       <path
         id="re-"
         class="landxx coastxx eu fr re"
@@ -77,7 +77,7 @@ const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }
       ></path>
     </g>
     <g id="yt">
-      <title id="title172">Mayotte</title>
+      <metadata id="title172">Mayotte</metadata>
       <path
         id="yt-"
         class="landxx coastxx eu fr yt"
