@@ -5,8 +5,10 @@ import SelectButton from 'primevue/selectbutton'
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
+import { useAppStore } from '@/stores/appStore.ts'
 
-const store = useCountryStore()
+const countryStore = useCountryStore()
+const appStore = useAppStore()
 
 const timeSelected = ref(300)
 
@@ -34,7 +36,7 @@ const { resume: resumeTimer, pause } = useIntervalFn(
 
     if (counter.value === 0) {
       pause()
-      store.isStartGameModalOpen = false
+      countryStore.isStartGameModalOpen = false
     }
   },
   1000,
@@ -52,14 +54,18 @@ function onStartClick() {
   setTimeout(resumeTimer, 500)
 
   // Once the countdown finished, then we can start the timer
-  setTimeout(() => store.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
+  setTimeout(() => countryStore.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
+}
+
+function onContactClick() {
+  appStore.isContactDialogOpen = true
 }
 </script>
 
 <template>
   <Dialog
     :class="classes"
-    v-model:visible="store.isStartGameModalOpen"
+    v-model:visible="countryStore.isStartGameModalOpen"
     modal
     :draggable="false"
     :closable="false"
@@ -68,7 +74,10 @@ function onStartClick() {
     pt:footer:class="mt-auto"
   >
     <template #container>
-      <div v-if="!isStarting" class="flex flex-col p-(--p-dialog-header-padding) h-full">
+      <div
+        v-if="!isStarting"
+        class="flex flex-col p-(--p-dialog-header-padding) h-full overflow-y-auto"
+      >
         <div class="flex flex-col gap-y-0.5">
           <h1 class="flex gap-2 text-2xl font-semibold">Welcome to countryzinho</h1>
           <p class="text-gray-400 text-sm">
@@ -76,7 +85,7 @@ function onStartClick() {
           </p>
         </div>
 
-        <div class="space-y-4 mt-4 grow">
+        <div class="space-y-4 mt-4 grow mb-4">
           <section>
             <h2 class="text-xl">How to play</h2>
             <p class="text-gray-400 text-sm">
@@ -112,7 +121,16 @@ function onStartClick() {
           </section>
         </div>
 
-        <Button class="w-full" severity="secondary" @click="onStartClick"> Start </Button>
+        <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick"> Start </Button>
+
+        <div class="flex items-center justify-center mt-2">
+          <button
+            class="text-sm text-gray-400 cursor-pointer hover:underline"
+            @click="onContactClick"
+          >
+            Contact
+          </button>
+        </div>
       </div>
 
       <transition
