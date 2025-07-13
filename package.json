@@ -19,6 +19,7 @@
     "@vueuse/core": "^13.4.0",
     "date-fns": "^4.1.0",
     "pinia": "^3.0.3",
+    "posthog-js": "^1.257.0",
     "primevue": "^4.3.6",
     "tailwindcss": "^4.1.11",
     "tailwindcss-primeui": "^0.6.1",
