@@ -26,10 +26,10 @@ onMounted(preloadCountryFlags)
 <template>
   <main class="relative w-full p-0 m-0 box-content">
     <GuessInput />
+
     <ResultsDialog />
     <GuessedCountriesDrawer />
     <CountrySVG />
-    <TimerSection />
     <StartGameModal />
     <ConfirmGameRestartDialog />
     <ContactDialog />

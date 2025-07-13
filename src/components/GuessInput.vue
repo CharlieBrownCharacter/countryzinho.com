@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
-import { countries, trieRoot } from '@/services/resources/country/constants.ts'
+import { trieRoot } from '@/services/resources/country/constants.ts'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import TimerSection from '@/components/TimerSection.vue'
 
 const guess = ref('')
 
@@ -56,14 +57,24 @@ countryStore.$subscribe((mutation, state) => {
     leave-from-class="translate-y-0 opacity-100"
     leave-to-class="-translate-y-10 opacity-0"
   >
-    <InputText
-      ref="inputRef"
+    <div
       v-if="countryStore.isShowingControls"
-      v-model="guess"
-      class="absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow"
-      placeholder="Guess country"
-      autofocus
-      @keyup="onKeyUp"
-    />
+      class="p-4 rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-colors"
+    >
+      <label for="country-guess" class="sr-only">Guess the country</label>
+      <InputText
+        id="country-guess"
+        ref="inputRef"
+        class="border-none px-0"
+        v-model="guess"
+        placeholder="Guess country"
+        autofocus
+        autocomplete="off"
+        data-op-ignore
+        @keyup="onKeyUp"
+      />
+
+      <TimerSection />
+    </div>
   </transition>
 </template>
