@@ -63,6 +63,7 @@ function onStartClick() {
 }
 
 function onContactClick() {
+  posthog.capture('openContactDialog')
   appStore.isContactDialogOpen = true
 }
 </script>
