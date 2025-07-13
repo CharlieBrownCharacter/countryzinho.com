@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import {
   countries,
   createGuessedCountriesMap,
@@ -26,6 +26,18 @@ export const useCountryStore = defineStore('countries', () => {
   const isGameRestartConfirmationOpen = ref(false)
 
   const isCounterFinishing = ref(false)
+
+  const numberCountriesGuessed = computed<number>(() =>
+    Object.keys(guessedCountries.value).reduce((previous, key) => {
+      if (guessedCountries.value[key].guessed) {
+        return previous + 1
+      }
+
+      return previous
+    }, 0),
+  )
+
+  const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
 
   function onGuessCountry(countryCode: string) {
     guessedCountries.value[countryCode].guessed = true
@@ -65,6 +77,8 @@ export const useCountryStore = defineStore('countries', () => {
     isShowingControls,
     isResultsDialogOpen,
     isCounterFinishing,
+    numberCountriesGuessed,
+    hasGuessedCountries,
     startGame,
     onGuessCountry,
     onGameEnd,

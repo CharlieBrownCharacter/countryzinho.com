@@ -52,13 +52,15 @@ const countriesGuessed = computed(() => {
 
   return { ...continents, totalGuessed }
 })
+
+const titleModal = computed(() => (store.hasGuessedCountries ? 'Congratulations' : "Time's up"))
 </script>
 
 <template>
   <Dialog
     v-model:visible="store.isResultsDialogOpen"
     modal
-    header="Time's Up"
+    :header="titleModal"
     :draggable="false"
     :closable="false"
     :close-on-escape="false"

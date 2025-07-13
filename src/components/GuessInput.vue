@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
-import { trieRoot } from '@/services/resources/country/constants.ts'
+import { countries, trieRoot } from '@/services/resources/country/constants.ts'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
@@ -32,6 +32,10 @@ function onKeyUp() {
 
   countryStore.onGuessCountry(matchedCode.isoAlpha2Code)
   guess.value = ''
+
+  if (countryStore.hasGuessedCountries) {
+    countryStore.onGameEnd()
+  }
 }
 
 countryStore.$subscribe((mutation, state) => {
