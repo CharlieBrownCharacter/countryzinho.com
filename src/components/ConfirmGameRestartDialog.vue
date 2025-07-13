@@ -3,8 +3,16 @@ import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { Icon } from '@iconify/vue'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 const store = useCountryStore()
+
+const { posthog } = usePostHog()
+
+function onRestartGameClick() {
+  posthog.capture('restartedGame')
+  store.onRestartGame()
+}
 </script>
 
 <template>
@@ -29,7 +37,7 @@ const store = useCountryStore()
         <span class="font-bold text-2xl block mb-2 mt-6">Restart Game</span>
         <p class="mb-0">Restarting the game will make you lose your progress. Are you sure?</p>
         <div class="flex flex-col gap-2 mt-6 w-full">
-          <Button label="Restart" @click="store.onRestartGame" class="w-full" />
+          <Button label="Restart" @click="onRestartGameClick" class="w-full" />
           <Button
             label="Cancel"
             outlined

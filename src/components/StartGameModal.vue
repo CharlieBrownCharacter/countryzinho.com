@@ -6,17 +6,18 @@ import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
 import { useAppStore } from '@/stores/appStore.ts'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 const countryStore = useCountryStore()
 const appStore = useAppStore()
 
-const timeSelected = ref(300)
+const { posthog } = usePostHog()
 
+const timeSelected = ref(300)
 const counter = ref(0)
+const classes = ref('')
 
 const isStarting = computed(() => counter.value >= 1)
-
-const classes = ref('')
 
 const timerOptions = ref([
   { value: 120, text: '2 Minutes' },
@@ -44,6 +45,10 @@ const { resume: resumeTimer, pause } = useIntervalFn(
 )
 
 function onStartClick() {
+  posthog.capture('startedGame', {
+    duration: timeSelected.value,
+  })
+
   const countdownSeconds = 5
 
   classes.value = 'transition-all duration-700 motion-reduce:transition-none'

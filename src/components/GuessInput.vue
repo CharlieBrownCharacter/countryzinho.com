@@ -4,10 +4,13 @@ import { trieRoot } from '@/services/resources/country/constants.ts'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 const guess = ref('')
 
 const countryStore = useCountryStore()
+
+const { posthog } = usePostHog()
 
 const inputRef = useTemplateRef<InstanceType<typeof InputText>>('inputRef')
 
@@ -22,6 +25,10 @@ function onKeyUp() {
     throw new Error(`${matchedCode.isoAlpha2Code} is not in countryStore.guessedCountries`)
 
   if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) return
+
+  posthog.capture('guessedCountry', {
+    countryCode: matchedCode.isoAlpha2Code,
+  })
 
   countryStore.onGuessCountry(matchedCode.isoAlpha2Code)
   guess.value = ''

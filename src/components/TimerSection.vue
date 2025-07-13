@@ -4,10 +4,13 @@ import { useIntervalFn } from '@vueuse/core'
 import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import Button from 'primevue/button'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 const store = useCountryStore()
 
 const endTimeFormatted = ref('')
+
+const { posthog } = usePostHog()
 
 const { resume, pause } = useIntervalFn(
   () => {
@@ -20,6 +23,7 @@ const { resume, pause } = useIntervalFn(
     if (totalSeconds === 0) {
       pause()
       store.onGameEnd()
+      posthog.capture('gameTimeEnded')
     }
 
     if (totalSeconds < 15) {
@@ -46,6 +50,7 @@ const classes = computed(() => {
 })
 
 function onGameRestartClick() {
+  posthog.capture('openedGameRestartDialog')
   store.isGameRestartConfirmationOpen = true
 }
 
