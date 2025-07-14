@@ -35,8 +35,6 @@ function onKeyUp() {
 
     setTimeout(() => (duplicatedGuessedCountry.value = ''), 3000)
 
-    guess.value = ''
-
     return
   }
 
