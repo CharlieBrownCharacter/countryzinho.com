@@ -181,6 +181,12 @@ export const countries: Country[] = [
   { name: 'Chile', isoAlpha2Code: 'CL', continents: ['southAmerica'], allowedGuesses: ['chile'] },
   { name: 'China', isoAlpha2Code: 'CN', continents: ['asia'], allowedGuesses: ['china'] },
   {
+    name: "Côte d'Ivoire",
+    isoAlpha2Code: 'CI',
+    continents: ['africa'],
+    allowedGuesses: ['cote divoire', 'ivore', 'ivory Coas', "cote d'ivoire"],
+  },
+  {
     name: 'Colombia',
     isoAlpha2Code: 'CO',
     continents: ['southAmerica'],
