@@ -22,7 +22,7 @@ const store = useAppStore()
 
       <p>
         I built this game as a fun side project because I'm learning the countries of the world and
-        quick challenges. The idea is simple: guess as many countries as you can before time runs
+        love challenges. The idea is simple: input as many countries as you can before time runs
         out.
       </p>
 
