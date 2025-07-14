@@ -27,6 +27,8 @@ function onKeyUp() {
   if (!(matchedCode.isoAlpha2Code in countryStore.guessedCountries))
     throw new Error(`${matchedCode.isoAlpha2Code} is not in countryStore.guessedCountries`)
 
+  duplicatedGuessedCountry.value = ''
+
   if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) {
     duplicatedGuessedCountry.value =
       countryStore.guessedCountries[matchedCode.isoAlpha2Code].country.name
@@ -71,6 +73,7 @@ countryStore.$subscribe((mutation, state) => {
     <div
       v-if="countryStore.isShowingControls"
       class="p-4 rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-colors"
+      :class="[duplicatedGuessedCountry ? '!border-red-500' : '']"
     >
       <label for="country-guess" class="sr-only">Guess the country</label>
       <InputText
