@@ -87,7 +87,7 @@ function onContactClick() {
         <div class="flex flex-col gap-y-0.5">
           <h1 class="flex gap-2 text-2xl font-semibold">Welcome to countryzinho</h1>
           <p class="text-gray-400 text-sm">
-            Choose a time limit and name as many countries as you can before it runs out.
+            Type as many country names as you can before the timer hits zero.
           </p>
         </div>
 
@@ -95,15 +95,14 @@ function onContactClick() {
           <section>
             <h2 class="text-xl">How to play</h2>
             <p class="text-gray-400 text-sm">
-              Type the name of many countries as you know. Each country you guess gives you 1 point.
+              Each correct country gives you 1 point. No need to press Enter - just type.
             </p>
           </section>
 
           <section>
             <h2 class="text-xl">Timer</h2>
             <p class="text-gray-400 text-sm">
-              The timer starts when you click "Start" below. Game ends either when the time runs out
-              or you have guessed all countries.
+              Starts when you click "Start". Ends when time runs out or all countries are guessed.
             </p>
 
             <SelectButton
@@ -121,9 +120,7 @@ function onContactClick() {
 
           <section>
             <h2 class="text-xl">Restart</h2>
-            <p class="text-gray-400 text-sm">
-              You will be able to restart the game at any time and come back to this screen.
-            </p>
+            <p class="text-gray-400 text-sm">You can restart anytime and return to this screen.</p>
           </section>
         </div>
 

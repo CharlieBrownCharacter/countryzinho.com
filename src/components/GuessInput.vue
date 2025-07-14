@@ -9,6 +9,8 @@ import TimerSection from '@/components/TimerSection.vue'
 
 const guess = ref('')
 
+const duplicatedGuessedCountry = ref('')
+
 const countryStore = useCountryStore()
 
 const { posthog } = usePostHog()
@@ -25,7 +27,16 @@ function onKeyUp() {
   if (!(matchedCode.isoAlpha2Code in countryStore.guessedCountries))
     throw new Error(`${matchedCode.isoAlpha2Code} is not in countryStore.guessedCountries`)
 
-  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) return
+  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) {
+    duplicatedGuessedCountry.value =
+      countryStore.guessedCountries[matchedCode.isoAlpha2Code].country.name
+
+    setTimeout(() => (duplicatedGuessedCountry.value = ''), 3000)
+
+    guess.value = ''
+
+    return
+  }
 
   posthog.capture('guessedCountry', {
     countryCode: matchedCode.isoAlpha2Code,
@@ -67,12 +78,19 @@ countryStore.$subscribe((mutation, state) => {
         ref="inputRef"
         class="border-none px-0"
         v-model="guess"
-        placeholder="Guess country"
+        placeholder="Type a country name..."
         autofocus
         autocomplete="off"
         data-op-ignore
         @keyup="onKeyUp"
       />
+
+      <div
+        class="text-xs text-red-500"
+        :class="[duplicatedGuessedCountry ? 'visible' : 'invisible']"
+      >
+        {{ duplicatedGuessedCountry }} already entered
+      </div>
 
       <TimerSection />
     </div>
