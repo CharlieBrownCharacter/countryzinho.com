@@ -3,12 +3,7 @@ import Dialog from 'primevue/dialog'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { computed, ref } from 'vue'
 import type { Continent, Country } from '@/services/resources/country/types.ts'
-import Tabs from 'primevue/tabs'
 import Button from 'primevue/button'
-import TabList from 'primevue/tablist'
-import Tab from 'primevue/tab'
-import TabPanels from 'primevue/tabpanels'
-import TabPanel from 'primevue/tabpanel'
 import {
   africaCountries,
   antarcticaCountries,
@@ -75,347 +70,258 @@ const titleModal = computed(() => (store.hasGuessedCountries ? 'Congratulations'
         {{ countries.length }} total ones
       </p>
 
-      <Tabs v-model:value="selectedTab">
-        <TabList class="overflow-x-auto no-scrollbar">
-          <Tab value="africa">
-            Africa ({{ countriesGuessed.africa.guessed.length }}/{{ africaCountries.length }})
-          </Tab>
-          <Tab value="antarctica">
-            Antarctica ({{ countriesGuessed.antarctica.guessed.length }}/{{
-              antarcticaCountries.length
-            }})
-          </Tab>
-          <Tab value="asia">
-            Asia ({{ countriesGuessed.asia.guessed.length }}/{{ asiaCountries.length }})
-          </Tab>
-          <Tab value="europe">
-            Europe ({{ countriesGuessed.europe.guessed.length }}/{{ europeanCountries.length }})
-          </Tab>
-          <Tab value="northAmerica">
-            North America ({{ countriesGuessed.northAmerica.guessed.length }}/{{
-              northAmericaCountries.length
-            }})
-          </Tab>
-          <Tab value="southAmerica">
-            South America ({{ countriesGuessed.southAmerica.guessed.length }}/{{
-              southAmericaCountries.length
-            }})
-          </Tab>
-          <Tab value="oceania">
-            Oceania ({{ countriesGuessed.oceania.guessed.length }}/{{ oceaniaCountries.length }})
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel value="africa">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+      <div class="flex flex-wrap gap-1 mt-4">
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'africa' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'africa'"
+        >
+          Africa ({{ countriesGuessed.africa.guessed.length }}/{{ africaCountries.length }})
+        </Button>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.africa.guessed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'antarctica' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'antarctica'"
+        >
+          Antarctica ({{ countriesGuessed.antarctica.guessed.length }}/{{
+            antarcticaCountries.length
+          }})
+        </Button>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'asia' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'asia'"
+        >
+          Asia ({{ countriesGuessed.asia.guessed.length }}/{{ asiaCountries.length }})
+        </Button>
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'europe' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'europe'"
+        >
+          Europe ({{ countriesGuessed.europe.guessed.length }}/{{ europeanCountries.length }})
+        </Button>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.africa.missed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'northAmerica' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'northAmerica'"
+        >
+          North America ({{ countriesGuessed.northAmerica.guessed.length }}/{{
+            northAmericaCountries.length
+          }})
+        </Button>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="antarctica">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'southAmerica' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'southAmerica'"
+        >
+          South America ({{ countriesGuessed.southAmerica.guessed.length }}/{{
+            southAmericaCountries.length
+          }})
+        </Button>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.antarctica.guessed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <Button
+          size="small"
+          rounded
+          :severity="selectedTab === 'oceania' ? 'primary' : 'secondary'"
+          @click="selectedTab = 'oceania'"
+        >
+          Oceania ({{ countriesGuessed.oceania.guessed.length }}/{{ oceaniaCountries.length }})
+        </Button>
+      </div>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+      <section v-if="selectedTab === 'africa'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.africa.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.antarctica.missed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="asia">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.asia.guessed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.africa.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+      <section v-if="selectedTab === 'antarctica'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.asia.missed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.antarctica.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="europe">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.europe.guessed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.antarctica.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.europe.missed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+      <section v-if="selectedTab === 'asia'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="northAmerica">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.asia.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.northAmerica.guessed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.asia.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.northAmerica.missed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="southAmerica">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+      <section v-if="selectedTab === 'europe'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.southAmerica.guessed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.europe.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.southAmerica.missed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.europe.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-          <TabPanel value="oceania">
-            <section>
-              <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li
-                  v-for="country in countriesGuessed.oceania.guessed"
-                  :key="country.isoAlpha2Code"
-                >
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+      <section v-if="selectedTab === 'northAmerica'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.northAmerica.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              <h3 class="font-semibold text-lg mt-4">Missing</h3>
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
 
-              <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
-                <li v-for="country in countriesGuessed.oceania.missed" :key="country.isoAlpha2Code">
-                  <Tag
-                    severity="secondary"
-                    rounded
-                    class="!font-semibold !text-xs flex items-center"
-                  >
-                    <CountryFlag
-                      :country-code="country.isoAlpha2Code"
-                      :country-name="country.name"
-                    />
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
 
-                    {{ country.name }}
-                  </Tag>
-                </li>
-              </ul>
-            </section>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.northAmerica.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
+
+      <section v-if="selectedTab === 'southAmerica'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.southAmerica.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
+
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.southAmerica.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
+
+      <section v-if="selectedTab === 'oceania'">
+        <h3 class="font-semibold text-lg mt-4">Guessed countries</h3>
+
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.oceania.guessed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+
+        <h3 class="font-semibold text-lg mt-4">Missing</h3>
+
+        <ul class="flex flex-wrap gap-x-2 gap-y-1 mt-2">
+          <li v-for="country in countriesGuessed.oceania.missed" :key="country.isoAlpha2Code">
+            <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
+              <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
+
+              {{ country.name }}
+            </Tag>
+          </li>
+        </ul>
+      </section>
     </section>
 
     <template #footer>

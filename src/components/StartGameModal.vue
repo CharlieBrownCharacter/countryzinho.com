@@ -20,6 +20,7 @@ const classes = ref('')
 const isStarting = computed(() => counter.value >= 1)
 
 const timerOptions = ref([
+  { value: 5, text: '5 seconds' },
   { value: 120, text: '2 Minutes' },
   { value: 300, text: '5 Minutes' },
   { value: 600, text: '10 Minutes' },
