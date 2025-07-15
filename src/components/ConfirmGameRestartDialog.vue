@@ -26,11 +26,9 @@ function onRestartGameClick() {
     pt:root:class="border-none"
   >
     <template #container>
-      <div
-        class="flex flex-col items-center p-4 bg-surface-0 dark:bg-surface-900 rounded text-center"
-      >
+      <div class="flex flex-col items-center p-4 bg-surface-0 bg-surface-900 rounded text-center">
         <div
-          class="rounded-full border border-gray-500 bg-surface-0 dark:bg-surface-900 inline-flex justify-center items-center h-24 w-24 -mt-16"
+          class="rounded-full border border-gray-500 bg-surface-0 bg-surface-900 inline-flex justify-center items-center h-24 w-24 -mt-16"
         >
           <Icon icon="pixel:refresh" width="48" height="48" />
         </div>
