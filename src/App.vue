@@ -2,7 +2,6 @@
 import CountrySVG from '@/components/CountrySVG.vue'
 import GuessInput from '@/components/GuessInput.vue'
 import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer/GuessedCountriesDrawer.vue'
-import TimerSection from '@/components/TimerSection.vue'
 import StartGameModal from '@/components/StartGameModal.vue'
 import ResultsDialog from '@/components/ResultsDialog.vue'
 import { onMounted } from 'vue'
@@ -24,13 +23,14 @@ onMounted(preloadCountryFlags)
 </script>
 
 <template>
-  <main class="relative w-full p-0 m-0 box-content">
-    <GuessInput />
-    <ResultsDialog />
-    <GuessedCountriesDrawer />
-    <CountrySVG />
-    <StartGameModal />
-    <ConfirmGameRestartDialog />
-    <ContactDialog />
-  </main>
+  <RouterView />
+  <!--  <main class="relative w-full p-0 m-0 box-content">-->
+  <!--    <GuessInput />-->
+  <!--    <ResultsDialog />-->
+  <!--    <GuessedCountriesDrawer />-->
+  <!--    <CountrySVG />-->
+  <!--    <StartGameModal />-->
+  <!--    <ConfirmGameRestartDialog />-->
+  <!--    <ContactDialog />-->
+  <!--  </main>-->
 </template>

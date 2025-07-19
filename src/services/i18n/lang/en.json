@@ -1,0 +1,33 @@
+{
+  "pages": {
+    "welcome": {
+      "title": "Countryzinho",
+      "subtitle": "Type as many country names as you can before the timer hits zero",
+      "how-to-play": {
+        "title": "How to play",
+        "list": {
+          "1": "Start typing a country name - no need for [ENTER]",
+          "2": "Guess as many countries as possible under the time limit",
+          "3": "The faster you guess, more points you get",
+          "4": "Game ends when you have entered all countries or the time runs out"
+        }
+      }
+    }
+  },
+  "components": {
+
+  },
+  "common": {
+    "new-game": "New game",
+    "continents": {
+      "africa": "Africa",
+      "asia": "Asia",
+      "europe": "Europe",
+      "northAmerica": "North America",
+      "southAmerica": "South America",
+      "oceania": "Oceania"
+    },
+    "world": "World",
+    "xMinutes": "No minutes | {count} Minute | {count} Minutes"
+  }
+}

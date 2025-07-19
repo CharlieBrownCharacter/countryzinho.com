@@ -23,7 +23,9 @@
     "primevue": "^4.3.6",
     "tailwindcss": "^4.1.11",
     "tailwindcss-primeui": "^0.6.1",
-    "vue": "^3.5.17"
+    "vue": "^3.5.17",
+    "vue-i18n": "^11.1.10",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@iconify/vue": "^5.0.0",
