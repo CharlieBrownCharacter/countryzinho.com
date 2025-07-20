@@ -59,7 +59,7 @@ function onStartClick() {
   setTimeout(resumeTimer, 500)
 
   // Once the countdown finished, then we can start the timer
-  // setTimeout(() => countryStore.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
+  setTimeout(() => countryStore.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
 }
 </script>
 

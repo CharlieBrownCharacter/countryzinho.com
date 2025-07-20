@@ -2,6 +2,7 @@ import { createWebHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 import WelcomePage from '@/pages/WelcomePage.vue'
 import NotFound from '@/pages/NotFound.vue'
 import { getUserLanguage } from '@/services/i18n'
+import GamePage from '@/pages/GamePage.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,6 +17,11 @@ const routes: RouteRecordRaw[] = [
     path: '/:language(en|pt|es)',
     component: WelcomePage,
     name: 'welcome',
+  },
+  {
+    path: '/:language(en|pt|es)/game',
+    component: GamePage,
+    name: 'game',
   },
   {
     path: '/:language(en|pt|es)/contact',

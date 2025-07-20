@@ -44,8 +44,8 @@ export const useCountryStore = defineStore('countries', () => {
     latestCountryGuessed.value = guessedCountries.value[countryCode].country
   }
 
-  function startGame(seconds: number = 5) {
-    endsAt.value = addSeconds(new Date(), seconds)
+  function startGame(seconds: number | null = 5) {
+    endsAt.value = seconds ? addSeconds(new Date(), seconds) : null
     isCounterFinishing.value = false
     isShowingControls.value = true
   }

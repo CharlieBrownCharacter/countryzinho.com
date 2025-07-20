@@ -3,10 +3,6 @@ import Button from 'primevue/button'
 import { useI18n } from 'vue-i18n'
 import { getFlagEmoji, type SUPPORTED_LANGUAGES, SupportedLanguages } from '@/services/i18n'
 import { useRouter } from 'vue-router'
-import StartGameModal from '@/components/StartGameModal.vue'
-import { useCountryStore } from '@/stores/countryStore.ts'
-
-const countryStore = useCountryStore()
 
 const { t, locale } = useI18n()
 
@@ -16,15 +12,9 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
   locale.value = language
   router.push({ name: 'welcome', params: { language } })
 }
-
-function onStartGameClick() {
-  countryStore.isStartGameModalOpen = true
-}
 </script>
 
 <template>
-  <StartGameModal />
-
   <main class="mb-4 px-4 mx-auto max-w-3xl">
     <section class="my-60 md:my-15 text-center">
       <h1 class="text-center text-4xl sm:text-6xl">
@@ -73,7 +63,11 @@ function onStartGameClick() {
       <div class="my-4 aspect-video w-full rounded bg-gray-400" />
 
       <div class="flex justify-center">
-        <Button :label="t('common.new-game')" @click="onStartGameClick" />
+        <Button asChild v-slot="slotProps">
+          <RouterLink :to="{ name: 'game' }" :class="slotProps.class">
+            {{ t('common.new-game') }}
+          </RouterLink>
+        </Button>
       </div>
     </section>
 

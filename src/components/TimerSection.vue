@@ -8,7 +8,7 @@ import { usePostHog } from '@/composables/usePostHog.ts'
 
 const store = useCountryStore()
 
-const endTimeFormatted = ref('')
+const endTimeFormatted = ref('No time')
 
 const { posthog } = usePostHog()
 
