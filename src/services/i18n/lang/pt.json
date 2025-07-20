@@ -1,0 +1,33 @@
+{
+  "pages": {
+    "welcome": {
+      "title": "Countryzinho",
+      "subtitle": "Digite o maior número possível de nomes de países antes que o tempo acabe",
+      "how-to-play": {
+        "title": "Como jogar",
+        "list": {
+          "1": "Comece a digitar o nome de um país – não é preciso pressionar [ENTER]",
+          "2": "Adivinhe o maior número de países possível dentro do limite de tempo",
+          "3": "Quanto mais rápido você adivinhar, mais pontos você ganha",
+          "4": "O jogo termina quando você digitar todos os países ou o tempo acabar"
+        }
+      }
+    }
+  },
+  "components": {
+
+  },
+  "common": {
+    "new-game": "Novo jogo",
+    "continents": {
+      "africa": "África",
+      "asia": "Ásia",
+      "europe": "Europa",
+      "northAmerica": "América do Norte",
+      "southAmerica": "América do Sul",
+      "oceania": "Oceania"
+    },
+    "world": "Mundo",
+    "xMinutes": "Nenhum minuto | {count} minuto | {count} minutos"
+  }
+}
