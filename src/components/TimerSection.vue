@@ -62,27 +62,15 @@ store.$subscribe((mutation, state) => {
     <div class="pt-2 flex items-center justify-between gap-2">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      <div>
-        <Button
-          title="Guessed countries"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="store.isGuessCountriesModalOpen = !store.isGuessCountriesModalOpen"
-        >
-          <Icon icon="pixel:check-list" />
-        </Button>
-
-        <Button
-          title="Restart game"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="onGameRestartClick"
-        >
-          <Icon icon="pixel:refresh" />
-        </Button>
-      </div>
+      <Button
+        title="Restart game"
+        severity="secondary"
+        variant="text"
+        size="small"
+        @click="onGameRestartClick"
+      >
+        <Icon icon="pixel:refresh" />
+      </Button>
     </div>
   </div>
 </template>

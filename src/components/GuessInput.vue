@@ -49,14 +49,6 @@ function onKeyUp() {
     countryStore.onGameEnd()
   }
 }
-
-countryStore.$subscribe((mutation, state) => {
-  if (mutation.type !== 'direct') return
-
-  if (!state.isGuessCountriesModalOpen) {
-    ;(inputRef.value as null | { $el?: HTMLInputElement })?.$el?.focus()
-  }
-})
 </script>
 
 <template>

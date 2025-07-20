@@ -13,8 +13,6 @@ export const useCountryStore = defineStore('countries', () => {
 
   const latestCountryGuessed = ref<Country | null>(null)
 
-  const isGuessCountriesModalOpen = ref(false)
-
   const endsAt = ref<null | Date>(null)
 
   const isStartGameModalOpen = ref(false)
@@ -55,7 +53,6 @@ export const useCountryStore = defineStore('countries', () => {
     isCounterFinishing.value = false
     isResultsDialogOpen.value = true
     isShowingControls.value = false
-    isGuessCountriesModalOpen.value = false
   }
 
   function onRestartGame() {
@@ -70,7 +67,6 @@ export const useCountryStore = defineStore('countries', () => {
 
   return {
     guessedCountries,
-    isGuessCountriesModalOpen,
     latestCountryGuessed,
     endsAt,
     isStartGameModalOpen,
