@@ -1,23 +1,8 @@
-<script setup lang="ts">
-import Dialog from 'primevue/dialog'
-import { useAppStore } from '@/stores/appStore.ts'
-
-const store = useAppStore()
-</script>
-
 <template>
-  <Dialog
-    v-model:visible="store.isContactDialogOpen"
-    modal
-    header="Contact me"
-    :draggable="false"
-    :close-on-escape="false"
-    :style="{ maxWidth: '80vw', width: '35rem' }"
-    pt:footer:class="mt-auto pt-2"
-  >
-    <section class="flex flex-col gap-4">
-      <h2 class="sr-only">Contact page</h2>
+  <main class="max-w-4xl mx-auto my-10">
+    <h1 class="text-4xl font-semibold">Contact us</h1>
 
+    <div class="flex flex-col gap-4 text-xl mt-4">
       <p>👋 Hi, I'm Bruno - the solo developer behind Countryzinho.</p>
 
       <p>
@@ -37,6 +22,6 @@ const store = useAppStore()
       </p>
 
       <p>Thanks so much for taking the time to play Countryzinho - really means a lot.</p>
-    </section>
-  </Dialog>
+    </div>
+  </main>
 </template>

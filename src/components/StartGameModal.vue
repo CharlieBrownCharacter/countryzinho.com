@@ -5,11 +5,9 @@ import SelectButton from 'primevue/selectbutton'
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
-import { useAppStore } from '@/stores/appStore.ts'
 import { usePostHog } from '@/composables/usePostHog.ts'
 
 const countryStore = useCountryStore()
-const appStore = useAppStore()
 
 const { posthog } = usePostHog()
 
@@ -59,12 +57,7 @@ function onStartClick() {
   setTimeout(resumeTimer, 500)
 
   // Once the countdown finished, then we can start the timer
-  setTimeout(() => countryStore.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
-}
-
-function onContactClick() {
-  posthog.capture('openContactDialog')
-  appStore.isContactDialogOpen = true
+  // setTimeout(() => countryStore.startGame(timeSelected.value), countdownSeconds * 1000 + 500)
 }
 </script>
 

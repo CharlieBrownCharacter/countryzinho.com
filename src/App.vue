@@ -8,7 +8,6 @@ import { onMounted } from 'vue'
 import { countries } from '@/services/resources/country/constants.ts'
 import { getCountrySrcFlag, getCountrySrcsetFlag } from '@/services/resources/country/helpers.ts'
 import ConfirmGameRestartDialog from '@/components/ConfirmGameRestartDialog.vue'
-import ContactDialog from '@/components/ContactDialog.vue'
 
 function preloadCountryFlags() {
   countries.forEach((country) => {
@@ -31,6 +30,5 @@ onMounted(preloadCountryFlags)
   <!--    <CountrySVG />-->
   <!--    <StartGameModal />-->
   <!--    <ConfirmGameRestartDialog />-->
-  <!--    <ContactDialog />-->
   <!--  </main>-->
 </template>

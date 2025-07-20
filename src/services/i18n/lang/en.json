@@ -3,6 +3,8 @@
     "welcome": {
       "title": "Countryzinho",
       "subtitle": "Type as many country names as you can before the timer hits zero",
+      "contact": "Contact",
+      "terms": "Terms of usage",
       "how-to-play": {
         "title": "How to play",
         "list": {

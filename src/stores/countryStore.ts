@@ -17,7 +17,7 @@ export const useCountryStore = defineStore('countries', () => {
 
   const endsAt = ref<null | Date>(null)
 
-  const isStartGameModalOpen = ref(true)
+  const isStartGameModalOpen = ref(false)
 
   const isShowingControls = ref(false)
 

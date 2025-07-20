@@ -17,6 +17,16 @@ const routes: RouteRecordRaw[] = [
     component: WelcomePage,
     name: 'welcome',
   },
+  {
+    path: '/:language(en|pt|es)/contact',
+    component: () => import('@/pages/ContactPage.vue'),
+    name: 'contact',
+  },
+  {
+    path: '/:language(en|pt|es)/terms-of-usage',
+    component: () => import('@/pages/TermsPage.vue'),
+    name: 'terms-of-usage',
+  },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ]
 
