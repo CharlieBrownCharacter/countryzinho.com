@@ -1,26 +1,28 @@
 <script setup lang="ts">
 import Dialog from 'primevue/dialog'
 import { useCountryStore } from '@/stores/countryStore.ts'
-import SelectButton from 'primevue/selectbutton'
 import Button from 'primevue/button'
 import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { useI18n } from 'vue-i18n'
 
 const countryStore = useCountryStore()
 
 const { posthog } = usePostHog()
+const { t } = useI18n()
 
-const timeSelected = ref(300)
+const timeSelected = ref<null | number>(null)
 const counter = ref(0)
 const classes = ref('')
 
 const isStarting = computed(() => counter.value >= 1)
 
-const timerOptions = ref([
-  { value: 120, text: '2 Minutes' },
-  { value: 300, text: '5 Minutes' },
-  { value: 600, text: '10 Minutes' },
+const timerOptions = computed(() => [
+  { value: null, text: t('components.start-game-modal.no-time') },
+  { value: 120, text: t('common.xMinutes', { count: 1 }, 1) },
+  { value: 300, text: t('common.xMinutes', { count: 5 }, 5) },
+  { value: 600, text: t('common.xMinutes', { count: 10 }, 10) },
 ])
 
 const style = computed(() =>
@@ -77,56 +79,62 @@ function onStartClick() {
         v-if="!isStarting"
         class="flex flex-col p-(--p-dialog-header-padding) h-full overflow-y-auto"
       >
-        <div class="flex flex-col gap-y-0.5">
-          <h1 class="flex gap-2 text-2xl font-semibold">Welcome to countryzinho</h1>
-          <p class="text-gray-400 text-sm">
-            Type as many country names as you can before the timer hits zero.
-          </p>
+        <div class="flex justify-between items-center">
+          <div class="flex flex-col gap-y-0.5">
+            <h2 class="flex gap-2 text-2xl font-semibold">
+              {{ t('components.start-game-modal.title') }}
+            </h2>
+            <p class="text-gray-400 text-sm">
+              {{ t('components.start-game-modal.description') }}
+            </p>
+          </div>
+
+          <Button
+            variant="text"
+            rounded
+            class="!h-fit aspect-square"
+            label="X"
+            @click="countryStore.isStartGameModalOpen = false"
+          />
         </div>
 
         <div class="space-y-4 mt-4 grow mb-4">
           <section>
-            <h2 class="text-xl">How to play</h2>
+            <h2 class="text-xl">
+              {{ t('components.start-game-modal.timer-title') }}
+            </h2>
             <p class="text-gray-400 text-sm">
-              Each correct country gives you 1 point. No need to press Enter - just type.
+              {{ t('components.start-game-modal.timer-description') }}
             </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+              <button
+                v-for="option in timerOptions"
+                :key="`timer-${option.value}`"
+                class="aspect-square p-2 rounded-xl border text-center transition-colors cursor-pointer"
+                :class="[option.value === timeSelected ? 'border-gray-200' : 'border-surface']"
+                @click="() => (timeSelected = option.value)"
+              >
+                {{ option.text }}
+              </button>
+            </div>
           </section>
 
           <section>
-            <h2 class="text-xl">Timer</h2>
+            <h2 class="text-xl">{{ t('common.continent') }}</h2>
             <p class="text-gray-400 text-sm">
-              Starts when you click "Start". Ends when time runs out or all countries are guessed.
+              {{ t('components.start-game-modal.continent-description') }}
             </p>
 
-            <SelectButton
-              class="mt-2"
-              v-model="timeSelected"
-              :options="timerOptions"
-              :allow-empty="false"
-              option-label="text"
-              option-value="value"
-              data-key="value"
-              aria-labelledby="custom"
-              fluid
-            />
-          </section>
-
-          <section>
-            <h2 class="text-xl">Restart</h2>
-            <p class="text-gray-400 text-sm">You can restart anytime and return to this screen.</p>
+            <div class="bg-surface-950 grid items-center justify-center py-10 mt-2 rounded">
+              {{ t('components.start-game-modal.coming-soon') }}
+            </div>
           </section>
         </div>
 
-        <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick"> Start </Button>
-
-        <div class="flex items-center justify-center mt-2">
-          <button
-            class="text-sm text-gray-400 cursor-pointer hover:underline"
-            @click="onContactClick"
-          >
-            Contact
-          </button>
-        </div>
+        <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick">
+          {{ t('common.start') }}
+        </Button>
       </div>
 
       <transition

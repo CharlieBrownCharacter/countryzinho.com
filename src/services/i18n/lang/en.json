@@ -18,10 +18,19 @@
     }
   },
   "components": {
-
+    "start-game-modal": {
+      "title": "Configure your game",
+      "description": "Pick all the options you would like to have in your game",
+      "timer-title": "Timer",
+      "timer-description": "How long the game will last",
+      "continent-description": "Which continent you would like to focus on",
+      "coming-soon": "Coming soon",
+      "no-time": "No time"
+    }
   },
   "common": {
     "new-game": "New game",
+    "start": "Start",
     "continents": {
       "africa": "Africa",
       "asia": "Asia",
@@ -30,6 +39,7 @@
       "southAmerica": "South America",
       "oceania": "Oceania"
     },
+    "continent": "Continent",
     "world": "World",
     "xMinutes": "No minutes | {count} Minute | {count} Minutes"
   }
