@@ -35,7 +35,9 @@ function onStartGameClick() {
       </p>
 
       <div class="my-4">
-        <h2 class="text-sm text-gray-400">Choose language</h2>
+        <h2 class="text-sm text-gray-400">
+          {{ t('pages.welcome.choose-language') }}
+        </h2>
 
         <div class="flex justify-center mt-2 gap-2">
           <Button asChild link v-slot="slotProps">
