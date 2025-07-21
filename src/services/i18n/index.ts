@@ -62,7 +62,7 @@ function getEnglishEmoji(): string {
   return '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
 }
 
-type MessageSchema = typeof en
+export type MessageSchema = typeof en
 
 export const i18n = createI18n<[MessageSchema], 'en' | 'pt' | 'es'>({
   locale: getUserLanguage(),

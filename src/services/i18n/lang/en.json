@@ -26,9 +26,15 @@
       "continent-description": "Which continent you would like to focus on",
       "coming-soon": "Coming soon",
       "no-time": "No time"
+    },
+    "confirm-game-restart-dialog": {
+      "title": "Restart Game",
+      "description": "Restarting the game will make you lose your progress. Are you sure?"
     }
   },
   "common": {
+    "restart": "Restart",
+    "cancel": "Cancel",
     "new-game": "New game",
     "start": "Start",
     "continents": {
