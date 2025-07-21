@@ -74,7 +74,7 @@ function onKeyUp() {
       <InputText
         id="country-guess"
         ref="inputRef"
-        class="border-none px-0"
+        class="border-none px-0 w-full"
         v-model="guess"
         :placeholder="t('components.guess-input.type-country-name')"
         autofocus

@@ -1,1 +1,73 @@
-{}
+{
+  "pages": {
+    "welcome": {
+      "title": "Countryzinho",
+      "choose-language": "Elegir idioma",
+      "subtitle": "Escribe tantos nombres de países como puedas antes de que se acabe el tiempo",
+      "contact": "Contacto",
+      "terms": "Términos de uso",
+      "how-to-play": {
+        "title": "Cómo jugar",
+        "list": {
+          "1": "Comienza a escribir un nombre de país - no necesitas presionar [ENTER]",
+          "2": "Nombra tantos países como puedas dentro del límite de tiempo",
+          "3": "Cuanto más rápido los nombres, más puntos obtienes",
+          "4": "El juego termina cuando nombras todos los países o se acaba el tiempo"
+        }
+      }
+    }
+  },
+  "components": {
+    "start-game-modal": {
+      "title": "Configura tu juego",
+      "description": "Elige todas las opciones que deseas tener en tu juego",
+      "timer-title": "Temporizador",
+      "timer-description": "Cuánto tiempo durará el juego",
+      "continent-description": "En qué continente te quieres enfocar",
+      "coming-soon": "Próximamente",
+      "no-time": "Sin tiempo"
+    },
+    "confirm-game-restart-dialog": {
+      "title": "Reiniciar juego",
+      "description": "Reiniciar el juego hará que pierdas tu progreso. ¿Estás seguro?"
+    },
+    "guess-input": {
+      "type-country-name": "Escribe el nombre de un país...",
+      "country-duplicated": "{country} ya fue ingresado"
+    },
+    "timer-section": {
+      "no-time": "Sin tiempo",
+      "restart-game": "Reiniciar juego"
+    },
+    "country-flag": {
+      "flag": "Bandera de {country}"
+    },
+    "results-dialog": {
+      "congratulations": "Felicidades",
+      "time-is-up": "Se acabó el tiempo",
+      "score": "Puntuación",
+      "results-text": "Has nombrado {totalGuess} países de {totalCountries}",
+      "named-countries": "Países nombrados",
+      "missing": "Países faltantes",
+      "go-again": "Intentar de nuevo"
+    }
+  },
+  "common": {
+    "restart": "Reiniciar",
+    "cancel": "Cancelar",
+    "new-game": "Nuevo juego",
+    "start": "Comenzar",
+    "continents": {
+      "antarctic": "Antártida",
+      "africa": "África",
+      "asia": "Asia",
+      "europe": "Europa",
+      "northAmerica": "América del Norte",
+      "southAmerica": "América del Sur",
+      "oceania": "Oceanía"
+    },
+    "continent": "Continente",
+    "world": "Mundo",
+    "xMinutes": "Sin minutos | {count} minuto | {count} minutos"
+  }
+}

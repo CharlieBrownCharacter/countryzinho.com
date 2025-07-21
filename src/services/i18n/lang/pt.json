@@ -2,24 +2,63 @@
   "pages": {
     "welcome": {
       "title": "Countryzinho",
-      "subtitle": "Digite o maior número possível de nomes de países antes que o tempo acabe",
+      "choose-language": "Escolha o idioma",
+      "subtitle": "Digite o maior número de nomes de países possível antes que o tempo acabe",
+      "contact": "Contato",
+      "terms": "Termos de uso",
       "how-to-play": {
         "title": "Como jogar",
         "list": {
-          "1": "Comece a digitar o nome de um país – não é preciso pressionar [ENTER]",
-          "2": "Adivinhe o maior número de países possível dentro do limite de tempo",
-          "3": "Quanto mais rápido você adivinhar, mais pontos você ganha",
-          "4": "O jogo termina quando você digitar todos os países ou o tempo acabar"
+          "1": "Comece a digitar o nome de um país - não é necessário pressionar [ENTER]",
+          "2": "Digite o máximo de países possível dentro do tempo limite",
+          "3": "Quanto mais rápido você digitar, mais pontos você ganha",
+          "4": "O jogo termina quando todos os países forem digitados ou o tempo acabar"
         }
       }
     }
   },
   "components": {
-
+    "start-game-modal": {
+      "title": "Configure seu jogo",
+      "description": "Escolha todas as opções que você gostaria de ter no jogo",
+      "timer-title": "Temporizador",
+      "timer-description": "Quanto tempo o jogo vai durar",
+      "continent-description": "Em qual continente você quer focar",
+      "coming-soon": "Em breve",
+      "no-time": "Sem tempo"
+    },
+    "confirm-game-restart-dialog": {
+      "title": "Reiniciar jogo",
+      "description": "Reiniciar o jogo fará você perder seu progresso. Tem certeza?"
+    },
+    "guess-input": {
+      "type-country-name": "Digite o nome de um país...",
+      "country-duplicated": "{country} já foi digitado"
+    },
+    "timer-section": {
+      "no-time": "Sem tempo",
+      "restart-game": "Reiniciar jogo"
+    },
+    "country-flag": {
+      "flag": "Bandeira de {country}"
+    },
+    "results-dialog": {
+      "congratulations": "Parabéns",
+      "time-is-up": "O tempo acabou",
+      "score": "Pontuação",
+      "results-text": "Você digitou {totalGuess} países de um total de {totalCountries}",
+      "named-countries": "Países digitados",
+      "missing": "Países que faltaram",
+      "go-again": "Jogar novamente"
+    }
   },
   "common": {
+    "restart": "Reiniciar",
+    "cancel": "Cancelar",
     "new-game": "Novo jogo",
+    "start": "Iniciar",
     "continents": {
+      "antarctic": "Antártida",
       "africa": "África",
       "asia": "Ásia",
       "europe": "Europa",
@@ -27,7 +66,8 @@
       "southAmerica": "América do Sul",
       "oceania": "Oceania"
     },
+    "continent": "Continente",
     "world": "Mundo",
-    "xMinutes": "Nenhum minuto | {count} minuto | {count} minutos"
+    "xMinutes": "Sem minutos | {count} minuto | {count} minutos"
   }
 }
