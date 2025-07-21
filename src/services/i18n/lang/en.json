@@ -34,6 +34,10 @@
     "guess-input": {
       "type-country-name": "Type a country name...",
       "country-duplicated": "{country} already entered"
+    },
+    "timer-section": {
+      "no-time": "No time",
+      "restart-game": "Restart game"
     }
   },
   "common": {

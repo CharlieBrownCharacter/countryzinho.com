@@ -5,10 +5,14 @@ import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import Button from 'primevue/button'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { useI18n } from 'vue-i18n'
+import type { MessageSchema } from '@/services/i18n'
 
 const store = useCountryStore()
 
-const endTimeFormatted = ref('No time')
+const { t } = useI18n<{ message: MessageSchema }>()
+
+const endTimeFormatted = ref(t('components.timer-section.no-time'))
 
 const { posthog } = usePostHog()
 
@@ -63,7 +67,7 @@ store.$subscribe((mutation, state) => {
       <span :class="classes">{{ endTimeFormatted }}</span>
 
       <Button
-        title="Restart game"
+        :title="t('components.timer-section.restart-game')"
         severity="secondary"
         variant="text"
         size="small"
