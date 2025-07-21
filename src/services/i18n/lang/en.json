@@ -10,8 +10,8 @@
         "title": "How to play",
         "list": {
           "1": "Start typing a country name - no need for [ENTER]",
-          "2": "Guess as many countries as possible under the time limit",
-          "3": "The faster you guess, more points you get",
+          "2": "Name as many countries as possible under the time limit",
+          "3": "The faster you name them, more points you get",
           "4": "Game ends when you have entered all countries or the time runs out"
         }
       }
@@ -41,6 +41,15 @@
     },
     "country-flag": {
       "flag": "Flag {country}"
+    },
+    "results-dialog": {
+      "congratulations": "Congratulations",
+      "time-is-up": "Time's up",
+      "score": "Score",
+      "results-text": "You have named {totalGuess} countries out of {totalCountries}",
+      "named-countries": "Named countries",
+      "missing": "Missing countries",
+      "go-again": "Go again"
     }
   },
   "common": {
@@ -49,6 +58,7 @@
     "new-game": "New game",
     "start": "Start",
     "continents": {
+      "antarctic": "Antarctic",
       "africa": "Africa",
       "asia": "Asia",
       "europe": "Europe",
@@ -58,6 +68,6 @@
     },
     "continent": "Continent",
     "world": "World",
-    "xMinutes": "No minutes | {count} Minute | {count} Minutes",
+    "xMinutes": "No minutes | {count} Minute | {count} Minutes"
   }
 }
