@@ -30,6 +30,10 @@
     "confirm-game-restart-dialog": {
       "title": "Restart Game",
       "description": "Restarting the game will make you lose your progress. Are you sure?"
+    },
+    "guess-input": {
+      "type-country-name": "Type a country name...",
+      "country-duplicated": "{country} already entered"
     }
   },
   "common": {
