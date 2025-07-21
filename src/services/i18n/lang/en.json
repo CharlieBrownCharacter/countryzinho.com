@@ -38,6 +38,9 @@
     "timer-section": {
       "no-time": "No time",
       "restart-game": "Restart game"
+    },
+    "country-flag": {
+      "flag": "Flag {country}"
     }
   },
   "common": {
@@ -55,6 +58,6 @@
     },
     "continent": "Continent",
     "world": "World",
-    "xMinutes": "No minutes | {count} Minute | {count} Minutes"
+    "xMinutes": "No minutes | {count} Minute | {count} Minutes",
   }
 }
