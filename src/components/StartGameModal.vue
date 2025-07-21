@@ -79,23 +79,13 @@ function onStartClick() {
         v-if="!isStarting"
         class="flex flex-col p-(--p-dialog-header-padding) h-full overflow-y-auto"
       >
-        <div class="flex justify-between items-center">
-          <div class="flex flex-col gap-y-0.5">
-            <h2 class="flex gap-2 text-2xl font-semibold">
-              {{ t('components.start-game-modal.title') }}
-            </h2>
-            <p class="text-gray-400 text-sm">
-              {{ t('components.start-game-modal.description') }}
-            </p>
-          </div>
-
-          <Button
-            variant="text"
-            rounded
-            class="!h-fit aspect-square"
-            label="X"
-            @click="countryStore.isStartGameModalOpen = false"
-          />
+        <div class="flex flex-col gap-y-0.5">
+          <h2 class="flex gap-2 text-2xl font-semibold">
+            {{ t('components.start-game-modal.title') }}
+          </h2>
+          <p class="text-gray-400 text-sm">
+            {{ t('components.start-game-modal.description') }}
+          </p>
         </div>
 
         <div class="space-y-4 mt-4 grow mb-4">

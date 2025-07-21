@@ -232,6 +232,7 @@ import CountryIM from '@/components/countries/CountryIM.vue'
 import CountryGU from '@/components/countries/CountryGU.vue'
 import CountrySG from '@/components/countries/CountrySG.vue'
 import CountryTK from '@/components/countries/CountryTK.vue'
+import CountryTW from '@/components/countries/CountryTW.vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import type { Country } from '@/services/resources/country/types.ts'
 
@@ -678,6 +679,7 @@ countryStore.$subscribe((mutation, state) => {
     <CountryGU />
     <CountrySG />
     <CountryTK />
+    <CountryTW />
 
     <g id="labels" style="display: none">
       <text y="718.91302" font-size="10px" x="2220.7449" id="txt-id" class="id">Indonesia</text>

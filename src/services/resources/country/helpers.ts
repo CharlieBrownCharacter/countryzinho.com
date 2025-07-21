@@ -1,4 +1,5 @@
 import type { Country } from '@/services/resources/country/types.ts'
+import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 
 type TrieNode = {
   children: Map<string, TrieNode>
@@ -22,12 +23,10 @@ function insert(root: TrieNode, word: string, code: string): void {
   node.isoAlpha2Code = code
 }
 
-export function buildCountryTrie(
-  data: { allowedGuesses: string[]; isoAlpha2Code: string }[],
-): TrieNode {
+export function buildCountryTrie(data: Country[], language: SUPPORTED_LANGUAGES): TrieNode {
   const root = createTrie()
   for (const { allowedGuesses, isoAlpha2Code } of data) {
-    for (const guess of allowedGuesses) {
+    for (const guess of allowedGuesses[language]) {
       insert(root, guess.toLowerCase(), isoAlpha2Code)
     }
   }

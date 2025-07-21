@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, useTemplateRef } from 'vue'
-import { trieRoot } from '@/services/resources/country/constants.ts'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
@@ -18,7 +17,7 @@ const { posthog } = usePostHog()
 const inputRef = useTemplateRef<InstanceType<typeof InputText>>('inputRef')
 
 function onKeyUp() {
-  const matchedCode = findGuess(trieRoot, guess.value)
+  const matchedCode = findGuess(countryStore.trieRoot, guess.value)
 
   if (!matchedCode) return
 

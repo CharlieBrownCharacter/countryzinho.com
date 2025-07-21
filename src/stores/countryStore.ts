@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import {
   countries,
   createGuessedCountriesMap,
@@ -7,9 +7,16 @@ import {
 } from '@/services/resources/country/constants.ts'
 import type { Country } from '@/services/resources/country/types.ts'
 import { addSeconds } from 'date-fns/addSeconds'
+import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
+import { useI18n } from 'vue-i18n'
+import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 
 export const useCountryStore = defineStore('countries', () => {
+  const { locale } = useI18n()
+
   const guessedCountries = ref<GuessedCountriesMap>(createGuessedCountriesMap(countries))
+
+  const trieRoot = shallowRef(buildCountryTrie(countries, 'en'))
 
   const latestCountryGuessed = ref<Country | null>(null)
 
@@ -46,6 +53,7 @@ export const useCountryStore = defineStore('countries', () => {
     endsAt.value = seconds ? addSeconds(new Date(), seconds) : null
     isCounterFinishing.value = false
     isShowingControls.value = true
+    trieRoot.value = buildCountryTrie(countries, locale.value as SUPPORTED_LANGUAGES)
   }
 
   function onGameEnd() {
@@ -80,5 +88,6 @@ export const useCountryStore = defineStore('countries', () => {
     onGameEnd,
     onRestartGame,
     isGameRestartConfirmationOpen,
+    trieRoot,
   }
 })

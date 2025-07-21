@@ -1,6 +1,7 @@
 import { createI18n } from 'vue-i18n'
 import en from './lang/en.json'
 import pt from './lang/pt.json'
+import es from './lang/es.json'
 
 export const SupportedLanguages = {
   en: 'en',
@@ -61,8 +62,10 @@ function getEnglishEmoji(): string {
   return '🏴󠁧󠁢󠁥󠁮󠁧󠁿'
 }
 
-export const i18n = createI18n({
+type MessageSchema = typeof en
+
+export const i18n = createI18n<[MessageSchema], 'en' | 'pt' | 'es'>({
   locale: getUserLanguage(),
   fallbackLocale: 'en' satisfies SUPPORTED_LANGUAGES,
-  messages: { en, pt },
+  messages: { en, pt, es },
 })
