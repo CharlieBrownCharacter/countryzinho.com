@@ -5,10 +5,14 @@ import { computed, ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import Button from 'primevue/button'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { useI18n } from 'vue-i18n'
+import type { MessageSchema } from '@/services/i18n'
 
 const store = useCountryStore()
 
-const endTimeFormatted = ref('')
+const { t } = useI18n<{ message: MessageSchema }>()
+
+const endTimeFormatted = ref(t('components.timer-section.no-time'))
 
 const { posthog } = usePostHog()
 
@@ -62,27 +66,15 @@ store.$subscribe((mutation, state) => {
     <div class="pt-2 flex items-center justify-between gap-2">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      <div>
-        <Button
-          title="Guessed countries"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="store.isGuessCountriesModalOpen = !store.isGuessCountriesModalOpen"
-        >
-          <Icon icon="pixel:check-list" />
-        </Button>
-
-        <Button
-          title="Restart game"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="onGameRestartClick"
-        >
-          <Icon icon="pixel:refresh" />
-        </Button>
-      </div>
+      <Button
+        :title="t('components.timer-section.restart-game')"
+        severity="secondary"
+        variant="text"
+        size="small"
+        @click="onGameRestartClick"
+      >
+        <Icon icon="pixel:refresh" />
+      </Button>
     </div>
   </div>
 </template>

@@ -1,3 +1,5 @@
+import { SupportedLanguages } from '@/services/i18n'
+
 export type Continent =
   | 'africa'
   | 'antarctica'
@@ -10,6 +12,8 @@ export type Continent =
 export interface Country {
   name: string
   isoAlpha2Code: string
-  allowedGuesses: string[]
+  allowedGuesses: {
+    [K in keyof typeof SupportedLanguages]: string[]
+  }
   continents: Continent[]
 }

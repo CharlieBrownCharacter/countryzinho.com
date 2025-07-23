@@ -4,8 +4,12 @@ import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { Icon } from '@iconify/vue'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { useI18n } from 'vue-i18n'
+import type { MessageSchema } from '@/services/i18n'
 
 const store = useCountryStore()
+
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const { posthog } = usePostHog()
 
@@ -32,12 +36,16 @@ function onRestartGameClick() {
         >
           <Icon icon="pixel:refresh" width="48" height="48" />
         </div>
-        <span class="font-bold text-2xl block mb-2 mt-6">Restart Game</span>
-        <p class="mb-0">Restarting the game will make you lose your progress. Are you sure?</p>
+        <span class="font-bold text-2xl block mb-2 mt-6">
+          {{ t('components.confirm-game-restart-dialog.title') }}
+        </span>
+        <p class="mb-0">
+          {{ t('components.confirm-game-restart-dialog.description') }}
+        </p>
         <div class="flex flex-col gap-2 mt-6 w-full">
-          <Button label="Restart" @click="onRestartGameClick" class="w-full" />
+          <Button :label="t('common.restart')" @click="onRestartGameClick" class="w-full" />
           <Button
-            label="Cancel"
+            :label="t('common.cancel')"
             outlined
             @click="store.isGameRestartConfirmationOpen = false"
             class="w-full"
