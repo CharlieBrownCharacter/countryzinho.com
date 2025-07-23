@@ -21,7 +21,7 @@ const isStarting = computed(() => counter.value >= 1)
 const timerOptions = computed(() => [
   { value: null, text: t('components.start-game-modal.no-time') },
   // { value: 5, text: t('common.xMinutes', { count: 0 }, 0) },
-  { value: 120, text: t('common.xMinutes', { count: 1 }, 1) },
+  { value: 60, text: t('common.xMinutes', { count: 1 }, 1) },
   { value: 300, text: t('common.xMinutes', { count: 5 }, 5) },
   { value: 600, text: t('common.xMinutes', { count: 10 }, 10) },
 ])

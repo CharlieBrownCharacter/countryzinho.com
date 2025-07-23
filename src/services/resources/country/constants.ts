@@ -1,5 +1,4 @@
 import type { Country } from '@/services/resources/country/types.ts'
-import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
 
 export type GuessedCountry = { guessed: boolean; country: Country }
 
@@ -928,8 +927,8 @@ export const countries: Country[] = [
     continents: ['europe'],
     allowedGuesses: {
       en: ['holy see', 'vatican city'],
-      es: ['santa sede', 'ciudad del vaticano'],
-      pt: ['santa sé', 'santa se', 'cidade do vaticano'],
+      es: ['santa sede', 'ciudad del vaticano', 'vaticano'],
+      pt: ['santa sé', 'santa se', 'cidade do vaticano', 'vaticano'],
     },
   },
   {
@@ -1909,7 +1908,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['slovakia'],
       es: ['eslovaquia'],
-      pt: ['eslováquia', 'eslovacia'],
+      pt: ['eslováquia', 'eslovaquia'],
     },
   },
   {
