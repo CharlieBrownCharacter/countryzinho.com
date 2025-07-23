@@ -2,7 +2,6 @@
 import CountrySVG from '@/components/CountrySVG.vue'
 import GuessInput from '@/components/GuessInput.vue'
 import GuessedCountriesDrawer from '@/components/GuessedCountriesDrawer/GuessedCountriesDrawer.vue'
-import TimerSection from '@/components/TimerSection.vue'
 import StartGameModal from '@/components/StartGameModal.vue'
 import ResultsDialog from '@/components/ResultsDialog.vue'
 import { onMounted } from 'vue'
