@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import CountrySVG from '@/components/CountrySVG.vue'
-import StartGameModal from '@/components/StartGameModal.vue'
-import ConfirmGameRestartDialog from '@/components/ConfirmGameRestartDialog.vue'
-import GuessInput from '@/components/GuessInput.vue'
-import ResultsDialog from '@/components/ResultsDialog.vue'
+import CountrySVG from '@/components/CountrySVG/CountrySVG.vue'
+import StartGameModal from '@/components/pages/GamePage/StartGameModal.vue'
+import ConfirmGameRestartDialog from '@/components/pages/GamePage/ConfirmGameRestartDialog.vue'
+import GuessInput from '@/components/pages/GamePage/GuessInput.vue'
+import ResultsDialog from '@/components/pages/GamePage/ResultsDialog.vue'
 import { onMounted } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 

@@ -4,7 +4,7 @@ import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
 import { usePostHog } from '@/composables/usePostHog.ts'
-import TimerSection from '@/components/TimerSection.vue'
+import TimerSection from '@/components/pages/GamePage/TimerSection.vue'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
 

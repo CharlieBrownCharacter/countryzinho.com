@@ -16,7 +16,7 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
 
 <template>
   <main class="mb-4 px-4 mx-auto max-w-3xl">
-    <section class="my-60 md:my-15 text-center">
+    <section class="my-40 md:my-15 text-center">
       <h1 class="text-center text-4xl sm:text-6xl">
         {{ t('pages.welcome.title') }}
       </h1>
@@ -60,7 +60,21 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
         </div>
       </div>
 
-      <div class="my-4 aspect-video w-full rounded bg-gray-400" />
+      <div
+        class="aspect-video border border-gray-200 grid place-items-center mb-8 mt-4 rounded-xl text-xl w-full p-8"
+      >
+        <p class="text-center">
+          I suck at design. If you have any idea on what we should add here
+          <br />
+          <a
+            href="https://github.com/CharlieBrownCharacter/countryzinho.com/issues"
+            target="_blank"
+            class="underline"
+          >
+            create an issue in our github
+          </a>
+        </p>
+      </div>
 
       <div class="flex justify-center">
         <Button asChild v-slot="slotProps">
@@ -95,6 +109,11 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
           <RouterLink :to="{ name: 'terms-of-usage' }" target="_blank">
             {{ t('pages.welcome.terms') }}
           </RouterLink>
+        </li>
+        <li>
+          <a href="https://github.com/CharlieBrownCharacter/countryzinho.com/" target="_blank">
+            Github
+          </a>
         </li>
       </ul>
     </nav>
