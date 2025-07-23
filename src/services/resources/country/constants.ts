@@ -1818,7 +1818,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['san marino'],
       es: ['san marino'],
-      pt: ['san marino'],
+      pt: ['são marinho', 'sao marinho'],
     },
   },
   {
