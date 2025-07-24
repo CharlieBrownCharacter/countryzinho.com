@@ -75,7 +75,7 @@ function onKeyUp() {
         id="country-guess"
         ref="inputRef"
         class="border-none px-0 w-full"
-        v-model="guess"
+        v-model.trim="guess"
         :placeholder="t('components.guess-input.type-country-name')"
         autofocus
         autocomplete="off"
