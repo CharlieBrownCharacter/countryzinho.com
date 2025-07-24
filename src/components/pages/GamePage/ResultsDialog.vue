@@ -80,6 +80,7 @@ const titleModal = computed(() =>
           t('components.results-dialog.results-text', {
             totalGuess: countriesGuessed.totalGuessed,
             totalCountries: countries.length,
+            points: store.points,
           })
         }}
       </p>

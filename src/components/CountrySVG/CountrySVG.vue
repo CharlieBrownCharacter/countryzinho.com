@@ -413,12 +413,12 @@ countryStore.$subscribe((mutation, state) => {
 
   if (
     latestCountryFocused.value &&
-    latestCountryFocused.value.isoAlpha2Code === state.latestCountryGuessed.isoAlpha2Code
+    latestCountryFocused.value.isoAlpha2Code === state.latestCountryGuessed.country.isoAlpha2Code
   )
     return
 
-  latestCountryFocused.value = state.latestCountryGuessed
-  focusOnCountry(state.latestCountryGuessed.isoAlpha2Code.toLowerCase())
+  latestCountryFocused.value = state.latestCountryGuessed.country
+  focusOnCountry(state.latestCountryGuessed.country.isoAlpha2Code.toLowerCase())
 })
 </script>
 

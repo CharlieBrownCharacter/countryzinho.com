@@ -46,7 +46,7 @@
       "congratulations": "Felicidades",
       "time-is-up": "Se acabó el tiempo",
       "score": "Puntuación",
-      "results-text": "Has nombrado {totalGuess} países de {totalCountries}",
+      "results-text": "Has nombrado {totalGuess} países de {totalCountries} y has ganado {points} puntos",
       "named-countries": "Países nombrados",
       "missing": "Países faltantes",
       "go-again": "Intentar de nuevo"

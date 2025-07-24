@@ -32,7 +32,7 @@
       "description": "Reiniciar o jogo fará você perder seu progresso. Tem certeza?"
     },
     "guess-input": {
-      "type-country-name": "Digite o nome de um país...",
+      "type-country-name": "Digite um país...",
       "country-duplicated": "{country} já foi digitado",
       "restart-game": "Reiniciar jogo"
     },
@@ -46,7 +46,7 @@
       "congratulations": "Parabéns",
       "time-is-up": "O tempo acabou",
       "score": "Pontuação",
-      "results-text": "Você digitou {totalGuess} países de um total de {totalCountries}",
+      "results-text": "Você digitou {totalGuess} países de um total de {totalCountries} e marcou {points} pontos",
       "named-countries": "Países digitados",
       "missing": "Países que faltaram",
       "go-again": "Jogar novamente"

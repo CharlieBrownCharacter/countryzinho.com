@@ -46,7 +46,7 @@
       "congratulations": "Congratulations",
       "time-is-up": "Time's up",
       "score": "Score",
-      "results-text": "You have named {totalGuess} countries out of {totalCountries}",
+      "results-text": "You have named {totalGuess} countries out of {totalCountries} and made {points} points",
       "named-countries": "Named countries",
       "missing": "Missing countries",
       "go-again": "Go again"
