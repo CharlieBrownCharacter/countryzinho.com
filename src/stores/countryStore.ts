@@ -34,7 +34,7 @@ export const useCountryStore = defineStore('countries', () => {
 
   const numberCountriesGuessed = computed<number>(() =>
     Object.keys(guessedCountries.value).reduce((previous, key) => {
-      if (guessedCountries.value[key].guessed) {
+      if (guessedCountries.value[key].guessedAt) {
         return previous + 1
       }
 
@@ -45,7 +45,7 @@ export const useCountryStore = defineStore('countries', () => {
   const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
 
   function onGuessCountry(countryCode: string) {
-    guessedCountries.value[countryCode].guessed = true
+    guessedCountries.value[countryCode].guessedAt = new Date()
     latestCountryGuessed.value = guessedCountries.value[countryCode].country
   }
 

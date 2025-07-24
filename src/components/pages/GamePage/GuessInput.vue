@@ -32,7 +32,7 @@ function onKeyUp() {
 
   duplicatedGuessedCountry.value = ''
 
-  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) {
+  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessedAt) {
     duplicatedGuessedCountry.value =
       countryStore.guessedCountries[matchedCode.isoAlpha2Code].country.name
 
