@@ -2,8 +2,6 @@
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
 import { computed, ref } from 'vue'
-import { Icon } from '@iconify/vue'
-import Button from 'primevue/button'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
@@ -45,11 +43,6 @@ const { resume, pause } = useIntervalFn(
 
 const classes = computed(() => (store.isCounterFinishing ? 'text-red-500' : ''))
 
-function onGameRestartClick() {
-  posthog.capture('openedGameRestartDialog')
-  store.isGameRestartConfirmationOpen = true
-}
-
 store.$subscribe((mutation, state) => {
   if (mutation.type !== 'direct') return
 
@@ -63,18 +56,10 @@ store.$subscribe((mutation, state) => {
 
 <template>
   <div class="shadow-lg text-center bg-(--p-inputtext-background) rounded-lg">
-    <div class="pt-2 flex items-center justify-between gap-2">
+    <div class="pt-2 flex items-center justify-between gap-2 text-sm">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      <Button
-        :title="t('components.timer-section.restart-game')"
-        severity="secondary"
-        variant="text"
-        size="small"
-        @click="onGameRestartClick"
-      >
-        <Icon icon="pixel:refresh" />
-      </Button>
+      {{ t('common.points', { count: store.points }, store.points) }}
     </div>
   </div>
 </template>

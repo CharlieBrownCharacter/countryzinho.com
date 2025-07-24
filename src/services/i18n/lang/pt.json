@@ -33,11 +33,11 @@
     },
     "guess-input": {
       "type-country-name": "Digite o nome de um país...",
-      "country-duplicated": "{country} já foi digitado"
+      "country-duplicated": "{country} já foi digitado",
+      "restart-game": "Reiniciar jogo"
     },
     "timer-section": {
-      "no-time": "Sem tempo",
-      "restart-game": "Reiniciar jogo"
+      "no-time": "Sem tempo"
     },
     "country-flag": {
       "flag": "Bandeira de {country}"
@@ -53,6 +53,7 @@
     }
   },
   "common": {
+    "points": "0 pontos | 1 ponto | {count} pontos",
     "restart": "Reiniciar",
     "cancel": "Cancelar",
     "new-game": "Novo jogo",
