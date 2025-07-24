@@ -40,7 +40,7 @@ const countriesGuessed = computed(() => {
 
   for (const key in store.guessedCountries) {
     for (const continent of store.guessedCountries[key].country.continents) {
-      if (store.guessedCountries[key].guessed) {
+      if (store.guessedCountries[key].guessedAt) {
         totalGuessed += 1
         continents[continent].guessed.push(store.guessedCountries[key].country)
       } else {
@@ -80,6 +80,7 @@ const titleModal = computed(() =>
           t('components.results-dialog.results-text', {
             totalGuess: countriesGuessed.totalGuessed,
             totalCountries: countries.length,
+            points: store.points,
           })
         }}
       </p>

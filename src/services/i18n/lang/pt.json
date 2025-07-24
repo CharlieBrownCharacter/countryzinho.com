@@ -6,6 +6,8 @@
       "subtitle": "Digite o maior número de nomes de países possível antes que o tempo acabe",
       "contact": "Contato",
       "terms": "Termos de uso",
+      "main-image": "Sou péssimo em design. Se você tiver alguma ideia do que deveríamos adicionar aqui {link}",
+      "create-issue": "crie uma issue no nosso GitHub",
       "how-to-play": {
         "title": "Como jogar",
         "list": {
@@ -32,12 +34,12 @@
       "description": "Reiniciar o jogo fará você perder seu progresso. Tem certeza?"
     },
     "guess-input": {
-      "type-country-name": "Digite o nome de um país...",
-      "country-duplicated": "{country} já foi digitado"
+      "type-country-name": "Digite um país...",
+      "country-duplicated": "{country} já foi digitado",
+      "restart-game": "Reiniciar jogo"
     },
     "timer-section": {
-      "no-time": "Sem tempo",
-      "restart-game": "Reiniciar jogo"
+      "no-time": "Sem tempo"
     },
     "country-flag": {
       "flag": "Bandeira de {country}"
@@ -46,13 +48,14 @@
       "congratulations": "Parabéns",
       "time-is-up": "O tempo acabou",
       "score": "Pontuação",
-      "results-text": "Você digitou {totalGuess} países de um total de {totalCountries}",
+      "results-text": "Você digitou {totalGuess} países de um total de {totalCountries} e marcou {points} pontos",
       "named-countries": "Países digitados",
       "missing": "Países que faltaram",
       "go-again": "Jogar novamente"
     }
   },
   "common": {
+    "points": "0 pontos | 1 ponto | {count} pontos",
     "restart": "Reiniciar",
     "cancel": "Cancelar",
     "new-game": "Novo jogo",

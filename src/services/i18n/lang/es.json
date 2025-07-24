@@ -6,6 +6,8 @@
       "subtitle": "Escribe tantos nombres de países como puedas antes de que se acabe el tiempo",
       "contact": "Contacto",
       "terms": "Términos de uso",
+      "main-image": "Soy muy malo con el diseño. Si tienes alguna idea de qué podríamos añadir aquí {link}",
+      "create-issue": "crea un issue en nuestro GitHub",
       "how-to-play": {
         "title": "Cómo jugar",
         "list": {
@@ -33,11 +35,11 @@
     },
     "guess-input": {
       "type-country-name": "Escribe el nombre de un país...",
-      "country-duplicated": "{country} ya fue ingresado"
+      "country-duplicated": "{country} ya fue ingresado",
+      "restart-game": "Reiniciar juego"
     },
     "timer-section": {
-      "no-time": "Sin tiempo",
-      "restart-game": "Reiniciar juego"
+      "no-time": "Sin tiempo"
     },
     "country-flag": {
       "flag": "Bandera de {country}"
@@ -46,13 +48,14 @@
       "congratulations": "Felicidades",
       "time-is-up": "Se acabó el tiempo",
       "score": "Puntuación",
-      "results-text": "Has nombrado {totalGuess} países de {totalCountries}",
+      "results-text": "Has nombrado {totalGuess} países de {totalCountries} y has ganado {points} puntos",
       "named-countries": "Países nombrados",
       "missing": "Países faltantes",
       "go-again": "Intentar de nuevo"
     }
   },
   "common": {
+    "points": "0 puntos | 1 punto | {count} puntos",
     "restart": "Reiniciar",
     "cancel": "Cancelar",
     "new-game": "Nuevo juego",

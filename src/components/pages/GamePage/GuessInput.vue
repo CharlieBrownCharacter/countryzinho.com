@@ -7,6 +7,8 @@ import { usePostHog } from '@/composables/usePostHog.ts'
 import TimerSection from '@/components/pages/GamePage/TimerSection.vue'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
+import Button from 'primevue/button'
+import { Icon } from '@iconify/vue'
 
 const guess = ref('')
 
@@ -32,7 +34,7 @@ function onKeyUp() {
 
   duplicatedGuessedCountry.value = ''
 
-  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessed) {
+  if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessedAt) {
     duplicatedGuessedCountry.value =
       countryStore.guessedCountries[matchedCode.isoAlpha2Code].country.name
 
@@ -52,6 +54,11 @@ function onKeyUp() {
     countryStore.onGameEnd()
   }
 }
+
+function onGameRestartClick() {
+  posthog.capture('openedGameRestartDialog')
+  countryStore.isGameRestartConfirmationOpen = true
+}
 </script>
 
 <template>
@@ -68,20 +75,34 @@ function onKeyUp() {
       class="p-4 rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-colors"
       :class="[duplicatedGuessedCountry ? '!border-red-500' : '']"
     >
-      <label for="country-guess" class="sr-only">
-        {{ t('components.guess-input.type-country-name') }}
-      </label>
-      <InputText
-        id="country-guess"
-        ref="inputRef"
-        class="border-none px-0 w-full"
-        v-model.trim="guess"
-        :placeholder="t('components.guess-input.type-country-name')"
-        autofocus
-        autocomplete="off"
-        data-op-ignore
-        @keyup="onKeyUp"
-      />
+      <div class="flex justify-between items-center w-full">
+        <div>
+          <label for="country-guess" class="sr-only">
+            {{ t('components.guess-input.type-country-name') }}
+          </label>
+          <InputText
+            id="country-guess"
+            ref="inputRef"
+            class="border-none px-0 w-full"
+            v-model.trim="guess"
+            :placeholder="t('components.guess-input.type-country-name')"
+            autofocus
+            autocomplete="off"
+            data-op-ignore
+            @keyup="onKeyUp"
+          />
+        </div>
+
+        <Button
+          :title="t('components.timer-section.restart-game')"
+          severity="secondary"
+          variant="text"
+          size="small"
+          @click="onGameRestartClick"
+        >
+          <Icon icon="pixel:refresh" />
+        </Button>
+      </div>
 
       <div
         class="text-xs text-red-500"

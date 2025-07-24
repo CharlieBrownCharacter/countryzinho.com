@@ -1,6 +1,6 @@
 import type { Country } from '@/services/resources/country/types.ts'
 
-export type GuessedCountry = { guessed: boolean; country: Country }
+export type GuessedCountry = { guessedAt: Date | null; country: Country }
 
 export type GuessedCountriesMap = Record<Country['isoAlpha2Code'], GuessedCountry>
 
@@ -2351,7 +2351,7 @@ export function createGuessedCountriesMap(countries: Country[]): GuessedCountrie
   const _countries: GuessedCountriesMap = {}
 
   for (const country of countries) {
-    _countries[country.isoAlpha2Code] = { guessed: false, country }
+    _countries[country.isoAlpha2Code] = { guessedAt: null, country }
   }
 
   return _countries

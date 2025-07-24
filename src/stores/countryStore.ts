@@ -4,12 +4,13 @@ import {
   countries,
   createGuessedCountriesMap,
   type GuessedCountriesMap,
+  type GuessedCountry,
 } from '@/services/resources/country/constants.ts'
-import type { Country } from '@/services/resources/country/types.ts'
 import { addSeconds } from 'date-fns/addSeconds'
 import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
 import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
+import { getPoints } from '@/services/resources/game/helpers.ts'
 
 export const useCountryStore = defineStore('countries', () => {
   const { locale } = useI18n()
@@ -18,7 +19,7 @@ export const useCountryStore = defineStore('countries', () => {
 
   const trieRoot = shallowRef(buildCountryTrie(countries, 'en'))
 
-  const latestCountryGuessed = ref<Country | null>(null)
+  const latestCountryGuessed = ref<GuessedCountry | null>(null)
 
   const endsAt = ref<null | Date>(null)
 
@@ -32,9 +33,11 @@ export const useCountryStore = defineStore('countries', () => {
 
   const isCounterFinishing = ref(false)
 
+  const points = ref(0)
+
   const numberCountriesGuessed = computed<number>(() =>
     Object.keys(guessedCountries.value).reduce((previous, key) => {
-      if (guessedCountries.value[key].guessed) {
+      if (guessedCountries.value[key].guessedAt) {
         return previous + 1
       }
 
@@ -45,8 +48,9 @@ export const useCountryStore = defineStore('countries', () => {
   const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
 
   function onGuessCountry(countryCode: string) {
-    guessedCountries.value[countryCode].guessed = true
-    latestCountryGuessed.value = guessedCountries.value[countryCode].country
+    points.value += latestCountryGuessed.value ? getPoints(latestCountryGuessed.value.guessedAt) : 1
+    guessedCountries.value[countryCode].guessedAt = new Date()
+    latestCountryGuessed.value = guessedCountries.value[countryCode]
   }
 
   function startGame(seconds: number | null = 5) {
@@ -71,6 +75,7 @@ export const useCountryStore = defineStore('countries', () => {
     isShowingControls.value = false
     guessedCountries.value = createGuessedCountriesMap(countries)
     isStartGameModalOpen.value = true
+    points.value = 0
   }
 
   return {
@@ -89,5 +94,6 @@ export const useCountryStore = defineStore('countries', () => {
     onRestartGame,
     isGameRestartConfirmationOpen,
     trieRoot,
+    points,
   }
 })

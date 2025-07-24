@@ -6,6 +6,8 @@
       "subtitle": "Type as many country names as you can before the timer hits zero",
       "contact": "Contact",
       "terms": "Terms of usage",
+      "main-image": "I’m rubbish at design. If you have any idea what we should add here {link}",
+      "create-issue": "create an issue on our GitHub",
       "how-to-play": {
         "title": "How to play",
         "list": {
@@ -33,11 +35,11 @@
     },
     "guess-input": {
       "type-country-name": "Type a country name...",
-      "country-duplicated": "{country} already entered"
+      "country-duplicated": "{country} already entered",
+      "restart-game": "Restart game"
     },
     "timer-section": {
-      "no-time": "No time",
-      "restart-game": "Restart game"
+      "no-time": "No time"
     },
     "country-flag": {
       "flag": "Flag {country}"
@@ -46,13 +48,14 @@
       "congratulations": "Congratulations",
       "time-is-up": "Time's up",
       "score": "Score",
-      "results-text": "You have named {totalGuess} countries out of {totalCountries}",
+      "results-text": "You have named {totalGuess} countries out of {totalCountries} and made {points} points",
       "named-countries": "Named countries",
       "missing": "Missing countries",
       "go-again": "Go again"
     }
   },
   "common": {
+    "points": "No points | 1 point | {count} points",
     "restart": "Restart",
     "cancel": "Cancel",
     "new-game": "New game",
