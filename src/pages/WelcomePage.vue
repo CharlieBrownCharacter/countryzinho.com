@@ -63,17 +63,17 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
       <div
         class="aspect-video border border-gray-200 grid place-items-center mb-8 mt-4 rounded-xl text-xl w-full p-8"
       >
-        <p class="text-center">
-          I suck at design. If you have any idea on what we should add here
-          <br />
-          <a
-            href="https://github.com/CharlieBrownCharacter/countryzinho.com/issues"
-            target="_blank"
-            class="underline"
-          >
-            create an issue in our github
-          </a>
-        </p>
+        <i18n-t class="text-center" keypath="pages.welcome.main-image" tag="p">
+          <template v-slot:link>
+            <a
+              href="https://github.com/CharlieBrownCharacter/countryzinho.com/issues"
+              target="_blank"
+              class="underline"
+            >
+              {{ t('pages.welcome.create-issue') }}
+            </a>
+          </template>
+        </i18n-t>
       </div>
 
       <div class="flex justify-center">

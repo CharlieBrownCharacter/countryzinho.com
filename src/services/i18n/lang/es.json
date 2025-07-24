@@ -6,6 +6,8 @@
       "subtitle": "Escribe tantos nombres de países como puedas antes de que se acabe el tiempo",
       "contact": "Contacto",
       "terms": "Términos de uso",
+      "main-image": "Soy muy malo con el diseño. Si tienes alguna idea de qué podríamos añadir aquí {link}",
+      "create-issue": "crea un issue en nuestro GitHub",
       "how-to-play": {
         "title": "Cómo jugar",
         "list": {
