@@ -18,13 +18,20 @@ const classes = ref('')
 
 const isStarting = computed(() => counter.value >= 1)
 
-const timerOptions = computed(() => [
-  { value: null, text: t('components.start-game-modal.no-time') },
-  // { value: 5, text: t('common.xMinutes', { count: 0 }, 0) },
-  { value: 60, text: t('common.xMinutes', { count: 1 }, 1) },
-  { value: 300, text: t('common.xMinutes', { count: 5 }, 5) },
-  { value: 600, text: t('common.xMinutes', { count: 10 }, 10) },
-])
+const timerOptions = computed(() => {
+  const options = [
+    { value: null, text: t('components.start-game-modal.no-time') },
+    { value: 60, text: t('common.xMinutes', { count: 1 }, 1) },
+    { value: 300, text: t('common.xMinutes', { count: 5 }, 5) },
+    { value: 600, text: t('common.xMinutes', { count: 10 }, 10) },
+  ]
+
+  if (import.meta.env.DEV) {
+    options.push({ value: 1, text: '1 second (dev)' })
+  }
+
+  return options
+})
 
 const style = computed(() =>
   isStarting.value

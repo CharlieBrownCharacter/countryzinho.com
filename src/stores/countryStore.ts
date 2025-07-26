@@ -15,6 +15,8 @@ import { getPoints } from '@/services/resources/game/helpers.ts'
 export const useCountryStore = defineStore('countries', () => {
   const { locale } = useI18n()
 
+  const isShowingShowResultsModalButton = ref(false)
+
   const guessedCountries = ref<GuessedCountriesMap>(createGuessedCountriesMap(countries))
 
   const trieRoot = shallowRef(buildCountryTrie(countries, 'en'))
@@ -63,8 +65,8 @@ export const useCountryStore = defineStore('countries', () => {
   function onGameEnd() {
     endsAt.value = null
     isCounterFinishing.value = false
-    isResultsDialogOpen.value = true
     isShowingControls.value = false
+    isResultsDialogOpen.value = true
   }
 
   function onRestartGame() {
@@ -79,6 +81,7 @@ export const useCountryStore = defineStore('countries', () => {
   }
 
   return {
+    isShowingShowResultsModalButton,
     guessedCountries,
     latestCountryGuessed,
     endsAt,

@@ -20,6 +20,9 @@
     }
   },
   "components": {
+    "show-results-modal-button": {
+      "show-results": "Mostrar resultados"
+    },
     "start-game-modal": {
       "title": "Configure seu jogo",
       "description": "Escolha todas as opções que você gostaria de ter no jogo",
@@ -52,7 +55,8 @@
       "results-text": "Você digitou {totalGuess} países de um total de {totalCountries} e marcou {points} pontos",
       "named-countries": "Países digitados",
       "missing": "Países que faltaram",
-      "go-again": "Jogar novamente"
+      "go-again": "Jogar novamente",
+      "see-map": "Ver mapa"
     }
   },
   "common": {
