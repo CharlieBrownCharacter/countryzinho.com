@@ -57,6 +57,11 @@ const titleModal = computed(() =>
     ? t('components.results-dialog.congratulations')
     : t('components.results-dialog.time-is-up'),
 )
+
+function onClickSeeMap() {
+  store.isResultsDialogOpen = false
+  store.isShowingShowResultsModalButton = true
+}
 </script>
 
 <template>
@@ -376,9 +381,18 @@ const titleModal = computed(() =>
     </section>
 
     <template #footer>
-      <Button class="w-full" severity="secondary" @click="store.onRestartGame">
-        {{ t('components.results-dialog.go-again') }}
-      </Button>
+      <Button
+        :label="t('components.results-dialog.see-map')"
+        class="w-full"
+        severity="secondary"
+        @click="onClickSeeMap"
+      />
+      <Button
+        :label="t('components.results-dialog.go-again')"
+        class="w-full"
+        severity="secondary"
+        @click="store.onRestartGame"
+      />
     </template>
   </Dialog>
 </template>
