@@ -173,7 +173,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['bahrain'],
       es: ['baréin', 'barein'],
-      pt: ['bareine', 'barein'],
+      pt: ['bareine', 'barein', 'bahrein', 'barein'],
     },
   },
   {
@@ -203,7 +203,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['belarus'],
       es: ['bielorrusia'],
-      pt: ['bielorrússia', 'bielorrussia'],
+      pt: ['bielorrússia', 'bielorrussia', 'belarus'],
     },
   },
   {
@@ -558,7 +558,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['czech republic', 'czechia'],
       es: ['república checa', 'chequia'],
-      pt: ['república tcheca', 'chequia'],
+      pt: ['república tcheca', 'chequia', 'republica tcheca', 'tchéquia', 'tchequia'],
     },
   },
   {
@@ -588,7 +588,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['djibouti'],
       es: ['yibuti'],
-      pt: ['jibuti'],
+      pt: ['jibuti', 'djibuti'],
     },
   },
   {
@@ -658,7 +658,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['eritrea'],
       es: ['eritrea'],
-      pt: ['eritreia'],
+      pt: ['eritreia', 'eritréia'],
     },
   },
   {
@@ -808,7 +808,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['ghana'],
       es: ['ghana'],
-      pt: ['ghana'],
+      pt: ['ghana', 'gana'],
     },
   },
   {
@@ -1488,7 +1488,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['new zealand'],
       es: ['nueva zelanda'],
-      pt: ['nova zelândia', 'nova zelândia'],
+      pt: ['nova zelândia', 'nova zelândia', 'nova zelandia'],
     },
   },
   {
@@ -1698,7 +1698,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['qatar'],
       es: ['qatar'],
-      pt: ['qatar'],
+      pt: ['qatar', 'catar'],
     },
   },
   {
@@ -2034,7 +2034,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['switzerland'],
       es: ['suiza'],
-      pt: ['suíça', 'suica'],
+      pt: ['suíça', 'suica', 'suiça'],
     },
   },
   {
@@ -2284,7 +2284,7 @@ export const countries: Country[] = [
     allowedGuesses: {
       en: ['vietnam'],
       es: ['vietnam', 'vietnamita'],
-      pt: ['vietnam', 'vietnamita'],
+      pt: ['vietnam', 'vietna'],
     },
   },
   {
