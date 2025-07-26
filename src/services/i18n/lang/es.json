@@ -34,12 +34,13 @@
       "description": "Reiniciar el juego hará que pierdas tu progreso. ¿Estás seguro?"
     },
     "guess-input": {
-      "type-country-name": "Escribe el nombre de un país...",
+      "type-country-name": "Escribe un país...",
       "country-duplicated": "{country} ya fue ingresado",
       "restart-game": "Reiniciar juego"
     },
     "timer-section": {
-      "no-time": "Sin tiempo"
+      "no-time": "Sin tiempo",
+      "restart-game": "Reiniciar juego"
     },
     "country-flag": {
       "flag": "Bandera de {country}"

@@ -39,7 +39,8 @@
       "restart-game": "Reiniciar jogo"
     },
     "timer-section": {
-      "no-time": "Sem tempo"
+      "no-time": "Sem tempo",
+      "restart-game": "Restart game"
     },
     "country-flag": {
       "flag": "Bandeira de {country}"
