@@ -15,5 +15,6 @@ export interface Country {
   allowedGuesses: {
     [K in keyof typeof SupportedLanguages]: string[]
   }
+  slug: string
   continents: Continent[]
 }

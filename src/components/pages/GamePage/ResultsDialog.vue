@@ -174,7 +174,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -188,7 +188,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -204,7 +204,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -218,7 +218,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -234,7 +234,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -248,7 +248,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -264,7 +264,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -278,7 +278,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -294,7 +294,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -308,7 +308,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -324,7 +324,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -338,7 +338,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -354,7 +354,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
@@ -368,7 +368,7 @@ const titleModal = computed(() =>
             <Tag severity="secondary" rounded class="!font-semibold !text-xs flex items-center">
               <CountryFlag :country-code="country.isoAlpha2Code" :country-name="country.name" />
 
-              {{ t(`common.countries.${country.name}`) }}
+              {{ t(`common.countries.${country.slug}`) }}
             </Tag>
           </li>
         </ul>
