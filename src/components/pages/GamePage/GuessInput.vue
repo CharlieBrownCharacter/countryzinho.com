@@ -9,10 +9,11 @@ import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
 import Button from 'primevue/button'
 import { Icon } from '@iconify/vue'
+import type { Country } from '@/services/resources/country/types.ts'
 
 const guess = ref('')
 
-const duplicatedGuessedCountry = ref('')
+const duplicatedGuessedCountry = ref<Country | null>(null)
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
@@ -32,13 +33,13 @@ function onKeyUp() {
   if (!(matchedCode.isoAlpha2Code in countryStore.guessedCountries))
     throw new Error(`${matchedCode.isoAlpha2Code} is not in countryStore.guessedCountries`)
 
-  duplicatedGuessedCountry.value = ''
+  duplicatedGuessedCountry.value = null
 
   if (countryStore.guessedCountries[matchedCode.isoAlpha2Code].guessedAt) {
     duplicatedGuessedCountry.value =
-      countryStore.guessedCountries[matchedCode.isoAlpha2Code].country.name
+      countryStore.guessedCountries[matchedCode.isoAlpha2Code].country
 
-    setTimeout(() => (duplicatedGuessedCountry.value = ''), 3000)
+    setTimeout(() => (duplicatedGuessedCountry.value = null), 3000)
 
     return
   }
@@ -108,7 +109,13 @@ function onGameRestartClick() {
         class="text-xs text-red-500"
         :class="[duplicatedGuessedCountry ? 'visible' : 'invisible']"
       >
-        {{ t('components.guess-input.country-duplicated', { country: duplicatedGuessedCountry }) }}
+        {{
+          duplicatedGuessedCountry
+            ? t('components.guess-input.country-duplicated', {
+                country: t(`common.countries.${duplicatedGuessedCountry.slug}`),
+              })
+            : '&nbsp;'
+        }}
       </div>
 
       <TimerSection />
