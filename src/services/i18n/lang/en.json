@@ -20,6 +20,10 @@
     }
   },
   "components": {
+    "finish-game-dialog": {
+      "title": "End game early?",
+      "description": "Are you sure you want to finish the game now? You’ll see your results immediately"
+    },
     "show-results-modal-button": {
       "show-results": "Show results"
     },
@@ -43,7 +47,8 @@
     },
     "timer-section": {
       "no-time": "No time",
-      "restart-game": "Restart game"
+      "restart-game": "Restart game",
+      "finish-game": "Finish game"
     },
     "country-flag": {
       "flag": "Flag {country}"
@@ -65,6 +70,7 @@
     "cancel": "Cancel",
     "new-game": "New game",
     "start": "Start",
+    "end": "End",
     "continents": {
       "antarctic": "Antarctic",
       "africa": "Africa",

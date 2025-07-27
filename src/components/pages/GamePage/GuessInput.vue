@@ -60,6 +60,11 @@ function onGameRestartClick() {
   posthog.capture('openedGameRestartDialog')
   countryStore.isGameRestartConfirmationOpen = true
 }
+
+function onFinishGameClick() {
+  posthog.capture('openedFinishGameDialog')
+  countryStore.isFinishGameDialogOpen = true
+}
 </script>
 
 <template>
@@ -73,11 +78,11 @@ function onGameRestartClick() {
   >
     <div
       v-if="countryStore.isShowingControls"
-      class="p-4 rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 w-64 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-all"
+      class="p-4 rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 w-[90vw] sm:w-80 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-all"
       :class="[duplicatedGuessedCountry ? '!border-red-500' : '']"
     >
       <div class="flex justify-between items-center w-full">
-        <div>
+        <div class="grow">
           <label for="country-guess" class="sr-only">
             {{ t('components.guess-input.type-country-name') }}
           </label>
@@ -94,15 +99,27 @@ function onGameRestartClick() {
           />
         </div>
 
-        <Button
-          :title="t('components.timer-section.restart-game')"
-          severity="secondary"
-          variant="text"
-          size="small"
-          @click="onGameRestartClick"
-        >
-          <Icon icon="pixel:refresh" />
-        </Button>
+        <div>
+          <Button
+            :title="t('components.timer-section.finish-game')"
+            severity="secondary"
+            variant="text"
+            size="small"
+            @click="onFinishGameClick"
+          >
+            <Icon icon="gis:flag-finish-b-o" />
+          </Button>
+
+          <Button
+            :title="t('components.timer-section.restart-game')"
+            severity="secondary"
+            variant="text"
+            size="small"
+            @click="onGameRestartClick"
+          >
+            <Icon icon="pixel:refresh" />
+          </Button>
+        </div>
       </div>
 
       <div

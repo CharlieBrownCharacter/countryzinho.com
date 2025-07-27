@@ -2,7 +2,6 @@
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
 import { computed, ref } from 'vue'
-import { usePostHog } from '@/composables/usePostHog.ts'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
 
@@ -11,8 +10,6 @@ const store = useCountryStore()
 const { t } = useI18n<{ message: MessageSchema }>()
 
 const endTimeFormatted = ref(t('components.timer-section.no-time'))
-
-const { posthog } = usePostHog()
 
 const { resume, pause } = useIntervalFn(
   () => {
@@ -25,7 +22,6 @@ const { resume, pause } = useIntervalFn(
     if (totalSeconds === 0) {
       pause()
       store.onGameEnd()
-      posthog.capture('gameTimeEnded')
     }
 
     if (totalSeconds < 15) {

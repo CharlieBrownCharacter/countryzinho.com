@@ -4,6 +4,7 @@ import StartGameModal from '@/components/pages/GamePage/StartGameModal.vue'
 import ConfirmGameRestartDialog from '@/components/pages/GamePage/ConfirmGameRestartDialog.vue'
 import GuessInput from '@/components/pages/GamePage/GuessInput.vue'
 import ResultsDialog from '@/components/pages/GamePage/ResultsDialog.vue'
+import FinishGameDialog from '@/components/pages/GamePage/FinishGameDialog.vue'
 import { onMounted } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import ShowResultsModalButton from '@/components/pages/GamePage/ShowResultsModalButton.vue'
@@ -17,6 +18,7 @@ onMounted(() => {
 
 <template>
   <main class="relative w-full p-0 m-0 box-content">
+    <FinishGameDialog />
     <ShowResultsModalButton />
     <GuessInput />
     <ResultsDialog />
