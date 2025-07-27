@@ -20,6 +20,10 @@
     }
   },
   "components": {
+    "finish-game-dialog": {
+      "title": "Encerrar jogo agora?",
+      "description": "Tem certeza de que deseja encerrar o jogo agora? Você verá seus resultados imediatamente"
+    },
     "show-results-modal-button": {
       "show-results": "Mostrar resultados"
     },
@@ -43,7 +47,8 @@
     },
     "timer-section": {
       "no-time": "Sem tempo",
-      "restart-game": "Restart game"
+      "restart-game": "Reiniciar jogo",
+      "finish-game": "Acabar jogo"
     },
     "country-flag": {
       "flag": "Bandeira de {country}"
@@ -65,6 +70,7 @@
     "cancel": "Cancelar",
     "new-game": "Novo jogo",
     "start": "Iniciar",
+    "end": "Terminar",
     "continents": {
       "antarctic": "Antártida",
       "africa": "África",

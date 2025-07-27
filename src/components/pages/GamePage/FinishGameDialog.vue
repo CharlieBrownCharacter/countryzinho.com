@@ -13,15 +13,16 @@ const { t } = useI18n<{ message: MessageSchema }>()
 
 const { posthog } = usePostHog()
 
-function onRestartGameClick() {
-  posthog.capture('restartedGame')
-  store.onRestartGame()
+function onFinishGameClick() {
+  posthog.capture('forcedFinishGame')
+  store.isFinishGameDialogOpen = false
+  store.onGameEnd()
 }
 </script>
 
 <template>
   <Dialog
-    v-model:visible="store.isGameRestartConfirmationOpen"
+    v-model:visible="store.isFinishGameDialogOpen"
     modal
     :draggable="false"
     :closable="false"
@@ -36,20 +37,20 @@ function onRestartGameClick() {
         <div
           class="rounded-full border border-gray-500 bg-surface-0 bg-surface-900 inline-flex justify-center items-center h-24 w-24 -mt-16"
         >
-          <Icon icon="pixel:refresh" width="48" height="48" />
+          <Icon icon="gis:flag-finish-b-o" width="48" height="48" />
         </div>
         <h2 class="font-bold text-2xl block mb-2 mt-6">
-          {{ t('components.confirm-game-restart-dialog.title') }}
+          {{ t('components.finish-game-dialog.title') }}
         </h2>
         <p class="mb-0">
-          {{ t('components.confirm-game-restart-dialog.description') }}
+          {{ t('components.finish-game-dialog.description') }}
         </p>
         <div class="flex flex-col gap-2 mt-6 w-full">
-          <Button :label="t('common.restart')" @click="onRestartGameClick" class="w-full" />
+          <Button :label="t('common.end')" @click="onFinishGameClick" class="w-full" />
           <Button
             :label="t('common.cancel')"
             outlined
-            @click="store.isGameRestartConfirmationOpen = false"
+            @click="store.isFinishGameDialogOpen = false"
             class="w-full"
           />
         </div>

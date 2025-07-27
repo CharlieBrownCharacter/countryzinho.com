@@ -15,6 +15,8 @@ import { getPoints } from '@/services/resources/game/helpers.ts'
 export const useCountryStore = defineStore('countries', () => {
   const { locale } = useI18n()
 
+  const isFinishGameDialogOpen = ref(false)
+
   const isShowingShowResultsModalButton = ref(false)
 
   const guessedCountries = ref<GuessedCountriesMap>(createGuessedCountriesMap(countries))
@@ -81,6 +83,7 @@ export const useCountryStore = defineStore('countries', () => {
   }
 
   return {
+    isFinishGameDialogOpen,
     isShowingShowResultsModalButton,
     guessedCountries,
     latestCountryGuessed,
