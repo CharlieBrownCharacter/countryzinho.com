@@ -11,8 +11,11 @@ import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
 import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 import { getPoints } from '@/services/resources/game/helpers.ts'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 export const useCountryStore = defineStore('countries', () => {
+  const { posthog } = usePostHog()
+
   const { locale } = useI18n()
 
   const isFinishGameDialogOpen = ref(false)
@@ -69,6 +72,8 @@ export const useCountryStore = defineStore('countries', () => {
     isCounterFinishing.value = false
     isShowingControls.value = false
     isResultsDialogOpen.value = true
+
+    posthog.capture('gameTimeEnded', { points: points.value })
   }
 
   function onRestartGame() {

@@ -25,7 +25,6 @@ const { resume, pause } = useIntervalFn(
     if (totalSeconds === 0) {
       pause()
       store.onGameEnd()
-      posthog.capture('gameTimeEnded')
     }
 
     if (totalSeconds < 15) {
