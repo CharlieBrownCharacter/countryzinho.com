@@ -18,10 +18,13 @@ import CountryFlag from '@/components/CountryFlag.vue'
 import Tag from 'primevue/tag'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
+import { usePostHog } from '@/composables/usePostHog.ts'
 
 const store = useCountryStore()
 
 const { t } = useI18n<{ message: MessageSchema }>()
+
+const { posthog } = usePostHog()
 
 const selectedTab = ref<Continent>('africa')
 
@@ -59,6 +62,7 @@ const titleModal = computed(() =>
 )
 
 function onClickSeeMap() {
+  posthog.capture('seeMapClick')
   store.isResultsDialogOpen = false
   store.isShowingShowResultsModalButton = true
 }
