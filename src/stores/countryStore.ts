@@ -10,11 +10,13 @@ import { addSeconds } from 'date-fns/addSeconds'
 import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
 import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
-import { getPoints } from '@/services/resources/game/helpers.ts'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { usePointsStore } from '@/stores/pointsStore.ts'
 
 export const useCountryStore = defineStore('countries', () => {
   const { posthog } = usePostHog()
+
+  const pointsStore = usePointsStore()
 
   const { locale } = useI18n()
 
@@ -40,8 +42,6 @@ export const useCountryStore = defineStore('countries', () => {
 
   const isCounterFinishing = ref(false)
 
-  const points = ref(0)
-
   const numberCountriesGuessed = computed<number>(() =>
     Object.keys(guessedCountries.value).reduce((previous, key) => {
       if (guessedCountries.value[key].guessedAt) {
@@ -55,7 +55,7 @@ export const useCountryStore = defineStore('countries', () => {
   const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
 
   function onGuessCountry(countryCode: string) {
-    points.value += latestCountryGuessed.value ? getPoints(latestCountryGuessed.value.guessedAt) : 1
+    pointsStore.addPoints(latestCountryGuessed.value ? latestCountryGuessed.value.guessedAt : null)
     guessedCountries.value[countryCode].guessedAt = new Date()
     latestCountryGuessed.value = guessedCountries.value[countryCode]
   }
@@ -73,7 +73,7 @@ export const useCountryStore = defineStore('countries', () => {
     isShowingControls.value = false
     isResultsDialogOpen.value = true
 
-    posthog.capture('gameTimeEnded', { points: points.value })
+    posthog.capture('gameTimeEnded', { points: pointsStore.points })
   }
 
   function onRestartGame() {
@@ -84,7 +84,7 @@ export const useCountryStore = defineStore('countries', () => {
     isShowingControls.value = false
     guessedCountries.value = createGuessedCountriesMap(countries)
     isStartGameModalOpen.value = true
-    points.value = 0
+    pointsStore.resetPoints()
   }
 
   return {
@@ -105,6 +105,5 @@ export const useCountryStore = defineStore('countries', () => {
     onRestartGame,
     isGameRestartConfirmationOpen,
     trieRoot,
-    points,
   }
 })

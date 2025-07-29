@@ -19,8 +19,11 @@ import Tag from 'primevue/tag'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
 import { usePostHog } from '@/composables/usePostHog.ts'
+import { usePointsStore } from '@/stores/pointsStore.ts'
 
-const store = useCountryStore()
+const countryStore = useCountryStore()
+
+const pointsStore = usePointsStore()
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
@@ -41,13 +44,13 @@ const countriesGuessed = computed(() => {
     oceania: { missed: [], guessed: [] },
   }
 
-  for (const key in store.guessedCountries) {
-    for (const continent of store.guessedCountries[key].country.continents) {
-      if (store.guessedCountries[key].guessedAt) {
+  for (const key in countryStore.guessedCountries) {
+    for (const continent of countryStore.guessedCountries[key].country.continents) {
+      if (countryStore.guessedCountries[key].guessedAt) {
         totalGuessed += 1
-        continents[continent].guessed.push(store.guessedCountries[key].country)
+        continents[continent].guessed.push(countryStore.guessedCountries[key].country)
       } else {
-        continents[continent].missed.push(store.guessedCountries[key].country)
+        continents[continent].missed.push(countryStore.guessedCountries[key].country)
       }
     }
   }
@@ -56,21 +59,21 @@ const countriesGuessed = computed(() => {
 })
 
 const titleModal = computed(() =>
-  store.hasGuessedCountries
+  countryStore.hasGuessedCountries
     ? t('components.results-dialog.congratulations')
     : t('components.results-dialog.time-is-up'),
 )
 
 function onClickSeeMap() {
   posthog.capture('seeMapClick')
-  store.isResultsDialogOpen = false
-  store.isShowingShowResultsModalButton = true
+  countryStore.isResultsDialogOpen = false
+  countryStore.isShowingShowResultsModalButton = true
 }
 </script>
 
 <template>
   <Dialog
-    v-model:visible="store.isResultsDialogOpen"
+    v-model:visible="countryStore.isResultsDialogOpen"
     modal
     :header="titleModal"
     :draggable="false"
@@ -89,7 +92,7 @@ function onClickSeeMap() {
           t('components.results-dialog.results-text', {
             totalGuess: countriesGuessed.totalGuessed,
             totalCountries: countries.length,
-            points: store.points,
+            points: pointsStore.points,
           })
         }}
       </p>
@@ -395,7 +398,7 @@ function onClickSeeMap() {
         :label="t('components.results-dialog.go-again')"
         class="w-full"
         severity="secondary"
-        @click="store.onRestartGame"
+        @click="countryStore.onRestartGame"
       />
     </template>
   </Dialog>

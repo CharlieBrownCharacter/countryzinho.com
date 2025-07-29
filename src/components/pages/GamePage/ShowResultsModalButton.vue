@@ -3,10 +3,13 @@ import Button from 'primevue/button'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
+import { usePointsStore } from '@/stores/pointsStore.ts'
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
 const countryStore = useCountryStore()
+
+const pointsStore = usePointsStore()
 
 function onShowResultsClick() {
   countryStore.isShowingShowResultsModalButton = false
@@ -27,7 +30,7 @@ function onShowResultsClick() {
       v-if="countryStore.isShowingShowResultsModalButton"
       class="p-4 flex flex-col gap-2 items-center rounded-lg bg-(--p-inputtext-background) absolute top-5 left-1/2 -translate-x-1/2 px-4 py-2 shadow border border-(--p-inputtext-border-color)"
     >
-      {{ t('common.points', { count: countryStore.points }, countryStore.points) }}
+      {{ t('common.points', { count: pointsStore.points }, pointsStore.points) }}
 
       <Button
         :label="t('components.show-results-modal-button.show-results')"
