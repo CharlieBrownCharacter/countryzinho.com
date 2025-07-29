@@ -1,4 +1,4 @@
-import type { Country } from '@/services/resources/country/types.ts'
+import type { Continent, Country } from '@/services/resources/country/types.ts'
 
 export type GuessedCountry = { guessedAt: Date | null; country: Country }
 
@@ -1883,6 +1883,16 @@ export const asiaCountries: Country[] = countries.filter((country) =>
 export const oceaniaCountries: Country[] = countries.filter((country) =>
   country.continents.includes('oceania'),
 )
+
+export const countriesByContinent: Record<Continent, Country[]> = {
+  africa: africaCountries,
+  antarctica: antarcticaCountries,
+  asia: asiaCountries,
+  europe: europeanCountries,
+  northAmerica: northAmericaCountries,
+  southAmerica: southAmericaCountries,
+  oceania: oceaniaCountries,
+}
 
 export function createGuessedCountriesMap(countries: Country[]): GuessedCountriesMap {
   const _countries: GuessedCountriesMap = {}
