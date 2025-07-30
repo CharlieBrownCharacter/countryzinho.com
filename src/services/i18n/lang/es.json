@@ -62,6 +62,9 @@
       "missing": "Países faltantes",
       "go-again": "Intentar de nuevo",
       "see-map": "Ver mapa"
+    },
+    "display-points": {
+      "continent-guessed": "{continent} completado"
     }
   },
   "common": {

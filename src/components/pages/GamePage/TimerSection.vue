@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, ref, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
+import { usePointsStore } from '@/stores/pointsStore.ts'
+import { useTweened } from '@/composables/useTweened.ts'
 
-const store = useCountryStore()
+const countryStore = useCountryStore()
+
+const pointsStore = usePointsStore()
+
+const tweenedValue = useTweened(toRef(pointsStore, 'points'), 1000)
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
@@ -15,17 +21,20 @@ const { resume, pause } = useIntervalFn(
   () => {
     const now = new Date()
 
-    if (store.endsAt === null) throw new Error('store.endsAt should be available')
+    if (countryStore.endsAt === null) throw new Error('countryStore.endsAt should be available')
 
-    const totalSeconds = Math.max(0, Math.ceil((store.endsAt.getTime() - now.getTime()) / 1000))
+    const totalSeconds = Math.max(
+      0,
+      Math.ceil((countryStore.endsAt.getTime() - now.getTime()) / 1000),
+    )
 
     if (totalSeconds === 0) {
       pause()
-      store.onGameEnd()
+      countryStore.onGameEnd()
     }
 
     if (totalSeconds < 15) {
-      store.isCounterFinishing = true
+      countryStore.isCounterFinishing = true
     }
 
     const minutes = Math.floor(totalSeconds / 60)
@@ -37,9 +46,9 @@ const { resume, pause } = useIntervalFn(
   { immediate: false, immediateCallback: true },
 )
 
-const classes = computed(() => (store.isCounterFinishing ? 'text-red-500' : ''))
+const classes = computed(() => (countryStore.isCounterFinishing ? 'text-red-500' : ''))
 
-store.$subscribe((mutation, state) => {
+countryStore.$subscribe((mutation, state) => {
   if (mutation.type !== 'direct') return
 
   if (state.endsAt) {
@@ -55,7 +64,7 @@ store.$subscribe((mutation, state) => {
     <div class="pt-2 flex items-center justify-between gap-2 text-sm">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      {{ t('common.points', { count: store.points }, store.points) }}
+      {{ t('common.points', { count: tweenedValue }, tweenedValue) }}
     </div>
   </div>
 </template>

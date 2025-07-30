@@ -8,6 +8,7 @@ import FinishGameDialog from '@/components/pages/GamePage/FinishGameDialog.vue'
 import { onMounted } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import ShowResultsModalButton from '@/components/pages/GamePage/ShowResultsModalButton.vue'
+import DisplayPoints from '@/components/pages/GamePage/DisplayPoints.vue'
 
 const countryStore = useCountryStore()
 
@@ -18,6 +19,7 @@ onMounted(() => {
 
 <template>
   <main class="relative w-full p-0 m-0 box-content">
+    <DisplayPoints />
     <FinishGameDialog />
     <ShowResultsModalButton />
     <GuessInput />
