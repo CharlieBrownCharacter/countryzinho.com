@@ -11,7 +11,7 @@ export function isQuickGuess(lastGuessDate: Date | null): boolean {
   return timeDelta <= 5
 }
 
-export function guessedWholeContinent(
+export function completedContinents(
   guessedCountry: Country,
   guessedCountries: GuessedCountriesMap,
   countriesByContinent: Record<Continent, Country[]>,

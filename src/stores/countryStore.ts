@@ -55,9 +55,18 @@ export const useCountryStore = defineStore('countries', () => {
   const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
 
   function onGuessCountry(countryCode: string) {
-    pointsStore.addPoints(latestCountryGuessed.value ? latestCountryGuessed.value.guessedAt : null)
+    const country = guessedCountries.value[countryCode]?.country
+
+    if (!country) throw new Error('country should be available')
+
     guessedCountries.value[countryCode].guessedAt = new Date()
+
     latestCountryGuessed.value = guessedCountries.value[countryCode]
+
+    pointsStore.addPoints(
+      latestCountryGuessed.value ? latestCountryGuessed.value.guessedAt : null,
+      country,
+    )
   }
 
   function startGame(seconds: number | null = 5) {

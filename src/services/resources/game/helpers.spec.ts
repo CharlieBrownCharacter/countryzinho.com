@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { guessedWholeContinent, isQuickGuess } from './helpers.ts'
+import { completedContinents, isQuickGuess } from './helpers.ts'
 import { type GuessedCountriesMap } from '@/services/resources/country/constants.ts'
 import { type Country } from '@/services/resources/country/types.ts'
 import type { Continent } from '@/services/resources/country/types.ts'
@@ -84,7 +84,7 @@ describe('guessedWholeContinent', () => {
       TR: { country: turkey, guessedAt: new Date() },
     }
 
-    const result = guessedWholeContinent(turkey, guessedCountries, countriesByContinent)
+    const result = completedContinents(turkey, guessedCountries, countriesByContinent)
 
     expect(result.sort()).toEqual(['asia', 'europe'])
   })
@@ -98,7 +98,7 @@ describe('guessedWholeContinent', () => {
       TR: { country: turkey, guessedAt: new Date() },
     }
 
-    const result = guessedWholeContinent(turkey, guessedCountries, countriesByContinent)
+    const result = completedContinents(turkey, guessedCountries, countriesByContinent)
 
     expect(result).toEqual(['asia'])
   })
@@ -112,7 +112,7 @@ describe('guessedWholeContinent', () => {
       TR: { country: turkey, guessedAt: null },
     }
 
-    const result = guessedWholeContinent(turkey, guessedCountries, countriesByContinent)
+    const result = completedContinents(turkey, guessedCountries, countriesByContinent)
 
     expect(result).toEqual([])
   })

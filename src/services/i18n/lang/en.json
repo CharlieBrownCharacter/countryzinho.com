@@ -62,6 +62,9 @@
       "missing": "Missing countries",
       "go-again": "Go again",
       "see-map": "See map"
+    },
+    "display-points": {
+      "continent-guessed": "{continent} completed"
     }
   },
   "common": {
