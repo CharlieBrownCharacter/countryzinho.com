@@ -9,8 +9,8 @@ import {
   southAmericaCountries,
 } from '@/services/resources/country/constants.ts'
 
-export const GUESS_POINTS = 1
-export const FAST_GUESS_POINTS = 4
+export const GUESS_POINTS = 10
+export const FAST_GUESS_POINTS = 15
 export const GuessWholeContinentPointsMap: Record<Continent, number> = {
   africa: africaCountries.length,
   antarctica: antarcticaCountries.length,

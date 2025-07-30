@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { useIntervalFn } from '@vueuse/core'
-import { computed, ref } from 'vue'
+import { computed, ref, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { MessageSchema } from '@/services/i18n'
 import { usePointsStore } from '@/stores/pointsStore.ts'
+import { useTweened } from '@/composables/useTweened.ts'
 
 const countryStore = useCountryStore()
 
 const pointsStore = usePointsStore()
+
+const tweenedValue = useTweened(toRef(pointsStore, 'points'), 1000)
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
@@ -61,7 +64,7 @@ countryStore.$subscribe((mutation, state) => {
     <div class="pt-2 flex items-center justify-between gap-2 text-sm">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      {{ t('common.points', { count: pointsStore.points }, pointsStore.points) }}
+      {{ t('common.points', { count: tweenedValue }, tweenedValue) }}
     </div>
   </div>
 </template>
