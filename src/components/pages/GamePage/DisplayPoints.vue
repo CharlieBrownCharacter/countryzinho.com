@@ -64,6 +64,7 @@ pointsStore.$subscribe((mutation, state) => {
     <div
       v-if="isShowing"
       class="p-4 rounded-lg bg-(--p-inputtext-background) absolute bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 shadow border border-(--p-inputtext-border-color) has-[input:focus]:border-(--p-inputtext-focus-border-color) transition-all text-center"
+      data-testid="displayPoints"
     >
       <template v-if="latestContinentsGuessed.length === 1">
         +{{

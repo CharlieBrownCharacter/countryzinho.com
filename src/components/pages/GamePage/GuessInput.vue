@@ -88,6 +88,7 @@ function onFinishGameClick() {
           </label>
           <InputText
             id="country-guess"
+            data-testid="countryInput"
             ref="inputRef"
             class="border-none px-0 w-full"
             v-model.trim="guess"

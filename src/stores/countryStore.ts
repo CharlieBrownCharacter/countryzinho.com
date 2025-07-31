@@ -2,12 +2,14 @@ import { defineStore } from 'pinia'
 import { computed, ref, shallowRef } from 'vue'
 import {
   countries,
-  createGuessedCountriesMap,
   type GuessedCountriesMap,
   type GuessedCountry,
 } from '@/services/resources/country/constants.ts'
 import { addSeconds } from 'date-fns/addSeconds'
-import { buildCountryTrie } from '@/services/resources/country/helpers.ts'
+import {
+  buildCountryTrie,
+  createGuessedCountriesMap,
+} from '@/services/resources/country/helpers.ts'
 import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 import { usePostHog } from '@/composables/usePostHog.ts'
@@ -61,12 +63,12 @@ export const useCountryStore = defineStore('countries', () => {
 
     guessedCountries.value[countryCode].guessedAt = new Date()
 
-    latestCountryGuessed.value = guessedCountries.value[countryCode]
-
     pointsStore.addPoints(
       latestCountryGuessed.value ? latestCountryGuessed.value.guessedAt : null,
       country,
     )
+
+    latestCountryGuessed.value = guessedCountries.value[countryCode]
   }
 
   function startGame(seconds: number | null = 5) {

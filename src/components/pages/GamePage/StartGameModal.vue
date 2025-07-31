@@ -57,7 +57,7 @@ function onStartClick() {
     duration: timeSelected.value,
   })
 
-  const countdownSeconds = 5
+  const countdownSeconds = import.meta.env.VITE_SECONDS_COUNTDOWN_START_GAME ?? 5
 
   classes.value = 'transition-all duration-700 motion-reduce:transition-none'
   counter.value = countdownSeconds

@@ -8,6 +8,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
+    "test:e2e": "playwright test",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@iconify/vue": "^5.0.0",
+    "@playwright/test": "^1.54.1",
     "@tsconfig/node22": "^22.0.2",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.32",

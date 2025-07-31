@@ -1893,13 +1893,3 @@ export const countriesByContinent: Record<Continent, Country[]> = {
   southAmerica: southAmericaCountries,
   oceania: oceaniaCountries,
 }
-
-export function createGuessedCountriesMap(countries: Country[]): GuessedCountriesMap {
-  const _countries: GuessedCountriesMap = {}
-
-  for (const country of countries) {
-    _countries[country.isoAlpha2Code] = { guessedAt: null, country }
-  }
-
-  return _countries
-}

@@ -1,5 +1,6 @@
 import type { Country } from '@/services/resources/country/types.ts'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
+import type { GuessedCountriesMap } from '@/services/resources/country/constants.ts'
 
 type TrieNode = {
   children: Map<string, TrieNode>
@@ -48,4 +49,14 @@ export function getCountrySrcFlag(countryCode: Country['isoAlpha2Code']): string
 
 export function getCountrySrcsetFlag(countryCode: Country['isoAlpha2Code']): string {
   return `https://flagcdn.com/h40/${countryCode.toLowerCase()}.png 2x, https://flagcdn.com/h60/${countryCode.toLowerCase()}.png 3x`
+}
+
+export function createGuessedCountriesMap(countries: Country[]): GuessedCountriesMap {
+  const _countries: GuessedCountriesMap = {}
+
+  for (const country of countries) {
+    _countries[country.isoAlpha2Code] = { guessedAt: null, country }
+  }
+
+  return _countries
 }
