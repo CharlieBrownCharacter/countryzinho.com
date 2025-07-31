@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { getCountrySrcFlag, getCountrySrcsetFlag, findGuess, buildCountryTrie } from './helpers'
+import {
+  getCountrySrcFlag,
+  getCountrySrcsetFlag,
+  findGuess,
+  buildCountryTrie,
+  createGuessedCountriesMap,
+} from './helpers'
 import type { Country } from '@/services/resources/country/types.ts'
 
 const mockCountryData: Country[] = [
@@ -79,5 +85,17 @@ describe('buildCountryTrie', () => {
 
     expect(result1?.isoAlpha2Code).toBe('DE')
     expect(result2?.isoAlpha2Code).toBe('BR')
+  })
+})
+
+describe('createGuessedCountriesMap', () => {
+  it('initialises guessed map with all countries', () => {
+    const map = createGuessedCountriesMap(mockCountryData)
+
+    expect(Object.keys(map)).toHaveLength(2)
+    expect(map.BR.country.name).toBe('Brazil')
+    expect(map.BR.guessedAt).toBeNull()
+    expect(map.DE.country.name).toBe('Germany')
+    expect(map.DE.guessedAt).toBeNull()
   })
 })
