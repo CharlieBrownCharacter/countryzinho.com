@@ -64,7 +64,9 @@ countryStore.$subscribe((mutation, state) => {
     <div class="pt-2 flex items-center justify-between gap-2 text-sm">
       <span :class="classes">{{ endTimeFormatted }}</span>
 
-      {{ t('common.points', { count: tweenedValue }, tweenedValue) }}
+      <span data-testid="currentPoints">
+        {{ t('common.points', { count: tweenedValue }, tweenedValue) }}
+      </span>
     </div>
   </div>
 </template>

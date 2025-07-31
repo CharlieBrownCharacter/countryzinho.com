@@ -61,12 +61,12 @@ export const useCountryStore = defineStore('countries', () => {
 
     guessedCountries.value[countryCode].guessedAt = new Date()
 
-    latestCountryGuessed.value = guessedCountries.value[countryCode]
-
     pointsStore.addPoints(
       latestCountryGuessed.value ? latestCountryGuessed.value.guessedAt : null,
       country,
     )
+
+    latestCountryGuessed.value = guessedCountries.value[countryCode]
   }
 
   function startGame(seconds: number | null = 5) {
