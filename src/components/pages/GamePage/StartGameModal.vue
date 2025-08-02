@@ -104,20 +104,17 @@ function onStartClick() {
     pt:footer:class="mt-auto"
   >
     <template #container>
-      <div
-        v-if="!isStarting"
-        class="flex flex-col p-(--p-dialog-header-padding) h-full overflow-y-auto"
-      >
-        <div class="flex flex-col gap-y-0.5">
+      <template v-if="!isStarting">
+        <header class="p-dialog-header flex flex-col gap-y-0.5 pb-0 text-center">
           <h2 class="flex gap-2 text-2xl font-semibold">
             {{ t('components.start-game-modal.title') }}
           </h2>
           <p class="text-gray-400 text-sm">
             {{ t('components.start-game-modal.description') }}
           </p>
-        </div>
+        </header>
 
-        <div class="space-y-4 mt-4 grow mb-4">
+        <div class="space-y-4 mt-4 grow mb-4 p-dialog-content">
           <section>
             <h2 class="text-xl">
               {{ t('components.start-game-modal.timer-title') }}
@@ -163,10 +160,12 @@ function onStartClick() {
           </section>
         </div>
 
-        <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick">
-          {{ t('common.start') }}
-        </Button>
-      </div>
+        <footer class="p-dialog-footer">
+          <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick">
+            {{ t('common.start') }}
+          </Button>
+        </footer>
+      </template>
 
       <transition
         enter-active-class="transition-opacity duration-500 delay-[600ms]"
