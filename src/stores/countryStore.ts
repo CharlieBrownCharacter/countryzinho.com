@@ -15,6 +15,7 @@ import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { usePointsStore } from '@/stores/pointsStore.ts'
 import type { Continent, Country } from '@/services/resources/country/types.ts'
+import { focussedCountryContinent } from '@/services/resources/game/constants.ts'
 
 export const useCountryStore = defineStore('countries', () => {
   const { posthog } = usePostHog()
@@ -26,6 +27,8 @@ export const useCountryStore = defineStore('countries', () => {
   const isFinishGameDialogOpen = ref(false)
 
   const isShowingShowResultsModalButton = ref(false)
+
+  const latestCountryFocused = ref('ES')
 
   const selectedContinent = ref<Continent | null>(null)
 
@@ -76,6 +79,7 @@ export const useCountryStore = defineStore('countries', () => {
     )
 
     latestCountryGuessed.value = guessedCountries.value[countryCode]
+    latestCountryFocused.value = countryCode
   }
 
   function startGame(seconds: number | null = 5) {
@@ -97,6 +101,10 @@ export const useCountryStore = defineStore('countries', () => {
     selectedCountries.value = _countries.map((c) => c.isoAlpha2Code)
     trieRoot.value = buildCountryTrie(_countries, locale.value as SUPPORTED_LANGUAGES)
     guessedCountries.value = createGuessedCountriesMap(_countries)
+
+    if (selectedContinent.value) {
+      latestCountryFocused.value = focussedCountryContinent[selectedContinent.value]
+    }
   }
 
   function onRestartGame() {
@@ -131,5 +139,6 @@ export const useCountryStore = defineStore('countries', () => {
     selectedCountries,
     onBeforeStartGame,
     selectedContinent,
+    latestCountryFocused,
   }
 })

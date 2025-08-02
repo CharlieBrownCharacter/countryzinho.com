@@ -182,16 +182,7 @@ onMounted(() => focusOnCountry('es', 0))
 countryStore.$subscribe((mutation, state) => {
   if (mutation.type !== 'direct') return
 
-  if (!state.latestCountryGuessed) return
-
-  if (
-    latestCountryFocused.value &&
-    latestCountryFocused.value.isoAlpha2Code === state.latestCountryGuessed.country.isoAlpha2Code
-  )
-    return
-
-  latestCountryFocused.value = state.latestCountryGuessed.country
-  focusOnCountry(state.latestCountryGuessed.country.isoAlpha2Code.toLowerCase())
+  focusOnCountry(state.latestCountryFocused.toLowerCase())
 })
 </script>
 
