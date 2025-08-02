@@ -252,7 +252,7 @@ export const countries: Country[] = [
     isoAlpha2Code: 'VG',
     continents: ['northAmerica'],
     allowedGuesses: {
-      en: ['british virgin islands', 'virgin islands'],
+      en: ['british virgin islands'],
       es: [
         'islas vírgenes británicas',
         'islas virgenes britanicas',
@@ -1788,7 +1788,7 @@ export const countries: Country[] = [
     isoAlpha2Code: 'VI',
     continents: ['northAmerica'],
     allowedGuesses: {
-      en: ['united states virgin islands', 'us virgin islands', 'virgin islands'],
+      en: ['united states virgin islands', 'us virgin islands'],
       es: ['islas vírgenes de estados unidos', 'islas virgenes de estados unidos'],
       pt: ['ilhas virgens dos estados unidos', 'ilhas virgens eua'],
     },

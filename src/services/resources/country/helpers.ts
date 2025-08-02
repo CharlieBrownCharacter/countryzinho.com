@@ -5,14 +5,14 @@ import type { GuessedCountriesMap } from '@/services/resources/country/constants
 type TrieNode = {
   children: Map<string, TrieNode>
   isEnd: boolean
-  isoAlpha2Code?: string
+  isoAlpha2Code?: Country['isoAlpha2Code']
 }
 
 function createTrie(): TrieNode {
   return { children: new Map(), isEnd: false }
 }
 
-function insert(root: TrieNode, word: string, code: string): void {
+function insert(root: TrieNode, word: string, code: Country['isoAlpha2Code']): void {
   let node = root
   for (const char of word) {
     if (!node.children.has(char)) {
@@ -43,15 +43,20 @@ export function findGuess(root: TrieNode, input: string): TrieNode | null {
   return node.isEnd ? (node ?? null) : null
 }
 
-export function getCountrySrcFlag(countryCode: Country['isoAlpha2Code']): string {
+export function getCountrySrcFlag(
+  countryCode: Country['isoAlpha2Code'] | Lowercase<Country['isoAlpha2Code']>,
+): string {
   return `https://flagcdn.com/h20/${countryCode.toLowerCase()}.png`
 }
 
-export function getCountrySrcsetFlag(countryCode: Country['isoAlpha2Code']): string {
+export function getCountrySrcsetFlag(
+  countryCode: Country['isoAlpha2Code'] | Lowercase<Country['isoAlpha2Code']>,
+): string {
   return `https://flagcdn.com/h40/${countryCode.toLowerCase()}.png 2x, https://flagcdn.com/h60/${countryCode.toLowerCase()}.png 3x`
 }
 
 export function createGuessedCountriesMap(countries: Country[]): GuessedCountriesMap {
+  // @ts-expect-error We will build the map in the next lines
   const _countries: GuessedCountriesMap = {}
 
   for (const country of countries) {

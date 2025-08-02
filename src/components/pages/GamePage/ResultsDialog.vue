@@ -8,7 +8,6 @@ import {
   africaCountries,
   antarcticaCountries,
   asiaCountries,
-  countries,
   europeanCountries,
   northAmericaCountries,
   oceaniaCountries,
@@ -45,12 +44,16 @@ const countriesGuessed = computed(() => {
   }
 
   for (const key in countryStore.guessedCountries) {
-    for (const continent of countryStore.guessedCountries[key].country.continents) {
-      if (countryStore.guessedCountries[key].guessedAt) {
-        totalGuessed += 1
-        continents[continent].guessed.push(countryStore.guessedCountries[key].country)
+    const isoCode = key as Country['isoAlpha2Code']
+    const guessed = countryStore.guessedCountries[isoCode]
+
+    totalGuessed += 1
+
+    for (const continent of guessed.country.continents) {
+      if (guessed.guessedAt) {
+        continents[continent].guessed.push(guessed.country)
       } else {
-        continents[continent].missed.push(countryStore.guessedCountries[key].country)
+        continents[continent].missed.push(guessed.country)
       }
     }
   }
@@ -69,6 +72,14 @@ function onClickSeeMap() {
   countryStore.isResultsDialogOpen = false
   countryStore.isShowingShowResultsModalButton = true
 }
+
+countryStore.$subscribe((mutation, state) => {
+  if (mutation.type !== 'direct') return
+
+  if (state.isResultsDialogOpen && state.selectedContinent) {
+    selectedTab.value = state.selectedContinent
+  }
+})
 </script>
 
 <template>
@@ -91,13 +102,13 @@ function onClickSeeMap() {
         {{
           t('components.results-dialog.results-text', {
             totalGuess: countriesGuessed.totalGuessed,
-            totalCountries: countries.length,
+            totalCountries: countryStore.selectedCountries.length,
             points: pointsStore.points,
           })
         }}
       </p>
 
-      <div class="flex flex-wrap gap-1 mt-4">
+      <div v-if="countryStore.selectedContinent === null" class="flex flex-wrap gap-1 mt-4">
         <Button
           size="small"
           rounded

@@ -24,7 +24,7 @@ onMounted(() => {
     <ShowResultsModalButton />
     <GuessInput />
     <ResultsDialog />
-    <CountrySVG />
+    <CountrySVG :countries="countryStore.selectedCountries" />
     <StartGameModal />
     <ConfirmGameRestartDialog />
   </main>

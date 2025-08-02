@@ -1,7 +1,8 @@
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { computed } from 'vue'
+import type { Country } from '@/services/resources/country/types.ts'
 
-export function useCountryGuessed(countryCode: string) {
+export function useCountryGuessed(countryCode: Country['isoAlpha2Code']) {
   const store = useCountryStore()
 
   const guessed = computed(() => {

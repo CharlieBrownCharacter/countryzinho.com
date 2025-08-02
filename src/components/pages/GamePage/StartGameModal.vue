@@ -6,6 +6,10 @@ import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { useI18n } from 'vue-i18n'
+import { countries, countriesByContinent } from '@/services/resources/country/constants.ts'
+import type { Continent } from '@/services/resources/country/types.ts'
+
+type ContinentOption = { value: Continent | null; text: string }
 
 const countryStore = useCountryStore()
 
@@ -33,6 +37,17 @@ const timerOptions = computed(() => {
   return options
 })
 
+const continentOptions = computed<ContinentOption[]>(() => [
+  { value: null, text: 'World' },
+  { value: 'africa', text: 'Africa' },
+  { value: 'antarctica', text: 'Antarctica' },
+  { value: 'asia', text: 'Asia' },
+  { value: 'europe', text: 'Europe' },
+  { value: 'northAmerica', text: 'North America' },
+  { value: 'southAmerica', text: 'South America' },
+  { value: 'oceania', text: 'Oceania' },
+])
+
 const style = computed(() =>
   isStarting.value
     ? { width: '10rem', height: '10rem' }
@@ -56,6 +71,12 @@ function onStartClick() {
   posthog.capture('startedGame', {
     duration: timeSelected.value,
   })
+
+  countryStore.onBeforeStartGame(
+    countryStore.selectedContinent
+      ? countriesByContinent[countryStore.selectedContinent]
+      : countries,
+  )
 
   const countdownSeconds = import.meta.env.VITE_SECONDS_COUNTDOWN_START_GAME ?? 5
 
@@ -83,20 +104,17 @@ function onStartClick() {
     pt:footer:class="mt-auto"
   >
     <template #container>
-      <div
-        v-if="!isStarting"
-        class="flex flex-col p-(--p-dialog-header-padding) h-full overflow-y-auto"
-      >
-        <div class="flex flex-col gap-y-0.5">
+      <template v-if="!isStarting">
+        <header class="p-dialog-header flex flex-col gap-y-0.5 pb-0 text-center">
           <h2 class="flex gap-2 text-2xl font-semibold">
             {{ t('components.start-game-modal.title') }}
           </h2>
           <p class="text-gray-400 text-sm">
             {{ t('components.start-game-modal.description') }}
           </p>
-        </div>
+        </header>
 
-        <div class="space-y-4 mt-4 grow mb-4">
+        <div class="space-y-4 mt-4 grow mb-4 p-dialog-content">
           <section>
             <h2 class="text-xl">
               {{ t('components.start-game-modal.timer-title') }}
@@ -124,16 +142,30 @@ function onStartClick() {
               {{ t('components.start-game-modal.continent-description') }}
             </p>
 
-            <div class="bg-surface-950 grid items-center justify-center py-10 mt-2 rounded">
-              {{ t('components.start-game-modal.coming-soon') }}
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+              <button
+                v-for="option in continentOptions"
+                :key="`continent-${option.value}`"
+                class="aspect-square p-2 rounded-xl border text-center transition-colors cursor-pointer"
+                :class="[
+                  option.value === countryStore.selectedContinent
+                    ? 'border-gray-200'
+                    : 'border-surface',
+                ]"
+                @click="() => (countryStore.selectedContinent = option.value)"
+              >
+                {{ option.text }}
+              </button>
             </div>
           </section>
         </div>
 
-        <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick">
-          {{ t('common.start') }}
-        </Button>
-      </div>
+        <footer class="p-dialog-footer">
+          <Button class="w-full min-h-fit" severity="secondary" @click="onStartClick">
+            {{ t('common.start') }}
+          </Button>
+        </footer>
+      </template>
 
       <transition
         enter-active-class="transition-opacity duration-500 delay-[600ms]"
