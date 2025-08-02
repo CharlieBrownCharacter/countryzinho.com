@@ -14,7 +14,7 @@ import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { usePointsStore } from '@/stores/pointsStore.ts'
-import type { Country } from '@/services/resources/country/types.ts'
+import type { Continent, Country } from '@/services/resources/country/types.ts'
 
 export const useCountryStore = defineStore('countries', () => {
   const { posthog } = usePostHog()
@@ -26,6 +26,8 @@ export const useCountryStore = defineStore('countries', () => {
   const isFinishGameDialogOpen = ref(false)
 
   const isShowingShowResultsModalButton = ref(false)
+
+  const selectedContinent = ref<Continent | null>(null)
 
   const guessedCountries = ref<GuessedCountriesMap>(createGuessedCountriesMap(countries))
 
@@ -128,5 +130,6 @@ export const useCountryStore = defineStore('countries', () => {
     trieRoot,
     selectedCountries,
     onBeforeStartGame,
+    selectedContinent,
   }
 })

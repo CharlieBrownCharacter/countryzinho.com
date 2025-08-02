@@ -19,7 +19,6 @@ const { t } = useI18n()
 const timeSelected = ref<null | number>(null)
 const counter = ref(0)
 const classes = ref('')
-const continentSelected = ref<Continent | null>(null)
 
 const isStarting = computed(() => counter.value >= 1)
 
@@ -74,7 +73,9 @@ function onStartClick() {
   })
 
   countryStore.onBeforeStartGame(
-    continentSelected.value ? countriesByContinent[continentSelected.value] : countries,
+    countryStore.selectedContinent
+      ? countriesByContinent[countryStore.selectedContinent]
+      : countries,
   )
 
   const countdownSeconds = import.meta.env.VITE_SECONDS_COUNTDOWN_START_GAME ?? 5
@@ -149,8 +150,12 @@ function onStartClick() {
                 v-for="option in continentOptions"
                 :key="`continent-${option.value}`"
                 class="aspect-square p-2 rounded-xl border text-center transition-colors cursor-pointer"
-                :class="[option.value === continentSelected ? 'border-gray-200' : 'border-surface']"
-                @click="() => (continentSelected = option.value)"
+                :class="[
+                  option.value === countryStore.selectedContinent
+                    ? 'border-gray-200'
+                    : 'border-surface',
+                ]"
+                @click="() => (countryStore.selectedContinent = option.value)"
               >
                 {{ option.text }}
               </button>
