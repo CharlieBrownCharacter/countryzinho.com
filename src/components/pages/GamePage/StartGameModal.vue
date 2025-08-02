@@ -6,6 +6,10 @@ import { computed, ref } from 'vue'
 import { useIntervalFn } from '@vueuse/core'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { useI18n } from 'vue-i18n'
+import { countries, countriesByContinent } from '@/services/resources/country/constants.ts'
+import type { Continent } from '@/services/resources/country/types.ts'
+
+type ContinentOption = { value: Continent | null; text: string }
 
 const countryStore = useCountryStore()
 
@@ -15,6 +19,7 @@ const { t } = useI18n()
 const timeSelected = ref<null | number>(null)
 const counter = ref(0)
 const classes = ref('')
+const continentSelected = ref<Continent | null>(null)
 
 const isStarting = computed(() => counter.value >= 1)
 
@@ -32,6 +37,17 @@ const timerOptions = computed(() => {
 
   return options
 })
+
+const continentOptions = computed<ContinentOption[]>(() => [
+  { value: null, text: 'World' },
+  { value: 'africa', text: 'Africa' },
+  { value: 'antarctica', text: 'Antarctica' },
+  { value: 'asia', text: 'Asia' },
+  { value: 'europe', text: 'Europe' },
+  { value: 'northAmerica', text: 'North America' },
+  { value: 'southAmerica', text: 'South America' },
+  { value: 'oceania', text: 'Oceania' },
+])
 
 const style = computed(() =>
   isStarting.value
@@ -56,6 +72,10 @@ function onStartClick() {
   posthog.capture('startedGame', {
     duration: timeSelected.value,
   })
+
+  countryStore.onBeforeStartGame(
+    continentSelected.value ? countriesByContinent[continentSelected.value] : countries,
+  )
 
   const countdownSeconds = import.meta.env.VITE_SECONDS_COUNTDOWN_START_GAME ?? 5
 
@@ -124,8 +144,16 @@ function onStartClick() {
               {{ t('components.start-game-modal.continent-description') }}
             </p>
 
-            <div class="bg-surface-950 grid items-center justify-center py-10 mt-2 rounded">
-              {{ t('components.start-game-modal.coming-soon') }}
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+              <button
+                v-for="option in continentOptions"
+                :key="`continent-${option.value}`"
+                class="aspect-square p-2 rounded-xl border text-center transition-colors cursor-pointer"
+                :class="[option.value === continentSelected ? 'border-gray-200' : 'border-surface']"
+                @click="() => (continentSelected = option.value)"
+              >
+                {{ option.text }}
+              </button>
             </div>
           </section>
         </div>

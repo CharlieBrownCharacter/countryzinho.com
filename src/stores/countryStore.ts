@@ -14,6 +14,7 @@ import { useI18n } from 'vue-i18n'
 import type { SUPPORTED_LANGUAGES } from '@/services/i18n'
 import { usePostHog } from '@/composables/usePostHog.ts'
 import { usePointsStore } from '@/stores/pointsStore.ts'
+import type { Country } from '@/services/resources/country/types.ts'
 
 export const useCountryStore = defineStore('countries', () => {
   const { posthog } = usePostHog()
@@ -43,6 +44,10 @@ export const useCountryStore = defineStore('countries', () => {
   const isGameRestartConfirmationOpen = ref(false)
 
   const isCounterFinishing = ref(false)
+
+  const selectedCountries = shallowRef<Country['isoAlpha2Code'][]>(
+    countries.map((c) => c.isoAlpha2Code),
+  )
 
   const numberCountriesGuessed = computed<number>(() =>
     Object.keys(guessedCountries.value).reduce((previous, key) => {
@@ -75,7 +80,6 @@ export const useCountryStore = defineStore('countries', () => {
     endsAt.value = seconds ? addSeconds(new Date(), seconds) : null
     isCounterFinishing.value = false
     isShowingControls.value = true
-    trieRoot.value = buildCountryTrie(countries, locale.value as SUPPORTED_LANGUAGES)
   }
 
   function onGameEnd() {
@@ -85,6 +89,12 @@ export const useCountryStore = defineStore('countries', () => {
     isResultsDialogOpen.value = true
 
     posthog.capture('gameTimeEnded', { points: pointsStore.points })
+  }
+
+  function onBeforeStartGame(_countries: Country[]) {
+    selectedCountries.value = _countries.map((c) => c.isoAlpha2Code)
+    trieRoot.value = buildCountryTrie(_countries, locale.value as SUPPORTED_LANGUAGES)
+    guessedCountries.value = createGuessedCountriesMap(_countries)
   }
 
   function onRestartGame() {
@@ -116,5 +126,7 @@ export const useCountryStore = defineStore('countries', () => {
     onRestartGame,
     isGameRestartConfirmationOpen,
     trieRoot,
+    selectedCountries,
+    onBeforeStartGame,
   }
 })
