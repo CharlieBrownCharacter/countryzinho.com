@@ -47,9 +47,10 @@ const countriesGuessed = computed(() => {
     const isoCode = key as Country['isoAlpha2Code']
     const guessed = countryStore.guessedCountries[isoCode]
 
+    totalGuessed += 1
+
     for (const continent of guessed.country.continents) {
       if (guessed.guessedAt) {
-        totalGuessed += 1
         continents[continent].guessed.push(guessed.country)
       } else {
         continents[continent].missed.push(guessed.country)
