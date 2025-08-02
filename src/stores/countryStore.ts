@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref, shallowRef } from 'vue'
+import { computed, nextTick, ref, shallowRef } from 'vue'
 import {
   countries,
   type GuessedCountriesMap,
@@ -55,7 +55,7 @@ export const useCountryStore = defineStore('countries', () => {
   )
 
   const numberCountriesGuessed = computed<number>(() =>
-    Object.keys(guessedCountries.value).reduce((previous, key) => {
+    (Object.keys(guessedCountries.value) as Country['isoAlpha2Code'][]).reduce((previous, key) => {
       if (guessedCountries.value[key].guessedAt) {
         return previous + 1
       }
@@ -64,9 +64,11 @@ export const useCountryStore = defineStore('countries', () => {
     }, 0),
   )
 
-  const hasGuessedCountries = computed(() => numberCountriesGuessed.value === countries.length)
+  const hasGuessedCountries = computed(
+    () => numberCountriesGuessed.value === selectedCountries.value.length,
+  )
 
-  function onGuessCountry(countryCode: string) {
+  function onGuessCountry(countryCode: Country['isoAlpha2Code']) {
     const country = guessedCountries.value[countryCode]?.country
 
     if (!country) throw new Error('country should be available')
@@ -102,9 +104,11 @@ export const useCountryStore = defineStore('countries', () => {
     trieRoot.value = buildCountryTrie(_countries, locale.value as SUPPORTED_LANGUAGES)
     guessedCountries.value = createGuessedCountriesMap(_countries)
 
-    if (selectedContinent.value) {
-      latestCountryFocused.value = focussedCountryContinent[selectedContinent.value]
-    }
+    nextTick(() => {
+      if (selectedContinent.value) {
+        latestCountryFocused.value = focussedCountryContinent[selectedContinent.value]
+      }
+    })
   }
 
   function onRestartGame() {

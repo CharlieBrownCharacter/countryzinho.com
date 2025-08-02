@@ -76,6 +76,7 @@ describe('isQuickGuess', () => {
 
 describe('guessedWholeContinent', () => {
   it('returns both europe and asia when last missing country is guessed', () => {
+    // @ts-expect-error We only want a subset
     const guessedCountries: GuessedCountriesMap = {
       DE: { country: germany, guessedAt: new Date() },
       FR: { country: france, guessedAt: new Date() },
@@ -90,6 +91,7 @@ describe('guessedWholeContinent', () => {
   })
 
   it('returns only asia if europe is missing a guess', () => {
+    // @ts-expect-error We only want a subset
     const guessedCountries: GuessedCountriesMap = {
       DE: { country: germany, guessedAt: null },
       FR: { country: france, guessedAt: new Date() },
@@ -104,6 +106,7 @@ describe('guessedWholeContinent', () => {
   })
 
   it('returns empty array if other countries are still missing', () => {
+    // @ts-expect-error We only want a subset
     const guessedCountries: GuessedCountriesMap = {
       DE: { country: germany, guessedAt: null },
       FR: { country: france, guessedAt: null },

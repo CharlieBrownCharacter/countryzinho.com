@@ -90,6 +90,7 @@ describe('useCountryStore', () => {
 
   it('throws error if country does not exist', () => {
     const store = useCountryStore()
+    // @ts-expect-error Testing it throws an error when invalid country is passed
     expect(() => store.onGuessCountry('ZZ')).toThrow('country should be available')
   })
 })

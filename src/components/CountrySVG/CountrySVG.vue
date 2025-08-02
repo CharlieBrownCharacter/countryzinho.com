@@ -6,7 +6,7 @@ import type { Country } from '@/services/resources/country/types.ts'
 import { countriesMapComponent } from '@/components/CountrySVG/constants.ts'
 
 defineProps<{
-  countries: string[]
+  countries: Country['isoAlpha2Code'][]
 }>()
 
 const countryStore = useCountryStore()
@@ -16,7 +16,7 @@ const { width, height } = useWindowSize({
   initialHeight: 800,
 })
 
-const latestCountryFocused = ref<Country | null>(null)
+const latestCountryFocused = ref<string>('')
 const viewBoxWidth = ref(width.value)
 const viewBoxHeight = ref(height.value)
 const viewBoxX = ref(0)
@@ -182,6 +182,9 @@ onMounted(() => focusOnCountry('es', 0))
 countryStore.$subscribe((mutation, state) => {
   if (mutation.type !== 'direct') return
 
+  if (latestCountryFocused.value === state.latestCountryFocused) return
+
+  latestCountryFocused.value = state.latestCountryFocused
   focusOnCountry(state.latestCountryFocused.toLowerCase())
 })
 </script>

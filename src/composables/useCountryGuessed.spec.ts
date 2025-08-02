@@ -46,6 +46,7 @@ describe('useCountryGuessed', () => {
   })
 
   it('handles invalid country code', () => {
+    // @ts-expect-error we are testing invalid country code
     const { guessed } = useCountryGuessed('XX')
 
     expect(guessed.value).toBe(false)

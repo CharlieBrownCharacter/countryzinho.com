@@ -194,7 +194,6 @@ import CountrySC from './countries/CountrySC.vue'
 import CountryIO from './countries/CountryIO.vue'
 import CountryAG from './countries/CountryAG.vue'
 import CountryBB from './countries/CountryBB.vue'
-import CountryTC from './countries/CountryTC.vue'
 import CountryVC from './countries/CountryVC.vue'
 import CountryLC from './countries/CountryLC.vue'
 import CountryGD from './countries/CountryGD.vue'
@@ -207,7 +206,6 @@ import CountryBL from './countries/CountryBL.vue'
 import CountryNU from './countries/CountryNU.vue'
 import CountryPM from './countries/CountryPM.vue'
 import CountryCK from './countries/CountryCK.vue'
-import CountryWF from './countries/CountryWF.vue'
 import CountryAS from './countries/CountryAS.vue'
 import CountryMH from './countries/CountryMH.vue'
 import CountryAW from './countries/CountryAW.vue'
@@ -231,8 +229,12 @@ import CountryGU from './countries/CountryGU.vue'
 import CountrySG from './countries/CountrySG.vue'
 import CountryTK from './countries/CountryTK.vue'
 import CountryTW from './countries/CountryTW.vue'
+import type { Country } from '@/services/resources/country/types.ts'
 
-export const countriesMapComponent: Record<string, ReturnType<typeof defineAsyncComponent>> = {
+export const countriesMapComponent: Record<
+  Country['isoAlpha2Code'],
+  ReturnType<typeof defineAsyncComponent>
+> = {
   SD: CountrySD,
   SS: CountrySS,
   GE: CountryGE,
@@ -428,7 +430,6 @@ export const countriesMapComponent: Record<string, ReturnType<typeof defineAsync
   IO: CountryIO,
   AG: CountryAG,
   BB: CountryBB,
-  TC: CountryTC,
   VC: CountryVC,
   LC: CountryLC,
   GD: CountryGD,
@@ -441,7 +442,6 @@ export const countriesMapComponent: Record<string, ReturnType<typeof defineAsync
   NU: CountryNU,
   PM: CountryPM,
   CK: CountryCK,
-  WF: CountryWF,
   AS: CountryAS,
   MH: CountryMH,
   AW: CountryAW,
