@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef, watch } from 'vue'
+import { ref, useTemplateRef, watch, type ComponentPublicInstance } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
@@ -21,7 +21,7 @@ const countryStore = useCountryStore()
 
 const { posthog } = usePostHog()
 
-const inputRef = useTemplateRef<InstanceType<typeof InputText>>('inputRef')
+const inputRef = useTemplateRef<ComponentPublicInstance>('inputRef')
 
 function onKeyUp() {
   const matchedCode = findGuess(countryStore.trieRoot, guess.value)
@@ -76,7 +76,6 @@ watch(
     // timeout needed because of transition
     setTimeout(() => {
       if (inputRef.value && inputRef.value.$el) {
-        console.log(Object.keys(inputRef.value))
         inputRef.value.$el.focus()
       }
     }, 100)
