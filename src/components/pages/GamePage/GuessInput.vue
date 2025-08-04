@@ -59,11 +59,13 @@ function onKeyUp() {
 function onGameRestartClick() {
   posthog.capture('openedGameRestartDialog')
   countryStore.isGameRestartConfirmationOpen = true
+  guess.value = ''
 }
 
 function onFinishGameClick() {
   posthog.capture('openedFinishGameDialog')
   countryStore.isFinishGameDialogOpen = true
+  guess.value = ''
 }
 </script>
 
