@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef, watch, type ComponentPublicInstance } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
@@ -21,7 +21,7 @@ const countryStore = useCountryStore()
 
 const { posthog } = usePostHog()
 
-const inputRef = useTemplateRef<InstanceType<typeof InputText>>('inputRef')
+const inputRef = useTemplateRef<ComponentPublicInstance>('inputRef')
 
 function onKeyUp() {
   const matchedCode = findGuess(countryStore.trieRoot, guess.value)
@@ -59,12 +59,26 @@ function onKeyUp() {
 function onGameRestartClick() {
   posthog.capture('openedGameRestartDialog')
   countryStore.isGameRestartConfirmationOpen = true
+  guess.value = ''
 }
 
 function onFinishGameClick() {
   posthog.capture('openedFinishGameDialog')
   countryStore.isFinishGameDialogOpen = true
+  guess.value = ''
 }
+
+watch(
+  () => countryStore.isShowingControls,
+  () => {
+    // timeout needed because of transition
+    setTimeout(() => {
+      if (inputRef.value && inputRef.value.$el) {
+        inputRef.value.$el.focus()
+      }
+    }, 100)
+  },
+)
 </script>
 
 <template>
