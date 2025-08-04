@@ -68,8 +68,6 @@ function onFinishGameClick() {
   guess.value = ''
 }
 
-defineExpose({ inputRef })
-
 watch(
   () => countryStore.isShowingControls,
   () => {
