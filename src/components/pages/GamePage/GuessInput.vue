@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import { useCountryStore } from '@/stores/countryStore.ts'
 import { findGuess } from '@/services/resources/country/helpers.ts'
 import InputText from 'primevue/inputtext'
@@ -67,6 +67,21 @@ function onFinishGameClick() {
   countryStore.isFinishGameDialogOpen = true
   guess.value = ''
 }
+
+defineExpose({ inputRef })
+
+watch(
+  () => countryStore.isShowingControls,
+  () => {
+    // timeout needed because of transition
+    setTimeout(() => {
+      if (inputRef.value && inputRef.value.$el) {
+        console.log(Object.keys(inputRef.value))
+        inputRef.value.$el.focus()
+      }
+    }, 100)
+  },
+)
 </script>
 
 <template>
