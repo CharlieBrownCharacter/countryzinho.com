@@ -36,7 +36,7 @@ export function buildCountryTrie(data: Country[], language: SUPPORTED_LANGUAGES)
 
 export function findGuess(root: TrieNode, input: string): TrieNode | null {
   let node = root
-  for (const char of input.toLowerCase()) {
+  for (const char of input.trim().toLowerCase()) {
     if (!node.children.has(char)) return null
     node = node.children.get(char)!
   }

@@ -7,7 +7,7 @@ import type { Continent } from '@/services/resources/country/types.ts'
 const turkey: Country = {
   name: 'Turkey',
   isoAlpha2Code: 'TR',
-  allowedGuesses: { en: ['Turkey'], pt: [], es: [] },
+  allowedGuesses: { en: ['Turkey'], pt: [], es: [], de: [] },
   slug: 'turkey',
   continents: ['europe', 'asia'],
 }
@@ -15,7 +15,7 @@ const turkey: Country = {
 const germany: Country = {
   name: 'Germany',
   isoAlpha2Code: 'DE',
-  allowedGuesses: { en: ['Germany'], pt: [], es: [] },
+  allowedGuesses: { en: ['Germany'], pt: [], es: [], de: [] },
   slug: 'germany',
   continents: ['europe'],
 }
@@ -23,7 +23,7 @@ const germany: Country = {
 const france: Country = {
   name: 'France',
   isoAlpha2Code: 'FR',
-  allowedGuesses: { en: ['France'], pt: [], es: [] },
+  allowedGuesses: { en: ['France'], pt: [], es: [], de: [] },
   slug: 'france',
   continents: ['europe'],
 }
@@ -31,7 +31,7 @@ const france: Country = {
 const japan: Country = {
   name: 'Japan',
   isoAlpha2Code: 'JP',
-  allowedGuesses: { en: ['Japan'], pt: [], es: [] },
+  allowedGuesses: { en: ['Japan'], pt: [], es: [], de: [] },
   slug: 'japan',
   continents: ['asia'],
 }
@@ -39,7 +39,7 @@ const japan: Country = {
 const china: Country = {
   name: 'China',
   isoAlpha2Code: 'CN',
-  allowedGuesses: { en: ['China'], pt: [], es: [] },
+  allowedGuesses: { en: ['China'], pt: [], es: [], de: [] },
   slug: 'china',
   continents: ['asia'],
 }

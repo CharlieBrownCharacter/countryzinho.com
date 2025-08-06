@@ -2,11 +2,13 @@ import { createI18n } from 'vue-i18n'
 import en from './lang/en.json'
 import pt from './lang/pt.json'
 import es from './lang/es.json'
+import de from './lang/de.json'
 
 export const SupportedLanguages = {
   en: 'en',
   pt: 'pt',
   es: 'es',
+  de: 'de',
 } as const
 
 export type SUPPORTED_LANGUAGES = (typeof SupportedLanguages)[keyof typeof SupportedLanguages]
@@ -39,6 +41,8 @@ export function getFlagEmoji(language: SUPPORTED_LANGUAGES): string {
       return getEnglishEmoji()
     case 'es':
       return '🇪🇸'
+    case 'de':
+      return '🇩🇪'
   }
 }
 
@@ -64,8 +68,8 @@ function getEnglishEmoji(): string {
 
 export type MessageSchema = typeof en
 
-export const i18n = createI18n<[MessageSchema], 'en' | 'pt' | 'es'>({
+export const i18n = createI18n<[MessageSchema], 'en' | 'pt' | 'es' | 'de'>({
   locale: getUserLanguage(),
   fallbackLocale: 'en' satisfies SUPPORTED_LANGUAGES,
-  messages: { en, pt, es },
+  messages: { en, pt, es, de },
 })
