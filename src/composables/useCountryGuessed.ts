@@ -20,8 +20,9 @@ export function useCountryGuessed(countryCode: Country['isoAlpha2Code']) {
     for (const key in store.guessedCountries) {
       const data = store.guessedCountries[key as Country['isoAlpha2Code']]
 
-      if (data.guessedAt && data.guessedAt > store.guessedCountries[countryCode].guessedAt)
-        return false
+      if (data.guessedAt === null) continue
+
+      if (data.guessedAt > store.guessedCountries[countryCode].guessedAt) return false
     }
 
     return true
