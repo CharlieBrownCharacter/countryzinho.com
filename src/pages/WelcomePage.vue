@@ -57,6 +57,15 @@ function onLanguageChange(language: SUPPORTED_LANGUAGES) {
               {{ getFlagEmoji(SupportedLanguages.es) }}
             </RouterLink>
           </Button>
+          <Button asChild link v-slot="slotProps">
+            <RouterLink
+              :to="{ name: 'welcome', params: { language: SupportedLanguages.de } }"
+              :class="slotProps.class"
+              @click.prevent="() => onLanguageChange(SupportedLanguages.de)"
+            >
+              {{ getFlagEmoji(SupportedLanguages.de) }}
+            </RouterLink>
+          </Button>
         </div>
       </div>
 

@@ -8,13 +8,14 @@ import { usePostHog } from '@/composables/usePostHog.ts'
 import { useI18n } from 'vue-i18n'
 import { countries, countriesByContinent } from '@/services/resources/country/constants.ts'
 import type { Continent } from '@/services/resources/country/types.ts'
+import type { MessageSchema } from '@/services/i18n'
 
 type ContinentOption = { value: Continent | null; text: string }
 
 const countryStore = useCountryStore()
 
 const { posthog } = usePostHog()
-const { t } = useI18n()
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const timeSelected = ref<null | number>(null)
 const counter = ref(0)
@@ -38,14 +39,14 @@ const timerOptions = computed(() => {
 })
 
 const continentOptions = computed<ContinentOption[]>(() => [
-  { value: null, text: 'World' },
-  { value: 'africa', text: 'Africa' },
-  { value: 'antarctica', text: 'Antarctica' },
-  { value: 'asia', text: 'Asia' },
-  { value: 'europe', text: 'Europe' },
-  { value: 'northAmerica', text: 'North America' },
-  { value: 'southAmerica', text: 'South America' },
-  { value: 'oceania', text: 'Oceania' },
+  { value: null, text: t('common.world') },
+  { value: 'africa', text: t('common.continents.africa') },
+  { value: 'antarctica', text: t('common.continents.antarctic') },
+  { value: 'asia', text: t('common.continents.asia') },
+  { value: 'europe', text: t('common.continents.europe') },
+  { value: 'northAmerica', text: t('common.continents.northAmerica') },
+  { value: 'southAmerica', text: t('common.continents.southAmerica') },
+  { value: 'oceania', text: t('common.continents.oceania') },
 ])
 
 const style = computed(() =>
