@@ -2,8 +2,19 @@
 import { useCountryGuessed } from '@/composables/useCountryGuessed.ts'
 import { computed } from 'vue'
 
-const { guessed } = useCountryGuessed('TO')
-const classes = computed(() => ({ 'fill-stone-400 stroke-black': guessed.value }))
+const { guessed, isLatestCountryGuessed } = useCountryGuessed('TO')
+
+const classes = computed(() => {
+  if (isLatestCountryGuessed.value) {
+    return 'fill-red-400 stroke-black'
+  }
+
+  if (guessed.value) {
+    return 'fill-stone-400 stroke-black'
+  }
+
+  return ''
+})
 </script>
 
 <template>

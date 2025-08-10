@@ -151,7 +151,7 @@ test.describe('choose continent', () => {
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
         .getAttribute('class')
 
-      expect(className).toContain('fill-stone-400')
+      expect(className).toContain('fill-red-400')
     }
 
     await expect(
@@ -164,7 +164,7 @@ test.describe('choose continent', () => {
   test('user can pick Antarctica as continent', async ({ page }) => {
     await page.goto('/en/game')
 
-    await page.getByRole('button', { name: 'antarctica' }).click()
+    await page.getByRole('button', { name: 'antarctic' }).click()
 
     await page.getByRole('button', { name: 'start' }).click()
 
@@ -177,7 +177,7 @@ test.describe('choose continent', () => {
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
         .getAttribute('class')
 
-      expect(className).toContain('fill-stone-400')
+      expect(className).toContain('fill-red-400')
     }
 
     await expect(
@@ -205,7 +205,7 @@ test.describe('choose continent', () => {
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
         .getAttribute('class')
 
-      expect(className).toContain('fill-stone-400')
+      expect(className).toContain('fill-red-400')
     }
 
     await expect(
@@ -242,8 +242,7 @@ test.describe('choose continent', () => {
       const hasActiveClass = await page
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
         .evaluate(
-          (el) =>
-            el.classList.contains('fill-stone-400') || el.classList.contains('fill-slate-200'),
+          (el) => el.classList.contains('fill-red-400') || el.classList.contains('fill-slate-200'),
         )
 
       expect(hasActiveClass).toBe(true)
@@ -279,7 +278,7 @@ test.describe('choose continent', () => {
 
       const hasActiveClass = await page
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
-        .evaluate((el) => el.classList.contains('fill-stone-400'))
+        .evaluate((el) => el.classList.contains('fill-red-400'))
 
       expect(hasActiveClass).toBe(true)
     }
@@ -308,7 +307,7 @@ test.describe('choose continent', () => {
 
       const hasActiveClass = await page
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
-        .evaluate((el) => el.classList.contains('fill-stone-400'))
+        .evaluate((el) => el.classList.contains('fill-red-400'))
 
       expect(hasActiveClass).toBe(true)
     }
@@ -337,7 +336,7 @@ test.describe('choose continent', () => {
 
       const hasActiveClass = await page
         .locator(`[id="${country.isoAlpha2Code.toLowerCase()}"]`)
-        .evaluate((el) => el.classList.contains('fill-stone-400'))
+        .evaluate((el) => el.classList.contains('fill-red-400'))
 
       expect(hasActiveClass).toBe(true)
     }

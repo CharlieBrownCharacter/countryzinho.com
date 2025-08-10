@@ -30,7 +30,7 @@ describe('useCountryGuessed', () => {
 
     const { guessed } = useCountryGuessed('BR')
 
-    expect(guessed.value).toBe(null)
+    expect(guessed.value).toBe(false)
   })
 
   it('returns guessedAt date if country was guessed', async () => {
@@ -42,7 +42,7 @@ describe('useCountryGuessed', () => {
 
     const { guessed } = useCountryGuessed('BR')
 
-    expect(guessed.value).toBeInstanceOf(Date)
+    expect(guessed.value).toBe(true)
   })
 
   it('handles invalid country code', () => {
